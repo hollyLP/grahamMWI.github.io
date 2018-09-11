@@ -46,7 +46,7 @@ function init(){
     });
 
     arContext = new THREEx.ArToolkitContext({
-        cameraParametersUrl: './assets/data/camera_para.dat',
+        cameraParametersUrl: 'data/data/camera_para.dat',
         detectionMode: 'mono',
     });
 
