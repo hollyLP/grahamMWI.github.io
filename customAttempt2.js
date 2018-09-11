@@ -52,7 +52,7 @@ function init(){
 
     arMarker[0] = new THREEx.ArMarkerControls(arContext, camera, {
         type : 'pattern',
-        patternUrl : 'data/data/patt.hiro',
+        patternUrl : 'data/data/patt - Copy.hiro',
         changeMatrixMode: 'cameraTransformMatrix'
     });
 
@@ -93,6 +93,6 @@ function render(){
     scene.visible = camera.visible;
 
 
-    mesh.rotateX(.1);
+    
 
 } 
