@@ -19,11 +19,15 @@ function init(){
     container = document.getElementById('container');
 
     renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setSize( window.innerWidth, window.innerHeight );
+    renderer.domElement.style.position = 'absolute'
+    renderer.domElement.style.top = '0px'
+    renderer.domElement.style.left = '0px'
+
     scene = new THREE.Scene();
     camera = new THREE.Camera();
 
     renderer.setClearColor(0x000000, 0);
-    renderer.setSize(window.innerWidth, window.innerHeight);
 
     container.appendChild(renderer.domElement);
     scene.add(camera);
@@ -48,6 +52,9 @@ function init(){
     arContext = new THREEx.ArToolkitContext({
         cameraParametersUrl: 'data/data/camera_para.dat',
         detectionMode: 'mono',
+        maxDetectionRate: 30,
+        canvasWidth: 80*3,
+        canvasHeight: 60*3,
     });
 
     arMarker[0] = new THREEx.ArMarkerControls(arContext, camera, {
@@ -68,6 +75,18 @@ function init(){
         if(arContext.arController !== null) arSource.copySizeTo(arContext.arController.canvas);
 
     });
+
+    // handle resize
+    window.addEventListener('resize', function(){
+        onResize()
+    })
+    function onResize(){
+        arToolkitSource.onResize()  
+        arToolkitSource.copySizeTo(renderer.domElement) 
+        if( arToolkitContext.arController !== null ){
+            arToolkitSource.copySizeTo(arToolkitContext.arController.canvas)    
+        }   
+    }
 
     arContext.init(function onCompleted(){
         
