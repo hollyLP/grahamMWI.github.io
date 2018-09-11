@@ -98,7 +98,7 @@
 	scene.add(markerRoot)
 	var artoolkitMarker = new THREEx.ArMarkerControls(arToolkitContext, markerRoot, {
 		type : 'pattern',
-		patternUrl : THREEx.ArToolkitContext.baseURL + 'data/data/hand-marker.patt'
+		patternUrl : THREEx.ArToolkitContext.baseURL + 'data/data/patt.hiro'
 		// patternUrl : THREEx.ArToolkitContext.baseURL + '../data/data/patt.kanji'
 	})
 	// build a smoothedControls
@@ -117,38 +117,6 @@
 	//////////////////////////////////////////////////////////////////////////////////
 	var arWorldRoot = smoothedRoot
 	// add a torus knot	
-
-
-	/*// instantiate a loader
-	var loader = new THREE.OBJLoader();
-
-	// load a resource
-	loader.load(
-		// resource URL
-		'data/models/Sample_book.obj',
-		// called when resource is loaded
-		function ( object ) {
-
-
-			arWorldRoot.add( object );
-
-		},
-		// called when loading is in progresses
-		function ( xhr ) {
-
-			console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
-
-		},
-		// called when loading has errors
-		function ( error ) {
-
-			console.log( 'An error happened' );
-
-		}
-	);*/
-
-
-
 	var geometry	= new THREE.CubeGeometry(1,1,1);
 	var material	= new THREE.MeshNormalMaterial({
 		transparent : true,
