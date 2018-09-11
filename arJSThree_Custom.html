@@ -98,11 +98,11 @@
 	scene.add(markerRoot)
 	var artoolkitMarker = new THREEx.ArMarkerControls(arToolkitContext, markerRoot, {
 		type : 'pattern',
-		patternUrl : THREEx.ArToolkitContext.baseURL + 'data/data/hand-marker.hiro'
+		patternUrl : 'data/data/hand-marker.hiro'
 		// patternUrl : THREEx.ArToolkitContext.baseURL + '../data/data/patt.kanji'
 	})
 
-	console.log('yeet   ' + THREEx.ArToolkitContext.baseURL + 'data/data/hand-marker.hiro')
+	console.log('yeet   ' + 'data/data/hand-marker.hiro')
 	// build a smoothedControls
 	var smoothedRoot = new THREE.Group()
 	scene.add(smoothedRoot)
