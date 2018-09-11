@@ -52,7 +52,7 @@ function init(){
 
     arMarker[0] = new THREEx.ArMarkerControls(arContext, camera, {
         type : 'pattern',
-        patternUrl : 'data/data/hand-marker-2.patt',
+        patternUrl : 'data/data/patt.hiro',
         changeMatrixMode: 'cameraTransformMatrix'
     });
 
