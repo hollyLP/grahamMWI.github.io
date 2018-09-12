@@ -124,13 +124,26 @@
 	// instantiate a loader
 	var loader = new THREE.OBJLoader();
 	var mesh;
+	var texture = THREE.TextureLoader('data/models/book2.png');
+    var material = new THREE.MeshLambertMaterial( { map: texture } );
+
+
 
 	// load a resource
 	loader.load(
 		// resource URL
-		'data/models/Sample_Book.obj',
+		'data/models/book2.obj',
 		// called when resource is loaded
 		function ( object ) {
+
+			object.traverse(function(child) {
+
+				if (child instanceof THREE.Mesh) {
+
+					child.material = material;
+				}
+			});
+
 
 			arWorldRoot.add( object );
 			mesh = object;
