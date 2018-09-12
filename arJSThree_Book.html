@@ -126,7 +126,7 @@
 	// instantiate a loader
 	var loader = new THREE.OBJLoader();
 	var mesh;
-	var texture = THREE.TextureLoader('data/models/book2.png');
+	
     
 
 
@@ -138,7 +138,8 @@
 		// called when resource is loaded
 		function ( object ) {
 
-			var material = new THREE.MeshLambertMaterial( { map: texture } );
+			var texture = THREE.TextureLoader('data/models/book2.png');
+			var material = new THREE.MeshLambertMaterial( { map:texture } );
 
 
 			object.traverse(function(child) {
