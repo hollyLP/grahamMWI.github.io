@@ -139,7 +139,8 @@
 		function ( object ) {
 
 			var texture = THREE.TextureLoader('data/models/book2.png');
-			var material = new THREE.MeshLambertMaterial( { map:texture } );
+			var material = new THREE.MeshLambertMaterial();
+			material.map = texture;
 
 
 			object.traverse(function(child) {
