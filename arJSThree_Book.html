@@ -136,12 +136,15 @@
 		// called when resource is loaded
 		function ( object ) {
 
-			var material = new THREE.MeshBasicMaterial( { map: texture } );
+			var material = new THREE.MeshLambertMaterial( { map: texture } );
 
 
 			object.traverse(function(child) {
 
-				child.material = material;
+				if (child instanceof THREE.Mesh) {
+
+					child.material = material;
+				}
 			});
 
 
