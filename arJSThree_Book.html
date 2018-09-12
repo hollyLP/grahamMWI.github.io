@@ -126,7 +126,7 @@
 	// instantiate a loader
 	var loader = new THREE.OBJLoader();
 	var mesh;
-	var texture = THREE.TextureLoader('data/models/book2.png');
+	var texture = THREE.TextureLoader('data/models/book2-smaller.png');
     
 
 
@@ -142,6 +142,7 @@
 			var material = new THREE.MeshLambertMaterial();
 			material.map = texture;
 			console.log('yeeting...');
+			console.log(texture);
 			console.log(material.map);
 
 
