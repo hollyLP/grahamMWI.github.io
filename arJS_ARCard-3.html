@@ -164,6 +164,8 @@
 					{
 						child.material = material_Gradient;
 					}
+
+					console.log("Found " + child.name)
 					
 				}
 			});
@@ -189,7 +191,7 @@
 
 	
 	onRenderFcts.push(function(){
-		//mesh.rotation.y += 0.05
+		mesh.rotation.y += 0.05
 	})
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
