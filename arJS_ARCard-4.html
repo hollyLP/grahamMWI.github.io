@@ -131,6 +131,8 @@
 	console.log(material_ARCard.map);
 
 	var material_Gradient = new THREE.MeshBasicMaterial();
+	texture_Gradient.wrapS = THREE.RepeatWrapping;
+	texture_Gradient.wrapT = THREE.RepeatWrapping;
 	material_Gradient.map = texture_Gradient;
 	material_Gradient.transparent = true;
 	console.log('Creating Gradient material...');
@@ -153,7 +155,7 @@
 			object.traverse(function(child) {
 
 				if (child instanceof THREE.Mesh) {
-					if(child.name == "WebPlaneFake_Plane")
+					if(child.name == "DetectionPlane_Plane.002" || child.name == "WebPlaneFake_Plane")
 					{
 						child.material = material_ARCard;
 					}
@@ -189,7 +191,7 @@
 	
 	onRenderFcts.push(function(){
 		
-		material_ARCard.map.offset.x += 1
+		material_Gradient.map.offset.x += 1
 	})
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
