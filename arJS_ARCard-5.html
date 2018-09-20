@@ -120,6 +120,7 @@
 	// instantiate a loader
 	var loader = new THREE.OBJLoader();
 	var mesh;
+	var textMesh;
 	var texture_ARCard = new THREE.TextureLoader().load('data/images/MWI-ARCard-4.png');
 	var texture_Gradient = new THREE.TextureLoader().load('data/images/MWIGradient.png');
     
@@ -144,7 +145,7 @@
 	// load a resource
 	loader.load(
 		// resource URL
-		'data/models/ARCard-5.obj',
+		'data/models/ARCard-52.obj',
 		// called when resource is loaded
 		function ( object ) {
 
@@ -162,9 +163,10 @@
 					else
 					{
 						child.material = material_Gradient;
+						textMesh = child;
 					}
 
-					console.log("Found " + child.name)
+					console.log("Found " + child.name);
 					
 				}
 			});
@@ -191,7 +193,7 @@
 	
 	onRenderFcts.push(function(){
 		
-		material_Gradient.map.offset.x += 10
+		textMesh.material.map.offset.x += 100;
 	})
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
