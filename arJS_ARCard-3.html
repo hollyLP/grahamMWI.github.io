@@ -21,7 +21,7 @@
 		// antialias	: true,
 		alpha: true
 	});
-	renderer.setClearColor(new THREE.Color('lightgrey'), 0)
+	renderer.setClearColor(new THREE.Color('black'), 0)
 	// renderer.setPixelRatio( 1/2 );
 	renderer.setSize( window.innerWidth, window.innerHeight );
 	renderer.domElement.style.position = 'absolute'
@@ -39,8 +39,6 @@
 	// Create a camera
 	var camera = new THREE.Camera();
 	scene.add(camera);
-	var ambient = new THREE.AmbientLight(0xbbbbbb);
-	scene.add(ambient);
 	////////////////////////////////////////////////////////////////////////////////
 	//          handle arToolkitSource
 	////////////////////////////////////////////////////////////////////////////////
@@ -139,13 +137,13 @@
 		function ( object ) {
 
 			
-			var material_ARCard = new THREE.MeshLambertMaterial();
+			var material_ARCard = new THREE.MeshBasicMaterial();
 			material_ARCard.map = texture_ARCard;
 			console.log('Creating ARCard material...');
 			console.log(texture_ARCard);
 			console.log(material_ARCard.map);
 
-			var material_Gradient = new THREE.MeshLambertMaterial();
+			var material_Gradient = new THREE.MeshBasicMaterial();
 			material_Gradient.map = texture_Gradient;
 			console.log('Creating Gradient material...');
 			console.log(texture_Gradient);
