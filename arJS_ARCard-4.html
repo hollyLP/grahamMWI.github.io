@@ -123,36 +123,37 @@
 	var texture_ARCard = new THREE.TextureLoader().load('data/images/MWI-ARCard-4.png');
 	var texture_Gradient = new THREE.TextureLoader().load('data/images/MWIGradient.png');
     
+    var material_ARCard = new THREE.MeshBasicMaterial();
+	material_ARCard.map = texture_ARCard;
+	material_ARCard.transparent = true;
+	console.log('Creating ARCard material...');
+	console.log(texture_ARCard);
+	console.log(material_ARCard.map);
+
+	var material_Gradient = new THREE.MeshBasicMaterial();
+	material_Gradient.map = texture_Gradient;
+	material_Gradient.transparent = true;
+	console.log('Creating Gradient material...');
+	console.log(texture_Gradient);
+	console.log(material_Gradient.map);
 
 
 
 	// load a resource
 	loader.load(
 		// resource URL
-		'data/models/ARCard-4.obj',
+		'data/models/ARCard-41.obj',
 		// called when resource is loaded
 		function ( object ) {
 
 			
-			var material_ARCard = new THREE.MeshBasicMaterial();
-			material_ARCard.map = texture_ARCard;
-			material_ARCard.transparent = true;
-			console.log('Creating ARCard material...');
-			console.log(texture_ARCard);
-			console.log(material_ARCard.map);
-
-			var material_Gradient = new THREE.MeshBasicMaterial();
-			material_Gradient.map = texture_Gradient;
-			material_Gradient.transparent = true;
-			console.log('Creating Gradient material...');
-			console.log(texture_Gradient);
-			console.log(material_Gradient.map);
+			
 
 
 			object.traverse(function(child) {
 
 				if (child instanceof THREE.Mesh) {
-					if(child.name == "DetectionPlane_Plane.002")
+					if(child.name == "DetectionPlane_Plane.002" || child.name == "WebPlaneFake_Plane")
 					{
 						child.material = material_ARCard;
 					}
@@ -188,7 +189,7 @@
 	
 	onRenderFcts.push(function(){
 		
-		
+		material_ARCard.map.offset.x += 1
 	})
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
