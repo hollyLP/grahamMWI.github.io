@@ -73,8 +73,7 @@
 		cameraParametersUrl: 'data/data/camera_para.dat',
 		detectionMode: 'mono',
 		maxDetectionRate: 30,
-		canvasWidth: 80*6,
-		canvasHeight: 60*6,
+		
 	})
 	// initialize it
 	arToolkitContext.init(function onCompleted(){
@@ -123,6 +122,7 @@
 	var textMesh;
 	var texture_ARCard = new THREE.TextureLoader().load('data/images/MWI-ARCard-4.png');
 	var texture_Gradient = new THREE.TextureLoader().load('data/images/MWIGradient.png');
+	var texture_Grid = new THREE.TextureLoader().load('data/images/Grid2.png');
     
     var material_ARCard = new THREE.MeshBasicMaterial();
 	material_ARCard.map = texture_ARCard;
@@ -140,12 +140,21 @@
 	console.log(texture_Gradient);
 	console.log(material_Gradient.map);
 
+	var material_Grid = new THREE.MeshBasicMaterial();
+	material_Grid.wrapS = THREE.RepeatWrapping;
+	material_Grid.wrapT = THREE.RepeatWrapping;
+	material_Grid.map = texture_Grid;
+	material_Grid.transparent = true;
+	console.log('Creating Grid material...');
+	console.log(material_Grid);
+	console.log(material_Grid.map);
+
 
 
 	// load a resource
 	loader.load(
 		// resource URL
-		'data/models/ARCard-52.obj',
+		'data/models/ARCard-53.obj',
 		// called when resource is loaded
 		function ( object ) {
 
@@ -160,10 +169,14 @@
 					{
 						child.material = material_ARCard;
 					}
-					else
+					else if(child.name == "CardText_Mesh")
 					{
 						child.material = material_Gradient;
 						textMesh = child;
+					}
+					else
+					{
+						child.material = material_Grid;
 					}
 
 					console.log("Found " + child.name);
@@ -193,7 +206,7 @@
 	
 	onRenderFcts.push(function(){
 		
-		textMesh.material.map.offset.x += 100;
+		textMesh.material.map.offset.x += 0.1;
 	})
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
