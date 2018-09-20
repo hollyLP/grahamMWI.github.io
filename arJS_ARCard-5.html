@@ -19,7 +19,7 @@
 		alpha: true
 	});
 	renderer.setClearColor(new THREE.Color('black'), 0)
-	renderer.setPixelRatio( 1 );
+	renderer.setPixelRatio( window.devicePixelRatio );
 	renderer.setSize( window.innerWidth, window.innerHeight );
 	renderer.domElement.style.position = 'absolute'
 	renderer.domElement.style.top = '0px'
@@ -73,8 +73,6 @@
 		cameraParametersUrl: 'data/data/camera_para.dat',
 		detectionMode: 'mono',
 		maxDetectionRate: 30,
-		canvasWidth: 80*3,
-		canvasHeight: 60*3,
 		
 	})
 	// initialize it
