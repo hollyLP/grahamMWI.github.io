@@ -6,7 +6,7 @@
 <script src="vendor/three.js/examples/js/loaders/OBJLoader.js"></script>
 <!-- ar.js -->
 <script src="build/ar.js"></script>
-<script src="vendor/three.js/examples/js/controls/DragControls.js"></script>
+<script src="vendor/three.js/examples/js/controls/InteractControls.js"></script>
 <script>THREEx.ArToolkitContext.baseURL = '../'</script>
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'><div style='position: absolute; top: 10px; width:100%; text-align: center; z-index: 1;'>
@@ -214,7 +214,7 @@
 	}
 
 
-	var dragControls = new THREE.InteractionControls( objects, camera, renderer.domElement );
+	var dragControls = new THREE.InteractControls( objects, camera, renderer.domElement );
 	dragControls.addEventListener( 'tapped', function ( event ) { onTap(event.object.name); } );
 
 	
