@@ -208,9 +208,19 @@
 	);
 
 
+	var drum1 = new Audio('data/sounds/babaKick.mp3');
+	var drum2 = new Audio('data/sounds/babaSnare.mp3');
 	function onTap(tappedObject)
 	{
 		console.log("Tapped object " + tappedObject);
+		if(tappedObject == "Drum1_Cone.001")
+		{
+			drum1.play();
+		}
+		else if(tappedObject == "Drum2_Cone.002")
+		{
+			drum2.play();
+		}
 	}
 
 
@@ -221,7 +231,6 @@
 	onRenderFcts.push(function(){
 		
 		textMesh.material.map.offset.x += 0.0025;
-		textMesh.rotateZ(0.015);
 	})
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
