@@ -173,11 +173,11 @@
 			{
 				if (child instanceof THREE.Mesh) 
 				{
-					if(child.name == "DetectionPlane" || child.name == "WebPlaneFake")
+					if(child.name == "Plane.002" || child.name == "WebPlaneFake")
 					{
 						child.material = material_ARCard;
 					}
-					else if(child.name == "CardText")
+					else if(child.name == "Mesh")
 					{
 						child.material = material_Gradient;
 						textMesh = child;
@@ -224,7 +224,7 @@
 	function onTap(tappedObject)
 	{
 		console.log("Tapped object " + tappedObject);
-		if(tappedObject == "Drum1")
+		if(tappedObject == "Cone.001")
 		{
 			if(drum1.paused)
 			{
@@ -235,7 +235,7 @@
 				drum1.currentTime = 0;
 			}
 		}
-		else if(tappedObject == "Drum2")
+		else if(tappedObject == "Cone.002")
 		{
 			if(drum2.paused)
 			{
