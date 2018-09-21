@@ -73,8 +73,6 @@
 		cameraParametersUrl: 'data/data/camera_para.dat',
 		detectionMode: 'mono',
 		maxDetectionRate: 30,
-		canvasWidth: 80*6,
-		canvasHeight: 60*6,
 	})
 	// initialize it
 	arToolkitContext.init(function onCompleted(){
@@ -105,8 +103,8 @@
 	var smoothedRoot = new THREE.Group()
 	scene.add(smoothedRoot)
 	var smoothedControls = new THREEx.ArSmoothedControls(smoothedRoot, {
-		lerpPosition: 0.4,
-		lerpQuaternion: 0.3,
+		lerpPosition: 0.2,
+		lerpQuaternion: 0.15,
 		lerpScale: 1,
 	})
 	onRenderFcts.push(function(delta){
