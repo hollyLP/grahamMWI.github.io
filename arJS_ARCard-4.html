@@ -19,7 +19,7 @@
 		alpha: true
 	});
 	renderer.setClearColor(new THREE.Color('black'), 0)
-	// renderer.setPixelRatio( 1/2 );
+	renderer.setPixelRatio( window.devicePixelRatio );
 	renderer.setSize( window.innerWidth, window.innerHeight );
 	renderer.domElement.style.position = 'absolute'
 	renderer.domElement.style.top = '0px'
