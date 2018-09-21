@@ -215,11 +215,25 @@
 		console.log("Tapped object " + tappedObject);
 		if(tappedObject == "Drum1_Cone.001")
 		{
-			drum1.play();
+			if(drum1.paused)
+			{
+				drum1.play();
+			}
+			else
+			{
+				drum1.currentTime = 0;
+			}
 		}
 		else if(tappedObject == "Drum2_Cone.002")
 		{
-			drum2.play();
+			if(drum2.paused)
+			{
+				drum2.play();
+			}
+			else
+			{
+				drum2.currentTime = 0;
+			}
 		}
 	}
 

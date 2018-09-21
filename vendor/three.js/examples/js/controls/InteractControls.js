@@ -69,7 +69,11 @@ THREE.InteractControls = function ( _objects, _camera, _domElement ) {
 
 		if ( intersects.length > 0 ) 
 		{
-			scope.dispatchEvent( { type: 'tapped', object: intersects[ 0 ].object } );
+			var tappedObj = intersects[ 0 ].object;
+			if(tappedObj.visible)
+			{
+				scope.dispatchEvent( { type: 'tapped', object: tappedObj } );
+			}
 		}
 
 
@@ -102,7 +106,11 @@ THREE.InteractControls = function ( _objects, _camera, _domElement ) {
 
 		if ( intersects.length > 0 ) 
 		{
-			scope.dispatchEvent( { type: 'tapped', object: intersects[ 0 ].object } );
+			var tappedObj = intersects[ 0 ].object;
+			if(tappedObj.visible)
+			{
+				scope.dispatchEvent( { type: 'tapped', object: tappedObj } );
+			}
 		}
 
 
