@@ -208,6 +208,8 @@
 	);
 
 	var dragControls = new THREE.DragControls( objects, camera, renderer.domElement );
+	dragControls.addEventListener( 'dragstart', function ( event ) { console.log("Bing"); } );
+	dragControls.addEventListener( 'dragend', function ( event ) { console.log("& Bong"); } );
 
 	
 	onRenderFcts.push(function(){
