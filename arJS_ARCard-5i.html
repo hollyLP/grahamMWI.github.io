@@ -176,17 +176,16 @@
 					{
 						child.material = material_Gradient;
 						textMesh = child;
-						objects.push(child)
 					}
 					else
 					{
 						child.material = material_Grid;
-						objects.push(child)
+						
 					}
 
 					console.log("Found " + child.name);
 					
-					
+					objects.push(child)
 				}
 			});
 
@@ -214,7 +213,7 @@
 	onRenderFcts.push(function(){
 		
 		textMesh.material.map.offset.x += 0.0025;
-		textMesh.rotation.y += 0.025
+		textMesh.rotation.x += 0.025
 	})
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
