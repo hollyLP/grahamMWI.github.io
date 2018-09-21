@@ -207,15 +207,21 @@
 		}
 	);
 
+
+	function onTap(tappedObject)
+	{
+		console.log("Tapped object " + tappedObject);
+	}
+
+
 	var dragControls = new THREE.DragControls( objects, camera, renderer.domElement );
-	dragControls.addEventListener( 'dragstart', function ( event ) { console.log("Bing"); } );
-	dragControls.addEventListener( 'dragend', function ( event ) { console.log("& Bong"); } );
+	dragControls.addEventListener( 'tapped', function ( event ) { onTap(event.object.name); } );
 
 	
 	onRenderFcts.push(function(){
 		
 		textMesh.material.map.offset.x += 0.0025;
-		textMesh.rotation.z += 0.015
+		textMesh.rotateZ(0.015);
 	})
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
