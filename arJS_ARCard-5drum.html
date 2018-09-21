@@ -3,7 +3,8 @@
 <!-- three.js library -->
 <script src='vendor/three.js/build/three.min.js'></script>
 <script src="vendor/three.js/examples/js/libs/stats.min.js"></script>
-<script src="vendor/three.js/examples/js/loaders/OBJLoader.js"></script>
+<script src="vendor/three.js/examples/js/loaders/GLTFLoader.js"></script>
+<script src="vendor/three.js/examples/js/loaders/DRACOLoader.js"></script>
 <!-- ar.js -->
 <script src="build/ar.js"></script>
 <script src="vendor/three.js/examples/js/controls/InteractControls.js"></script>
@@ -117,8 +118,12 @@
 	//////////////////////////////////////////////////////////////////////////////////
 	var arWorldRoot = smoothedRoot
 
+	THREE.DRACOLoader.setDecoderPath("vendor/three.js/examples/js/libs/draco/gltf/");
 	// instantiate a loader
-	var loader = new THREE.OBJLoader();
+	var loader = new THREE.GLTFLoader();
+	loader.setDRACOLoader(new THREE.DRACOLoader());
+	var clock = new THREE.Clock();
+	var mixer;
 	var mesh;
 	var textMesh;
 	var texture_ARCard = new THREE.TextureLoader().load('data/images/MWI-ARCard-4.png');
@@ -158,13 +163,13 @@
 		// resource URL
 		'data/models/ARCard-5drum.obj',
 		// called when resource is loaded
-		function ( object ) {
+		function ( object ) 
+		{
+			var model = object.scene;
 
-			
-			
 
 
-			object.traverse(function(child) 
+			model.traverse(function(child) 
 			{
 				if (child instanceof THREE.Mesh) 
 				{
@@ -190,8 +195,13 @@
 			});
 
 
-			arWorldRoot.add( object );
-			mesh = object;
+			arWorldRoot.add( model );
+			mesh = model;
+
+			mixer = new THREE.AnimationMixer(model);
+			miser.clipAction(object.animations[0]).play();
+			console.log("Animations:");
+			console.log(object.animations);
 		},
 		// called when loading is in progresses
 		function ( xhr ) {
@@ -255,6 +265,7 @@
 	onRenderFcts.push(function(){
 		renderer.render( scene, camera );
 		stats.update();
+		mixer.update(clock.getDelta());
 	})
 	// run the rendering loop
 	var lastTimeMsec= null
