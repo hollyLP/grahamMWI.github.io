@@ -5,32 +5,15 @@
       <author>Blender User</author>
       <authoring_tool>Blender 2.78.0 commit date:2017-02-24, commit time:14:33, hash:e92f235283</authoring_tool>
     </contributor>
-    <created>2018-09-27T17:14:52</created>
-    <modified>2018-09-27T17:14:52</modified>
+    <created>2018-09-27T17:22:22</created>
+    <modified>2018-09-27T17:22:22</modified>
     <unit name="meter" meter="1"/>
     <up_axis>Z_UP</up_axis>
   </asset>
-  <library_images>
-    <image id="MWIGradient_png" name="MWIGradient_png">
-      <init_from>MWIGradient.png</init_from>
-    </image>
-    <image id="MWI-ARCard-4_psd" name="MWI-ARCard-4_psd">
-      <init_from>MWI-ARCard-4.jpg</init_from>
-    </image>
-  </library_images>
+  <library_images/>
   <library_effects>
     <effect id="Gradient-effect">
       <profile_COMMON>
-        <newparam sid="MWIGradient_png-surface">
-          <surface type="2D">
-            <init_from>MWIGradient_png</init_from>
-          </surface>
-        </newparam>
-        <newparam sid="MWIGradient_png-sampler">
-          <sampler2D>
-            <source>MWIGradient_png-surface</source>
-          </sampler2D>
-        </newparam>
         <technique sid="common">
           <phong>
             <emission>
@@ -40,7 +23,7 @@
               <color sid="ambient">0 0 0 1</color>
             </ambient>
             <diffuse>
-              <texture texture="MWIGradient_png-sampler" texcoord="UVMap"/>
+              <color sid="diffuse">0.64 0.64 0.64 1</color>
             </diffuse>
             <specular>
               <color sid="specular">0.5 0.5 0.5 1</color>
@@ -60,16 +43,6 @@
     </effect>
     <effect id="ARCard-effect">
       <profile_COMMON>
-        <newparam sid="MWI-ARCard-4_psd-surface">
-          <surface type="2D">
-            <init_from>MWI-ARCard-4_psd</init_from>
-          </surface>
-        </newparam>
-        <newparam sid="MWI-ARCard-4_psd-sampler">
-          <sampler2D>
-            <source>MWI-ARCard-4_psd-surface</source>
-          </sampler2D>
-        </newparam>
         <technique sid="common">
           <phong>
             <emission>
@@ -79,7 +52,7 @@
               <color sid="ambient">0 0 0 1</color>
             </ambient>
             <diffuse>
-              <texture texture="MWI-ARCard-4_psd-sampler" texcoord="UVMap"/>
+              <color sid="diffuse">0.64 0.64 0.64 1</color>
             </diffuse>
             <specular>
               <color sid="specular">0.5 0.5 0.5 1</color>
