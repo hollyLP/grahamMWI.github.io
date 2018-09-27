@@ -199,10 +199,7 @@
 			arWorldRoot.add( model );
 			mesh = model;
 			console.log("Spawned Model");
-			mixer = new THREE.AnimationMixer(model);
-			mixer.clipAction(object.animations[0]).play();
-			console.log("Animations:");
-			console.log(object.animations);
+			
 		},
 		// called when loading is in progresses
 		function ( xhr ) {
