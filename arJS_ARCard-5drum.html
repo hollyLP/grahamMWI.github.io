@@ -3,7 +3,7 @@
 <!-- three.js library -->
 <script src='vendor/three.js/build/three.min.js'></script>
 <script src="vendor/three.js/examples/js/libs/stats.min.js"></script>
-<script src="vendor/three.js/examples/js/loaders/GLTFLoader.js"></script>
+<script src="vendor/three.js/examples/js/loaders/ColladaLoader.js"></script>
 <script src="vendor/three.js/examples/js/loaders/DRACOLoader.js"></script>
 <!-- ar.js -->
 <script src="build/ar.js"></script>
@@ -118,10 +118,10 @@
 	//////////////////////////////////////////////////////////////////////////////////
 	var arWorldRoot = smoothedRoot
 
-	THREE.DRACOLoader.setDecoderPath("vendor/three.js/examples/js/libs/draco/gltf/");
+	//THREE.DRACOLoader.setDecoderPath("vendor/three.js/examples/js/libs/draco/gltf/");
 	// instantiate a loader
-	var loader = new THREE.GLTFLoader();
-	loader.setDRACOLoader(new THREE.DRACOLoader());
+	var loader = new THREE.ColladaLoader();
+	//loader.setDRACOLoader(new THREE.DRACOLoader());
 	var clock = new THREE.Clock();
 	var mixer;
 	var mesh;
@@ -161,7 +161,7 @@
 	// load a resource
 	loader.load(
 		// resource URL
-		'data/models/ARBuisnessCard5-drum11.gltf',
+		'data/models/ARBuisnessCard5-drum.dae',
 		// called when resource is loaded
 		function ( object ) 
 		{
@@ -222,7 +222,7 @@
 	function onTap(tappedObject)
 	{
 		console.log("Tapped object " + tappedObject);
-		if(tappedObject == "Cone.001")
+		if(tappedObject == "Drum1")
 		{
 			if(drum1.paused)
 			{
@@ -233,7 +233,7 @@
 				drum1.currentTime = 0;
 			}
 		}
-		else if(tappedObject == "Cone.002")
+		else if(tappedObject == "Drum2")
 		{
 			if(drum2.paused)
 			{
