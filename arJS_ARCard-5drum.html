@@ -173,11 +173,11 @@
 			{
 				if (child instanceof THREE.Mesh) 
 				{
-					/*if(child.name == "Plane.002" || child.name == "WebPlaneFake")
+					if(child.name == "DetectionPlane" || child.name == "WebPlaneFake")
 					{
 						child.material = material_ARCard;
 					}
-					else if(child.name == "Mesh")
+					else if(child.name == "CardText")
 					{
 						child.material = material_Gradient;
 						textMesh = child;
@@ -186,13 +186,13 @@
 					{
 						child.material = material_Gradient;
 						
-					}*/
+					}
 
-					
+					console.log("Found " + child.name);
 					
 					objects.push(child);
 				}
-				console.log("Found " + child.name);
+				
 			});
 
 
