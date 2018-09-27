@@ -5,80 +5,12 @@
       <author>Blender User</author>
       <authoring_tool>Blender 2.78.0 commit date:2017-02-24, commit time:14:33, hash:e92f235283</authoring_tool>
     </contributor>
-    <created>2018-09-27T17:22:22</created>
-    <modified>2018-09-27T17:22:22</modified>
+    <created>2018-09-27T17:33:39</created>
+    <modified>2018-09-27T17:33:39</modified>
     <unit name="meter" meter="1"/>
     <up_axis>Z_UP</up_axis>
   </asset>
   <library_images/>
-  <library_effects>
-    <effect id="Gradient-effect">
-      <profile_COMMON>
-        <technique sid="common">
-          <phong>
-            <emission>
-              <color sid="emission">0 0 0 1</color>
-            </emission>
-            <ambient>
-              <color sid="ambient">0 0 0 1</color>
-            </ambient>
-            <diffuse>
-              <color sid="diffuse">0.64 0.64 0.64 1</color>
-            </diffuse>
-            <specular>
-              <color sid="specular">0.5 0.5 0.5 1</color>
-            </specular>
-            <shininess>
-              <float sid="shininess">50</float>
-            </shininess>
-            <transparent opaque="A_ONE">
-              <color>1 1 1 1</color>
-            </transparent>
-            <index_of_refraction>
-              <float sid="index_of_refraction">1</float>
-            </index_of_refraction>
-          </phong>
-        </technique>
-      </profile_COMMON>
-    </effect>
-    <effect id="ARCard-effect">
-      <profile_COMMON>
-        <technique sid="common">
-          <phong>
-            <emission>
-              <color sid="emission">0 0 0 1</color>
-            </emission>
-            <ambient>
-              <color sid="ambient">0 0 0 1</color>
-            </ambient>
-            <diffuse>
-              <color sid="diffuse">0.64 0.64 0.64 1</color>
-            </diffuse>
-            <specular>
-              <color sid="specular">0.5 0.5 0.5 1</color>
-            </specular>
-            <shininess>
-              <float sid="shininess">50</float>
-            </shininess>
-            <transparent opaque="A_ONE">
-              <color>1 1 1 1</color>
-            </transparent>
-            <index_of_refraction>
-              <float sid="index_of_refraction">1</float>
-            </index_of_refraction>
-          </phong>
-        </technique>
-      </profile_COMMON>
-    </effect>
-  </library_effects>
-  <library_materials>
-    <material id="Gradient-material" name="Gradient">
-      <instance_effect url="#Gradient-effect"/>
-    </material>
-    <material id="ARCard-material" name="ARCard">
-      <instance_effect url="#ARCard-effect"/>
-    </material>
-  </library_materials>
   <library_geometries>
     <geometry id="Mesh-mesh" name="Mesh">
       <mesh>
@@ -114,7 +46,7 @@
         <vertices id="Mesh-mesh-vertices">
           <input semantic="POSITION" source="#Mesh-mesh-positions"/>
         </vertices>
-        <polylist material="Gradient-material" count="5091">
+        <polylist count="5091">
           <input semantic="VERTEX" source="#Mesh-mesh-vertices" offset="0"/>
           <input semantic="NORMAL" source="#Mesh-mesh-normals" offset="1"/>
           <input semantic="TEXCOORD" source="#Mesh-mesh-map-0" offset="2" set="0"/>
@@ -146,7 +78,7 @@
           </technique_common>
         </source>
         <source id="Cone_001-mesh-map-0">
-          <float_array id="Cone_001-mesh-map-0-array" count="180">0.5 0.02636641 0.5 0.9852353 0.6913418 0.02636641 0.6913418 0.02636641 0.5 0.9852353 0.8535536 0.02636641 0.8535536 0.02636641 0.5 0.9852353 0.9619398 0.02636641 0.9619398 0.02636641 0.5 0.9852353 1 0.02636641 1 0.02636641 0.5 0.9852353 0.9619398 0.02636641 0.9619398 0.02636641 0.5 0.9852353 0.8535536 0.02636641 0.8535536 0.02636641 0.5 0.9852353 0.6913418 0.02636641 0.6913418 0.02636641 0.5 0.9852353 0.5 0.02636641 0.5 0.02636641 0.5 0.9852353 0.3086584 0.02636641 0.3086584 0.02636641 0.5 0.9852353 0.1464465 0.02636641 0.1464465 0.02636641 0.5 0.9852353 0.03806036 0.02636641 0.03806036 0.02636641 0.5 0.9852353 0 0.02636641 0 0.02636641 0.5 0.9852353 0.03806036 0.02636641 0.03806036 0.02636641 0.5 0.9852353 0.1464465 0.02636641 0.1464465 0.02636641 0.5 0.9852353 0.3086586 0.02636641 0.3086586 0.02636641 0.5 0.9852353 0.5 0.02636641 0.6913418 0.01230388 0.03806036 0.01230388 0.3086586 0.01230388 0.3086586 0.01230388 0.5 0.01230388 0.6913418 0.01230388 0.6913418 0.01230388 0.8535536 0.01230388 0.9619398 0.01230388 0.9619398 0.01230388 1 0.01230388 0.9619398 0.01230388 0.9619398 0.01230388 0.8535536 0.01230388 0.6913418 0.01230388 0.6913418 0.01230388 0.5 0.01230388 0.03806036 0.01230388 0.3086584 0.01230388 0.1464465 0.01230388 0.03806036 0.01230388 0.03806036 0.01230388 0 0.01230388 0.03806036 0.01230388 0.03806036 0.01230388 0.1464465 0.01230388 0.3086586 0.01230388 0.3086586 0.01230388 0.6913418 0.01230388 0.6913418 0.01230388 0.9619398 0.01230388 0.9619398 0.01230388 0.6913418 0.01230388 0.5 0.01230388 0.3086584 0.01230388 0.03806036 0.01230388 0.03806036 0.01230388 0.03806036 0.01230388 0.6913418 0.01230388 0.6913418 0.01230388 0.9619398 0.01230388 0.6913418 0.01230388</float_array>
+          <float_array id="Cone_001-mesh-map-0-array" count="180">0.5 0.02636635 0.4999998 0.9852353 0.6913418 0.02636635 0.6913418 0.02636635 0.4999998 0.9852353 0.8535536 0.02636659 0.8535536 0.02636659 0.4999998 0.9852353 0.9619398 0.02636647 0.9619398 0.02636647 0.4999998 0.9852353 1 0.02636647 1 0.02636647 0.4999998 0.9852353 0.9619398 0.02636647 0.9619398 0.02636647 0.4999998 0.9852353 0.8535536 0.02636659 0.8535536 0.02636659 0.4999998 0.9852353 0.6913418 0.02636635 0.6913418 0.02636635 0.4999998 0.9852353 0.5 0.02636635 0.5 0.02636635 0.4999998 0.9852353 0.3086584 0.02636635 0.3086584 0.02636635 0.4999998 0.9852353 0.1464465 0.02636629 0.1464465 0.02636629 0.4999998 0.9852353 0.0380603 0.02636629 0.0380603 0.02636629 0.4999998 0.9852353 0 0.02636629 0 0.02636629 0.4999998 0.9852353 0.0380603 0.02636629 0.0380603 0.02636629 0.4999998 0.9852353 0.1464465 0.02636629 0.1464465 0.02636629 0.4999998 0.9852353 0.3086586 0.02636635 0.3086586 0.02636635 0.4999998 0.9852353 0.5 0.02636635 0.6913418 0.01230382 0.0380603 0.01230382 0.3086586 0.01230382 0.3086586 0.01230382 0.5 0.01230382 0.6913418 0.01230382 0.6913418 0.01230382 0.8535536 0.01230406 0.9619398 0.01230406 0.9619398 0.01230406 1 0.01230406 0.9619398 0.01230406 0.9619398 0.01230406 0.8535536 0.01230406 0.6913418 0.01230382 0.6913418 0.01230382 0.5 0.01230382 0.0380603 0.01230382 0.3086584 0.01230382 0.1464465 0.01230382 0.0380603 0.01230382 0.0380603 0.01230382 0 0.01230382 0.0380603 0.01230382 0.0380603 0.01230382 0.1464465 0.01230382 0.3086586 0.01230382 0.3086586 0.01230382 0.6913418 0.01230382 0.6913418 0.01230382 0.9619398 0.01230406 0.9619398 0.01230406 0.6913418 0.01230382 0.5 0.01230382 0.3086584 0.01230382 0.0380603 0.01230382 0.0380603 0.01230382 0.0380603 0.01230382 0.6913418 0.01230382 0.6913418 0.01230382 0.9619398 0.01230406 0.6913418 0.01230382</float_array>
           <technique_common>
             <accessor source="#Cone_001-mesh-map-0-array" count="90" stride="2">
               <param name="S" type="float"/>
@@ -157,7 +89,7 @@
         <vertices id="Cone_001-mesh-vertices">
           <input semantic="POSITION" source="#Cone_001-mesh-positions"/>
         </vertices>
-        <polylist material="Gradient-material" count="30">
+        <polylist count="30">
           <input semantic="VERTEX" source="#Cone_001-mesh-vertices" offset="0"/>
           <input semantic="NORMAL" source="#Cone_001-mesh-normals" offset="1"/>
           <input semantic="TEXCOORD" source="#Cone_001-mesh-map-0" offset="2" set="0"/>
@@ -200,7 +132,7 @@
         <vertices id="Cone_002-mesh-vertices">
           <input semantic="POSITION" source="#Cone_002-mesh-positions"/>
         </vertices>
-        <polylist material="Gradient-material" count="30">
+        <polylist count="30">
           <input semantic="VERTEX" source="#Cone_002-mesh-vertices" offset="0"/>
           <input semantic="NORMAL" source="#Cone_002-mesh-normals" offset="1"/>
           <input semantic="TEXCOORD" source="#Cone_002-mesh-map-0" offset="2" set="0"/>
@@ -243,7 +175,7 @@
         <vertices id="Plane_002-mesh-vertices">
           <input semantic="POSITION" source="#Plane_002-mesh-positions"/>
         </vertices>
-        <polylist material="ARCard-material" count="20">
+        <polylist count="20">
           <input semantic="VERTEX" source="#Plane_002-mesh-vertices" offset="0"/>
           <input semantic="NORMAL" source="#Plane_002-mesh-normals" offset="1"/>
           <input semantic="TEXCOORD" source="#Plane_002-mesh-map-0" offset="2" set="0"/>
@@ -1668,30 +1600,14 @@
         <rotate sid="rotationY">0 1 0 0</rotate>
         <rotate sid="rotationX">1 0 0 0</rotate>
         <scale sid="scale">1 1 1</scale>
-        <instance_geometry url="#Plane_002-mesh" name="DetectionPlane">
-          <bind_material>
-            <technique_common>
-              <instance_material symbol="ARCard-material" target="#ARCard-material">
-                <bind_vertex_input semantic="UVMap" input_semantic="TEXCOORD" input_set="0"/>
-              </instance_material>
-            </technique_common>
-          </bind_material>
-        </instance_geometry>
+        <instance_geometry url="#Plane_002-mesh" name="DetectionPlane"/>
         <node id="CardText" name="CardText" type="NODE">
           <translate sid="location">-0.07927386 0.9070457 0.4836691</translate>
           <rotate sid="rotationZ">0 0 1 -6.11826e-13</rotate>
           <rotate sid="rotationY">0 1 0 6.45385e-13</rotate>
           <rotate sid="rotationX">1 0 0 46.52907</rotate>
           <scale sid="scale">0.7735355 0.7735356 0.7735356</scale>
-          <instance_geometry url="#Mesh-mesh" name="CardText">
-            <bind_material>
-              <technique_common>
-                <instance_material symbol="Gradient-material" target="#Gradient-material">
-                  <bind_vertex_input semantic="UVMap" input_semantic="TEXCOORD" input_set="0"/>
-                </instance_material>
-              </technique_common>
-            </bind_material>
-          </instance_geometry>
+          <instance_geometry url="#Mesh-mesh" name="CardText"/>
         </node>
         <node id="Drum1" name="Drum1" type="NODE">
           <translate sid="location">-0.6144313 0.1731306 0.09125076</translate>
@@ -1699,15 +1615,7 @@
           <rotate sid="rotationY">0 1 0 0</rotate>
           <rotate sid="rotationX">1 0 0 0</rotate>
           <scale sid="scale">1 1 1</scale>
-          <instance_geometry url="#Cone_001-mesh" name="Drum1">
-            <bind_material>
-              <technique_common>
-                <instance_material symbol="Gradient-material" target="#Gradient-material">
-                  <bind_vertex_input semantic="UVMap" input_semantic="TEXCOORD" input_set="0"/>
-                </instance_material>
-              </technique_common>
-            </bind_material>
-          </instance_geometry>
+          <instance_geometry url="#Cone_001-mesh" name="Drum1"/>
         </node>
         <node id="Drum2" name="Drum2" type="NODE">
           <translate sid="location">0.61443 0.1731306 0.09125076</translate>
@@ -1715,15 +1623,7 @@
           <rotate sid="rotationY">0 1 0 0</rotate>
           <rotate sid="rotationX">1 0 0 0</rotate>
           <scale sid="scale">1 1 1</scale>
-          <instance_geometry url="#Cone_002-mesh" name="Drum2">
-            <bind_material>
-              <technique_common>
-                <instance_material symbol="Gradient-material" target="#Gradient-material">
-                  <bind_vertex_input semantic="UVMap" input_semantic="TEXCOORD" input_set="0"/>
-                </instance_material>
-              </technique_common>
-            </bind_material>
-          </instance_geometry>
+          <instance_geometry url="#Cone_002-mesh" name="Drum2"/>
         </node>
       </node>
     </visual_scene>
