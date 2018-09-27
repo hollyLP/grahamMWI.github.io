@@ -3,7 +3,8 @@
 <!-- three.js library -->
 <script src='vendor/three.js/build/three.min.js'></script>
 <script src="vendor/three.js/examples/js/libs/stats.min.js"></script>
-<script src="vendor/three.js/examples/js/loaders/ColladaLoader.js"></script>
+<script src="vendor/three.js/examples/js/loaders/GLTFLoader.js"></script>
+<script src="vendor/three.js/examples/js/loaders/DRACOLoader.js"></script>
 <!-- ar.js -->
 <script src="build/ar.js"></script>
 <script src="vendor/three.js/examples/js/controls/InteractControls.js"></script>
@@ -119,15 +120,15 @@
 
 	//THREE.DRACOLoader.setDecoderPath("vendor/three.js/examples/js/libs/draco/gltf/");
 	// instantiate a loader
-	var loader = new THREE.ColladaLoader();
-	//loader.setDRACOLoader(new THREE.DRACOLoader());
+	var loader = new THREE.GLTFLoader();
+	loader.setDRACOLoader(new THREE.DRACOLoader());
 	var clock = new THREE.Clock();
 	var mixer;
 	var clips
 	var mesh;
 	var textMesh;
-	var texture_ARCard = new THREE.TextureLoader().load('data/images/MWI-ARCard-4.png');
-	var texture_Gradient = new THREE.TextureLoader().load('data/images/MWIGradient.png');
+	var texture_ARCard = new THREE.TextureLoader().load('data/images/MWI-ARCard-5.png');
+	var texture_Gradient = new THREE.TextureLoader().load('data/images/MWIGradientFixed.png');
 	var texture_Grid = new THREE.TextureLoader().load('data/images/Grid2.png');
     
     var material_ARCard = new THREE.MeshBasicMaterial();
@@ -161,7 +162,7 @@
 	// load a resource
 	loader.load(
 		// resource URL
-		'data/models/ARBuisnessCard5-drum.dae',
+		'data/models/ARBuisnessCard5-drum11.gltf',
 		// called when resource is loaded
 		function ( object ) 
 		{
