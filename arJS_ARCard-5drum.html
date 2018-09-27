@@ -161,7 +161,7 @@
 	// load a resource
 	loader.load(
 		// resource URL
-		'data/models/ARCard-5drum.gltf',
+		'data/models/ARCard-5drum2.gltf',
 		// called when resource is loaded
 		function ( object ) 
 		{
@@ -173,7 +173,7 @@
 			{
 				if (child instanceof THREE.Mesh) 
 				{
-					if(child.name == "Plane.002" || child.name == "WebPlaneFake")
+					/*if(child.name == "Plane.002" || child.name == "WebPlaneFake")
 					{
 						child.material = material_ARCard;
 					}
@@ -186,7 +186,7 @@
 					{
 						child.material = material_Gradient;
 						
-					}
+					}*/
 
 					console.log("Found " + child.name);
 					
