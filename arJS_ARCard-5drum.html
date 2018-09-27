@@ -190,7 +190,7 @@
 
 					
 					
-					objects.push(child)
+					objects.push(child);
 				}
 				console.log("Found " + child.name);
 			});
@@ -198,7 +198,7 @@
 
 			arWorldRoot.add( model );
 			mesh = model;
-
+			console.log("Spawned Model");
 			mixer = new THREE.AnimationMixer(model);
 			miser.clipAction(object.animations[0]).play();
 			console.log("Animations:");
