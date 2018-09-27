@@ -124,6 +124,7 @@
 	//loader.setDRACOLoader(new THREE.DRACOLoader());
 	var clock = new THREE.Clock();
 	var mixer;
+	var clips
 	var mesh;
 	var textMesh;
 	var texture_ARCard = new THREE.TextureLoader().load('data/images/MWI-ARCard-4.png');
@@ -199,6 +200,11 @@
 			arWorldRoot.add( model );
 			mesh = model;
 			console.log("Spawned Model");
+
+			mixer = new THREE.AnimationMixer( mesh );
+			clips = mesh.animations;
+			console.log(clips);
+			mixer.clipAction(clips[0]).play();
 			
 		},
 		// called when loading is in progresses
@@ -253,7 +259,7 @@
 	
 	onRenderFcts.push(function(){
 		
-		//textMesh.material.map.offset.x += 0.0025;
+		textMesh.material.map.offset.x += 0.0025;
 	})
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
@@ -264,7 +270,7 @@
 	onRenderFcts.push(function(){
 		renderer.render( scene, camera );
 		stats.update();
-		//mixer.update(clock.getDelta());
+		mixer.update(clock.getDelta());
 	})
 	// run the rendering loop
 	var lastTimeMsec= null
