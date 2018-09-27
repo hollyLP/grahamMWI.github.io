@@ -201,8 +201,8 @@
 			mesh = model;
 			console.log("Spawned Model");
 
-			mixer = new THREE.AnimationMixer( mesh );
-			clips = mesh.animations;
+			mixer = new THREE.AnimationMixer( object );
+			clips = object.animations;
 			console.log(clips);
 			mixer.clipAction(clips[0]).play();
 			
