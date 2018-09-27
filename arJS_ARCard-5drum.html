@@ -121,7 +121,7 @@
 	THREE.DRACOLoader.setDecoderPath("vendor/three.js/examples/js/libs/draco/gltf/");
 	// instantiate a loader
 	var loader = new THREE.GLTFLoader();
-	//loader.setDRACOLoader(new THREE.DRACOLoader());
+	loader.setDRACOLoader(new THREE.DRACOLoader());
 	var clock = new THREE.Clock();
 	var mixer;
 	var mesh;
@@ -161,7 +161,7 @@
 	// load a resource
 	loader.load(
 		// resource URL
-		'data/models/ARBuisnessCard5-drum5.glb',
+		'data/models/ARBuisnessCard5-drum5.gltf',
 		// called when resource is loaded
 		function ( object ) 
 		{
