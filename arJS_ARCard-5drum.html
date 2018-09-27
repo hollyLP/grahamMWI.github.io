@@ -204,7 +204,10 @@
 			mixer = new THREE.AnimationMixer( object );
 			clips = object.animations;
 			console.log(clips);
-			
+			clips.forEach( function ( clip ) 
+			{
+				console.log(clip);
+			} );
 			
 		},
 		// called when loading is in progresses
