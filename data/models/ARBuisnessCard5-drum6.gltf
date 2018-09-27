@@ -1,0 +1,1023 @@
+{
+    "accessors": {
+        "accessor_102": {
+            "bufferView": "bufferView_218",
+            "byteOffset": 30906,
+            "byteStride": 0,
+            "componentType": 5123,
+            "count": 60,
+            "type": "SCALAR"
+        },
+        "accessor_104": {
+            "bufferView": "bufferView_219",
+            "byteOffset": 494496,
+            "byteStride": 12,
+            "componentType": 5126,
+            "count": 60,
+            "max": [
+                0.63109,
+                0.627601,
+                0.0239302
+            ],
+            "min": [
+                -0.627178,
+                -1.50391,
+                -0.0239302
+            ],
+            "type": "VEC3"
+        },
+        "accessor_106": {
+            "bufferView": "bufferView_219",
+            "byteOffset": 495216,
+            "byteStride": 12,
+            "componentType": 5126,
+            "count": 60,
+            "max": [
+                1,
+                1,
+                1
+            ],
+            "min": [
+                -1,
+                -1,
+                -1
+            ],
+            "type": "VEC3"
+        },
+        "accessor_108": {
+            "bufferView": "bufferView_219",
+            "byteOffset": 495936,
+            "byteStride": 8,
+            "componentType": 5126,
+            "count": 60,
+            "max": [
+                0.494931,
+                0.495166
+            ],
+            "min": [
+                0.00976563,
+                0.00976557
+            ],
+            "type": "VEC2"
+        },
+        "accessor_21": {
+            "bufferView": "bufferView_218",
+            "byteOffset": 360,
+            "byteStride": 0,
+            "componentType": 5123,
+            "count": 15273,
+            "type": "SCALAR"
+        },
+        "accessor_23": {
+            "bufferView": "bufferView_219",
+            "byteOffset": 5760,
+            "byteStride": 12,
+            "componentType": 5126,
+            "count": 15273,
+            "max": [
+                0.865852,
+                0.38163,
+                5.81696e-007
+            ],
+            "min": [
+                -0.714114,
+                -0.308585,
+                -0.0892946
+            ],
+            "type": "VEC3"
+        },
+        "accessor_25": {
+            "bufferView": "bufferView_219",
+            "byteOffset": 189036,
+            "byteStride": 12,
+            "componentType": 5126,
+            "count": 15273,
+            "max": [
+                1,
+                1,
+                1
+            ],
+            "min": [
+                -1,
+                -1,
+                -1
+            ],
+            "type": "VEC3"
+        },
+        "accessor_27": {
+            "bufferView": "bufferView_219",
+            "byteOffset": 372312,
+            "byteStride": 8,
+            "componentType": 5126,
+            "count": 15273,
+            "max": [
+                0.288418,
+                0.992433
+            ],
+            "min": [
+                0.06981,
+                0.002572
+            ],
+            "type": "VEC2"
+        },
+        "accessor_48": {
+            "bufferView": "bufferView_218",
+            "byteOffset": 0,
+            "byteStride": 0,
+            "componentType": 5123,
+            "count": 90,
+            "type": "SCALAR"
+        },
+        "accessor_50": {
+            "bufferView": "bufferView_219",
+            "byteOffset": 0,
+            "byteStride": 12,
+            "componentType": 5126,
+            "count": 90,
+            "max": [
+                0.316172,
+                0.23678,
+                0.318852
+            ],
+            "min": [
+                -0.141828,
+                -0.251258,
+                -0.232182
+            ],
+            "type": "VEC3"
+        },
+        "accessor_52": {
+            "bufferView": "bufferView_219",
+            "byteOffset": 1080,
+            "byteStride": 12,
+            "componentType": 5126,
+            "count": 90,
+            "max": [
+                0.685592,
+                0.910189,
+                0.935793
+            ],
+            "min": [
+                -0.994983,
+                -0.884496,
+                -0.727982
+            ],
+            "type": "VEC3"
+        },
+        "accessor_54": {
+            "bufferView": "bufferView_219",
+            "byteOffset": 2160,
+            "byteStride": 8,
+            "componentType": 5126,
+            "count": 90,
+            "max": [
+                1,
+                0.987696
+            ],
+            "min": [
+                0,
+                0.0147647
+            ],
+            "type": "VEC2"
+        },
+        "accessor_75": {
+            "bufferView": "bufferView_218",
+            "byteOffset": 180,
+            "byteStride": 0,
+            "componentType": 5123,
+            "count": 90,
+            "type": "SCALAR"
+        },
+        "accessor_77": {
+            "bufferView": "bufferView_219",
+            "byteOffset": 2880,
+            "byteStride": 12,
+            "componentType": 5126,
+            "count": 90,
+            "max": [
+                0.141828,
+                0.23678,
+                0.318852
+            ],
+            "min": [
+                -0.316172,
+                -0.251258,
+                -0.232182
+            ],
+            "type": "VEC3"
+        },
+        "accessor_79": {
+            "bufferView": "bufferView_219",
+            "byteOffset": 3960,
+            "byteStride": 12,
+            "componentType": 5126,
+            "count": 90,
+            "max": [
+                0.994983,
+                0.910189,
+                0.935793
+            ],
+            "min": [
+                -0.685592,
+                -0.884496,
+                -0.727982
+            ],
+            "type": "VEC3"
+        },
+        "accessor_81": {
+            "bufferView": "bufferView_219",
+            "byteOffset": 5040,
+            "byteStride": 8,
+            "componentType": 5126,
+            "count": 90,
+            "max": [
+                1,
+                0.987696
+            ],
+            "min": [
+                0,
+                0.0147647
+            ],
+            "type": "VEC2"
+        },
+        "animAccessor_0": {
+            "bufferView": "bufferView_217",
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 4,
+            "type": "SCALAR"
+        },
+        "animAccessor_1": {
+            "bufferView": "bufferView_217",
+            "byteOffset": 16,
+            "componentType": 5126,
+            "count": 4,
+            "type": "VEC3"
+        },
+        "animAccessor_10": {
+            "bufferView": "bufferView_217",
+            "byteOffset": 376,
+            "componentType": 5126,
+            "count": 3,
+            "type": "VEC3"
+        },
+        "animAccessor_2": {
+            "bufferView": "bufferView_217",
+            "byteOffset": 64,
+            "componentType": 5126,
+            "count": 3,
+            "type": "SCALAR"
+        },
+        "animAccessor_3": {
+            "bufferView": "bufferView_217",
+            "byteOffset": 76,
+            "componentType": 5126,
+            "count": 3,
+            "type": "VEC4"
+        },
+        "animAccessor_4": {
+            "bufferView": "bufferView_217",
+            "byteOffset": 124,
+            "componentType": 5126,
+            "count": 3,
+            "type": "VEC3"
+        },
+        "animAccessor_5": {
+            "bufferView": "bufferView_217",
+            "byteOffset": 160,
+            "componentType": 5126,
+            "count": 3,
+            "type": "VEC3"
+        },
+        "animAccessor_6": {
+            "bufferView": "bufferView_217",
+            "byteOffset": 196,
+            "componentType": 5126,
+            "count": 3,
+            "type": "VEC3"
+        },
+        "animAccessor_7": {
+            "bufferView": "bufferView_217",
+            "byteOffset": 232,
+            "componentType": 5126,
+            "count": 4,
+            "type": "VEC4"
+        },
+        "animAccessor_8": {
+            "bufferView": "bufferView_217",
+            "byteOffset": 312,
+            "componentType": 5126,
+            "count": 4,
+            "type": "SCALAR"
+        },
+        "animAccessor_9": {
+            "bufferView": "bufferView_217",
+            "byteOffset": 328,
+            "componentType": 5126,
+            "count": 4,
+            "type": "VEC3"
+        }
+    },
+    "animations": {
+        "animation_0": {
+            "channels": [
+                {
+                    "sampler": "animation_0_translation_sampler",
+                    "target": {
+                        "id": "CardText",
+                        "path": "translation"
+                    }
+                }
+            ],
+            "parameters": {
+                "TIME": "animAccessor_0",
+                "translation": "animAccessor_1"
+            },
+            "samplers": {
+                "animation_0_translation_sampler": {
+                    "input": "TIME",
+                    "interpolation": "LINEAR",
+                    "output": "translation"
+                }
+            }
+        },
+        "animation_1": {
+            "channels": [],
+            "parameters": {
+                "TIME": "animAccessor_0"
+            },
+            "samplers": {}
+        },
+        "animation_10": {
+            "channels": [],
+            "parameters": {
+                "TIME": "animAccessor_2"
+            },
+            "samplers": {}
+        },
+        "animation_11": {
+            "channels": [],
+            "parameters": {
+                "TIME": "animAccessor_2"
+            },
+            "samplers": {}
+        },
+        "animation_12": {
+            "channels": [
+                {
+                    "sampler": "animation_12_rotation_sampler",
+                    "target": {
+                        "id": "Drum1",
+                        "path": "rotation"
+                    }
+                }
+            ],
+            "parameters": {
+                "TIME": "animAccessor_2",
+                "rotation": "animAccessor_3"
+            },
+            "samplers": {
+                "animation_12_rotation_sampler": {
+                    "input": "TIME",
+                    "interpolation": "LINEAR",
+                    "output": "rotation"
+                }
+            }
+        },
+        "animation_13": {
+            "channels": [],
+            "parameters": {
+                "TIME": "animAccessor_2"
+            },
+            "samplers": {}
+        },
+        "animation_14": {
+            "channels": [],
+            "parameters": {
+                "TIME": "animAccessor_2"
+            },
+            "samplers": {}
+        },
+        "animation_15": {
+            "channels": [
+                {
+                    "sampler": "animation_15_scale_sampler",
+                    "target": {
+                        "id": "Drum1",
+                        "path": "scale"
+                    }
+                }
+            ],
+            "parameters": {
+                "TIME": "animAccessor_2",
+                "scale": "animAccessor_4"
+            },
+            "samplers": {
+                "animation_15_scale_sampler": {
+                    "input": "TIME",
+                    "interpolation": "LINEAR",
+                    "output": "scale"
+                }
+            }
+        },
+        "animation_16": {
+            "channels": [],
+            "parameters": {
+                "TIME": "animAccessor_2"
+            },
+            "samplers": {}
+        },
+        "animation_17": {
+            "channels": [],
+            "parameters": {
+                "TIME": "animAccessor_2"
+            },
+            "samplers": {}
+        },
+        "animation_18": {
+            "channels": [
+                {
+                    "sampler": "animation_18_translation_sampler",
+                    "target": {
+                        "id": "Drum2",
+                        "path": "translation"
+                    }
+                }
+            ],
+            "parameters": {
+                "TIME": "animAccessor_2",
+                "translation": "animAccessor_5"
+            },
+            "samplers": {
+                "animation_18_translation_sampler": {
+                    "input": "TIME",
+                    "interpolation": "LINEAR",
+                    "output": "translation"
+                }
+            }
+        },
+        "animation_19": {
+            "channels": [],
+            "parameters": {
+                "TIME": "animAccessor_2"
+            },
+            "samplers": {}
+        },
+        "animation_2": {
+            "channels": [],
+            "parameters": {
+                "TIME": "animAccessor_0"
+            },
+            "samplers": {}
+        },
+        "animation_20": {
+            "channels": [],
+            "parameters": {
+                "TIME": "animAccessor_2"
+            },
+            "samplers": {}
+        },
+        "animation_21": {
+            "channels": [
+                {
+                    "sampler": "animation_21_rotation_sampler",
+                    "target": {
+                        "id": "Drum2",
+                        "path": "rotation"
+                    }
+                }
+            ],
+            "parameters": {
+                "TIME": "animAccessor_2",
+                "rotation": "animAccessor_3"
+            },
+            "samplers": {
+                "animation_21_rotation_sampler": {
+                    "input": "TIME",
+                    "interpolation": "LINEAR",
+                    "output": "rotation"
+                }
+            }
+        },
+        "animation_22": {
+            "channels": [],
+            "parameters": {
+                "TIME": "animAccessor_2"
+            },
+            "samplers": {}
+        },
+        "animation_23": {
+            "channels": [],
+            "parameters": {
+                "TIME": "animAccessor_2"
+            },
+            "samplers": {}
+        },
+        "animation_24": {
+            "channels": [
+                {
+                    "sampler": "animation_24_scale_sampler",
+                    "target": {
+                        "id": "Drum2",
+                        "path": "scale"
+                    }
+                }
+            ],
+            "parameters": {
+                "TIME": "animAccessor_2",
+                "scale": "animAccessor_6"
+            },
+            "samplers": {
+                "animation_24_scale_sampler": {
+                    "input": "TIME",
+                    "interpolation": "LINEAR",
+                    "output": "scale"
+                }
+            }
+        },
+        "animation_25": {
+            "channels": [],
+            "parameters": {
+                "TIME": "animAccessor_2"
+            },
+            "samplers": {}
+        },
+        "animation_26": {
+            "channels": [],
+            "parameters": {
+                "TIME": "animAccessor_2"
+            },
+            "samplers": {}
+        },
+        "animation_3": {
+            "channels": [
+                {
+                    "sampler": "animation_3_rotation_sampler",
+                    "target": {
+                        "id": "CardText",
+                        "path": "rotation"
+                    }
+                }
+            ],
+            "parameters": {
+                "TIME": "animAccessor_0",
+                "rotation": "animAccessor_7"
+            },
+            "samplers": {
+                "animation_3_rotation_sampler": {
+                    "input": "TIME",
+                    "interpolation": "LINEAR",
+                    "output": "rotation"
+                }
+            }
+        },
+        "animation_4": {
+            "channels": [],
+            "parameters": {
+                "TIME": "animAccessor_0"
+            },
+            "samplers": {}
+        },
+        "animation_5": {
+            "channels": [],
+            "parameters": {
+                "TIME": "animAccessor_8"
+            },
+            "samplers": {}
+        },
+        "animation_6": {
+            "channels": [
+                {
+                    "sampler": "animation_6_scale_sampler",
+                    "target": {
+                        "id": "CardText",
+                        "path": "scale"
+                    }
+                }
+            ],
+            "parameters": {
+                "TIME": "animAccessor_0",
+                "scale": "animAccessor_9"
+            },
+            "samplers": {
+                "animation_6_scale_sampler": {
+                    "input": "TIME",
+                    "interpolation": "LINEAR",
+                    "output": "scale"
+                }
+            }
+        },
+        "animation_7": {
+            "channels": [],
+            "parameters": {
+                "TIME": "animAccessor_0"
+            },
+            "samplers": {}
+        },
+        "animation_8": {
+            "channels": [],
+            "parameters": {
+                "TIME": "animAccessor_0"
+            },
+            "samplers": {}
+        },
+        "animation_9": {
+            "channels": [
+                {
+                    "sampler": "animation_9_translation_sampler",
+                    "target": {
+                        "id": "Drum1",
+                        "path": "translation"
+                    }
+                }
+            ],
+            "parameters": {
+                "TIME": "animAccessor_2",
+                "translation": "animAccessor_10"
+            },
+            "samplers": {
+                "animation_9_translation_sampler": {
+                    "input": "TIME",
+                    "interpolation": "LINEAR",
+                    "output": "translation"
+                }
+            }
+        }
+    },
+    "asset": {
+        "generator": "collada2gltf@cf6371beb0bdc18ba603378d5e40c966da53d385",
+        "premultipliedAlpha": true,
+        "profile": {
+            "api": "WebGL",
+            "version": "1.0.2"
+        },
+        "version": "1.0"
+    },
+    "bufferViews": {
+        "bufferView_217": {
+            "buffer": "ARBuisnessCard5-drum6",
+            "byteLength": 412,
+            "byteOffset": 0
+        },
+        "bufferView_218": {
+            "buffer": "ARBuisnessCard5-drum6",
+            "byteLength": 31028,
+            "byteOffset": 412,
+            "target": 34963
+        },
+        "bufferView_219": {
+            "buffer": "ARBuisnessCard5-drum6",
+            "byteLength": 496416,
+            "byteOffset": 31440,
+            "target": 34962
+        }
+    },
+    "buffers": {
+        "ARBuisnessCard5-drum6": {
+            "byteLength": 527856,
+            "type": "arraybuffer",
+            "uri": "ARBuisnessCard5-drum6.bin"
+        }
+    },
+    "materials": {
+        "ARCard-effect": {
+            "name": "ARCard",
+            "technique": "technique0",
+            "values": {
+                "ambient": [
+                    0,
+                    0,
+                    0,
+                    1
+                ],
+                "diffuse": [
+                    0.64,
+                    0.64,
+                    0.64,
+                    1
+                ],
+                "emission": [
+                    0,
+                    0,
+                    0,
+                    1
+                ],
+                "shininess": 50,
+                "specular": [
+                    0.5,
+                    0.5,
+                    0.5,
+                    1
+                ]
+            }
+        },
+        "Gradient-effect": {
+            "name": "Gradient",
+            "technique": "technique0",
+            "values": {
+                "ambient": [
+                    0,
+                    0,
+                    0,
+                    1
+                ],
+                "diffuse": [
+                    0.64,
+                    0.64,
+                    0.64,
+                    1
+                ],
+                "emission": [
+                    0,
+                    0,
+                    0,
+                    1
+                ],
+                "shininess": 50,
+                "specular": [
+                    0.5,
+                    0.5,
+                    0.5,
+                    1
+                ]
+            }
+        }
+    },
+    "meshes": {
+        "Cone_001-mesh": {
+            "name": "Cone.001",
+            "primitives": [
+                {
+                    "attributes": {
+                        "NORMAL": "accessor_52",
+                        "POSITION": "accessor_50",
+                        "TEXCOORD_0": "accessor_54"
+                    },
+                    "indices": "accessor_48",
+                    "material": "Gradient-effect",
+                    "mode": 4
+                }
+            ]
+        },
+        "Cone_002-mesh": {
+            "name": "Cone.002",
+            "primitives": [
+                {
+                    "attributes": {
+                        "NORMAL": "accessor_79",
+                        "POSITION": "accessor_77",
+                        "TEXCOORD_0": "accessor_81"
+                    },
+                    "indices": "accessor_75",
+                    "material": "Gradient-effect",
+                    "mode": 4
+                }
+            ]
+        },
+        "Mesh-mesh": {
+            "name": "Mesh",
+            "primitives": [
+                {
+                    "attributes": {
+                        "NORMAL": "accessor_25",
+                        "POSITION": "accessor_23",
+                        "TEXCOORD_0": "accessor_27"
+                    },
+                    "indices": "accessor_21",
+                    "material": "Gradient-effect",
+                    "mode": 4
+                }
+            ]
+        },
+        "Plane_002-mesh": {
+            "name": "Plane.002",
+            "primitives": [
+                {
+                    "attributes": {
+                        "NORMAL": "accessor_106",
+                        "POSITION": "accessor_104",
+                        "TEXCOORD_0": "accessor_108"
+                    },
+                    "indices": "accessor_102",
+                    "material": "ARCard-effect",
+                    "mode": 4
+                }
+            ]
+        }
+    },
+    "nodes": {
+        "CardText": {
+            "children": [],
+            "meshes": [
+                "Mesh-mesh"
+            ],
+            "name": "CardText",
+            "rotation": [
+                0.394977,
+                3.06525e-015,
+                -7.12959e-015,
+                0.918691
+            ],
+            "scale": [
+                0.773535,
+                0.773536,
+                0.773536
+            ],
+            "translation": [
+                -0.0792739,
+                0.907046,
+                0.483669
+            ]
+        },
+        "DetectionPlane": {
+            "children": [
+                "CardText",
+                "Drum1",
+                "Drum2"
+            ],
+            "matrix": [
+                1,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0,
+                0,
+                1
+            ],
+            "meshes": [
+                "Plane_002-mesh"
+            ],
+            "name": "DetectionPlane"
+        },
+        "Drum1": {
+            "children": [],
+            "meshes": [
+                "Cone_001-mesh"
+            ],
+            "name": "Drum1",
+            "rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "scale": [
+                1,
+                1,
+                1
+            ],
+            "translation": [
+                -0.614431,
+                0.173131,
+                0.0912508
+            ]
+        },
+        "Drum2": {
+            "children": [],
+            "meshes": [
+                "Cone_002-mesh"
+            ],
+            "name": "Drum2",
+            "rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "scale": [
+                1,
+                1,
+                1
+            ],
+            "translation": [
+                0.61443,
+                0.173131,
+                0.0912508
+            ]
+        },
+        "node_4": {
+            "children": [
+                "DetectionPlane"
+            ],
+            "matrix": [
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                -1,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1
+            ],
+            "name": "Y_UP_Transform"
+        }
+    },
+    "programs": {
+        "program_0": {
+            "attributes": [
+                "a_normal",
+                "a_position"
+            ],
+            "fragmentShader": "ARBuisnessCard5-drum60FS",
+            "vertexShader": "ARBuisnessCard5-drum60VS"
+        }
+    },
+    "scene": "defaultScene",
+    "scenes": {
+        "defaultScene": {
+            "nodes": [
+                "node_4"
+            ]
+        }
+    },
+    "shaders": {
+        "ARBuisnessCard5-drum60FS": {
+            "type": 35632,
+            "uri": "ARBuisnessCard5-drum60FS.glsl"
+        },
+        "ARBuisnessCard5-drum60VS": {
+            "type": 35633,
+            "uri": "ARBuisnessCard5-drum60VS.glsl"
+        }
+    },
+    "skins": {},
+    "techniques": {
+        "technique0": {
+            "attributes": {
+                "a_normal": "normal",
+                "a_position": "position"
+            },
+            "parameters": {
+                "ambient": {
+                    "type": 35666
+                },
+                "diffuse": {
+                    "type": 35666
+                },
+                "emission": {
+                    "type": 35666
+                },
+                "modelViewMatrix": {
+                    "semantic": "MODELVIEW",
+                    "type": 35676
+                },
+                "normal": {
+                    "semantic": "NORMAL",
+                    "type": 35665
+                },
+                "normalMatrix": {
+                    "semantic": "MODELVIEWINVERSETRANSPOSE",
+                    "type": 35675
+                },
+                "position": {
+                    "semantic": "POSITION",
+                    "type": 35665
+                },
+                "projectionMatrix": {
+                    "semantic": "PROJECTION",
+                    "type": 35676
+                },
+                "shininess": {
+                    "type": 5126
+                },
+                "specular": {
+                    "type": 35666
+                }
+            },
+            "program": "program_0",
+            "states": {
+                "enable": [
+                    2929,
+                    2884
+                ]
+            },
+            "uniforms": {
+                "u_ambient": "ambient",
+                "u_diffuse": "diffuse",
+                "u_emission": "emission",
+                "u_modelViewMatrix": "modelViewMatrix",
+                "u_normalMatrix": "normalMatrix",
+                "u_projectionMatrix": "projectionMatrix",
+                "u_shininess": "shininess",
+                "u_specular": "specular"
+            }
+        }
+    }
+}
