@@ -208,8 +208,14 @@
 
 	function playClip(clip1, clip2)
 	{
-		infoPlaneAction.stop();
-		arrowAction.stop();
+		if(infoPlaneAction != undefined)
+		{
+			infoPlaneAction.stop();
+		}
+		if(arrowAction != undefined)
+		{
+			arrowAction.stop();
+		}
 
 		infoPlaneAction = mixer.clipAction(clip1);
 		arrowAction = mixer.clipAction(clip2);
