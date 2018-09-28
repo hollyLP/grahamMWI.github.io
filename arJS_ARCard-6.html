@@ -178,10 +178,10 @@
 
 			mixer = new THREE.AnimationMixer( model );
 			clips = object.animations;
-			clip_ScreenOpen = THREE.AnimationClip.findByName(clips, "AnimSlideIn");
-			clip_ScreenClose = THREE.AnimationClip.findByName(clips, "AnimSlideOut");
-			clip_OutlineOpen = THREE.AnimationClip.findByName(clips, "AnimPlaneShrink");
-			clip_OutlineClose = THREE.AnimationClip.findByName(clips, "AnimPlaneGrow");
+			clip_ScreenOpen = THREE.AnimationClip.findByName(clips, "AnimScreenOpen");
+			clip_ScreenClose = THREE.AnimationClip.findByName(clips, "AnimScreenClose");
+			clip_OutlineOpen = THREE.AnimationClip.findByName(clips, "AnimOutlineOpen");
+			clip_OutlineClose = THREE.AnimationClip.findByName(clips, "AnimOutlineClose");
 
 
 			action_ScreenOn = mixer.clipAction(clip_ScreenOpen);
