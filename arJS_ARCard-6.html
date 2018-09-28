@@ -178,6 +178,13 @@
 
 			mixer = new THREE.AnimationMixer( model );
 			clips = object.animations;
+
+			console.log(clips);
+			clips.forEach( function ( clip ) 
+			{
+				console.log(clip);
+			} );
+			
 			clip_ScreenOpen = THREE.AnimationClip.findByName(clips, "AnimScreenOpen");
 			clip_ScreenClose = THREE.AnimationClip.findByName(clips, "AnimScreenClose");
 			clip_OutlineOpen = THREE.AnimationClip.findByName(clips, "AnimOutlineOpen");
@@ -202,11 +209,7 @@
 
 			
 
-			console.log(clips);
-			clips.forEach( function ( clip ) 
-			{
-				console.log(clip);
-			} );
+			
 			
 		},
 		// called when loading is in progresses
