@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+<!-- three.js library -->
+<script src='vendor/three.js/build/three.min.js'></script>
+<script src="vendor/three.js/examples/js/libs/stats.min.js"></script>
+<script src="vendor/three.js/examples/js/loaders/ColladaLoader.js"></script>
+<!-- ar.js -->
+<script src="build/ar.js"></script>
+<script src="vendor/three.js/examples/js/controls/InteractControls.js"></script>
+<script>THREEx.ArToolkitContext.baseURL = '../'</script>
+
+<body style='margin : 0px; overflow: hidden; font-family: Monospace;'><div style='position: absolute; top: 10px; width:100%; text-align: center; z-index: 1;'>
+</div><script>
+	//////////////////////////////////////////////////////////////////////////////////
+	//		Init
+	//////////////////////////////////////////////////////////////////////////////////
+	// init renderer
+	var renderer	= new THREE.WebGLRenderer({
+		// antialias	: true,
+		alpha: true
+	});
+	renderer.setClearColor(new THREE.Color('black'), 0)
+	renderer.setPixelRatio( window.devicePixelRatio );
+	renderer.setSize( window.innerWidth, window.innerHeight );
+	renderer.domElement.style.position = 'absolute'
+	renderer.domElement.style.top = '0px'
+	renderer.domElement.style.left = '0px'
+	document.body.appendChild( renderer.domElement );
+	// array of functions for the rendering loop
+	var onRenderFcts= [];
+	// init scene and camera
+	var scene	= new THREE.Scene();
+	
+	//////////////////////////////////////////////////////////////////////////////////
+	//		Initialize a basic camera
+	//////////////////////////////////////////////////////////////////////////////////
+	// Create a camera
+	var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+	scene.add(camera);
+	////////////////////////////////////////////////////////////////////////////////
+	//          handle arToolkitSource
+	////////////////////////////////////////////////////////////////////////////////
+	var arToolkitSource = new THREEx.ArToolkitSource({
+		// to read from the webcam 
+		sourceType : 'webcam',
+		// to read from an image
+		// sourceType : 'image',
+		// sourceUrl : THREEx.ArToolkitContext.baseURL + '../data/images/img.jpg',		
+		// to read from a video
+		// sourceType : 'video',
+		// sourceUrl : THREEx.ArToolkitContext.baseURL + '../data/videos/headtracking.mp4',		
+	})
+	arToolkitSource.init(function onReady(){
+		onResize()
+	})
+	
+	// handle resize
+	window.addEventListener('resize', function(){
+		onResize()
+	})
+	function onResize(){
+		arToolkitSource.onResize()	
+		arToolkitSource.copySizeTo(renderer.domElement)	
+		if( arToolkitContext.arController !== null ){
+			arToolkitSource.copySizeTo(arToolkitContext.arController.canvas)	
+		}	
+	}
+	////////////////////////////////////////////////////////////////////////////////
+	//          initialize arToolkitContext
+	////////////////////////////////////////////////////////////////////////////////
+	
+	// create atToolkitContext
+	var arToolkitContext = new THREEx.ArToolkitContext({
+		cameraParametersUrl: 'data/data/camera_para.dat',
+		detectionMode: 'mono',
+		maxDetectionRate: 30,
+		
+	})
+	// initialize it
+	arToolkitContext.init(function onCompleted(){
+		// copy projection matrix to camera
+		camera.projectionMatrix.copy( arToolkitContext.getProjectionMatrix() );
+	})
+	// update artoolkit on every frame
+	onRenderFcts.push(function(){
+		if( arToolkitSource.ready === false )	return
+		arToolkitContext.update( arToolkitSource.domElement )
+	})
+	
+	
+	////////////////////////////////////////////////////////////////////////////////
+	//          Create a ArMarkerControls
+	////////////////////////////////////////////////////////////////////////////////
+	
+	var markerRoot = new THREE.Group
+	scene.add(markerRoot)
+	var artoolkitMarker = new THREEx.ArMarkerControls(arToolkitContext, markerRoot, {
+		type : 'pattern',
+		patternUrl : 'data/data/MWI-marker3.patt'
+		// patternUrl : THREEx.ArToolkitContext.baseURL + '../data/data/patt.kanji'
+	})
+
+	console.log('yeet   ?')
+	// build a smoothedControls
+	var smoothedRoot = new THREE.Group()
+	scene.add(smoothedRoot)
+	var smoothedControls = new THREEx.ArSmoothedControls(smoothedRoot, {
+		lerpPosition: 0.2,
+		lerpQuaternion: 0.15,
+		lerpScale: 1,
+	})
+	onRenderFcts.push(function(delta){
+		smoothedControls.update(markerRoot)
+	})
+	//////////////////////////////////////////////////////////////////////////////////
+	//		add an object in the scene
+	//////////////////////////////////////////////////////////////////////////////////
+	var arWorldRoot = smoothedRoot
+
+	//THREE.DRACOLoader.setDecoderPath("vendor/three.js/examples/js/libs/draco/gltf/");
+	// instantiate a loader
+	var loader = new THREE.ColladaLoader();
+	//loader.setDRACOLoader(new THREE.DRACOLoader());
+	var clock = new THREE.Clock();
+	var mixer;
+	var mesh;
+	var action_ScreenOn, action_ScreenOff;
+	var action_OutlineOn, action_OutlineOff;
+
+	var clips;
+	var clip_ScreenOpen, clip_ScreenClose;
+	var clip_OutlineOpen, clip_OutlineClose;
+	var ui_opened = false;
+
+	var texture_Gradient = new THREE.TextureLoader().load('data/images/MWI-ARCard-4.png');
+
+	var material_Gradient = new THREE.MeshBasicMaterial();
+	texture_Gradient.wrapS = THREE.RepeatWrapping;
+	texture_Gradient.wrapT = THREE.RepeatWrapping;
+	material_Gradient.map = texture_Gradient;
+	material_Gradient.transparent = true;
+	console.log('Creating Gradient material...');
+	console.log(texture_Gradient);
+	console.log(material_Gradient.map);
+
+
+	var objects = []
+
+
+	// load a resource
+	loader.load(
+		// resource URL
+		'data/models/ARCard6_1.dae',
+		// called when resource is loaded
+		function ( object ) 
+		{
+			var model = object.scene;
+
+
+
+			model.traverse(function(child) 
+			{
+				if (child instanceof THREE.Mesh) 
+				{
+					child.material = material_Gradient;
+
+					console.log("Found " + child.name);
+					
+					objects.push(child);
+				}
+				
+			});
+
+
+			arWorldRoot.add( model );
+			mesh = model;
+			console.log("Spawned Model");
+
+			mixer = new THREE.AnimationMixer( model );
+			clips = object.animations;
+			clip_ScreenOpen = THREE.AnimationClip.findByName(clips, "AnimSlideIn");
+			clip_ScreenClose = THREE.AnimationClip.findByName(clips, "AnimSlideOut");
+			clip_OutlineOpen = THREE.AnimationClip.findByName(clips, "AnimPlaneShrink");
+			clip_OutlineClose = THREE.AnimationClip.findByName(clips, "AnimPlaneGrow");
+
+
+			action_ScreenOn = mixer.clipAction(clip_ScreenOpen);
+			action_ScreenOn.setLoop( THREE.LoopOnce );
+			action_ScreenOn.clampWhenFinished = true;
+
+			action_ScreenOff = mixer.clipAction(clip_ScreenClose);
+			action_ScreenOff.setLoop( THREE.LoopOnce );
+			action_ScreenOff.clampWhenFinished = true;
+
+			action_OutlineOn = mixer.clipAction(clip_OutlineOpen);
+			action_OutlineOn.setLoop( THREE.LoopOnce );
+			action_OutlineOn.clampWhenFinished = true;
+
+			action_OutlineOff = mixer.clipAction(clip_OutlineClose);
+			action_OutlineOff.setLoop( THREE.LoopOnce );
+			action_OutlineOff.clampWhenFinished = true;
+
+			
+
+			console.log(clips);
+			clips.forEach( function ( clip ) 
+			{
+				console.log(clip);
+			} );
+			
+		},
+		// called when loading is in progresses
+		function ( xhr ) {
+
+			console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+
+		},
+		// called when loading has errors
+		function ( error ) {
+
+			console.log( 'An error happened' );
+			console.log( error )
+
+		}
+	);
+
+	function openUI(shouldOpen)
+	{
+		if(shouldOpen)
+		{
+			action_ScreenOn.enabled = true;
+			action_ScreenOn.play().reset();
+
+			action_OutlineOn.enabled = true;
+			action_OutlineOn.play().reset();
+
+
+			action_ScreenOff.crossFadeTo(action_ScreenOn, 0.1, false);
+			action_OutlineOff.crossFadeTo(action_OutlineOn, 0.1, false);
+		}
+		else
+		{
+			action_ScreenOff.enabled = true;
+			action_ScreenOff.play().reset();
+
+			action_OutlineOff.enabled = true;
+			action_OutlineOff.play().reset();
+
+
+			action_ScreenOn.crossFadeTo(action_ScreenOff, 0.1, false);
+			action_OutlineOn.crossFadeTo(action_OutlineOff, 0.1, false);
+		}
+	}
+
+	function onTap(tappedObject)
+	{
+		console.log("Tapped object " + tappedObject);
+		var shouldMove = false;
+
+		if(tappedObject == "Button" || tappedObject == "Arrow")
+		{
+			shouldMove = true;
+		}
+
+
+		if(shouldMove)
+		{
+			ui_opened = !ui_opened;
+			console.log("Moving ui: " + ui_opened);
+
+			openUI(ui_opened);
+		}
+	}
+
+
+	var dragControls = new THREE.InteractControls( objects, camera, renderer.domElement );
+	dragControls.addEventListener( 'tapped', function ( event ) { onTap(event.object.name); } );
+
+	//////////////////////////////////////////////////////////////////////////////////
+	//		render the whole thing on the page
+	//////////////////////////////////////////////////////////////////////////////////
+	var stats = new Stats();
+	document.body.appendChild( stats.dom );
+	// render the scene
+	onRenderFcts.push(function(){
+		renderer.render( scene, camera );
+		stats.update();
+		mixer.update(clock.getDelta());
+	})
+	// run the rendering loop
+	var lastTimeMsec= null
+	requestAnimationFrame(function animate(nowMsec){
+		// keep looping
+		requestAnimationFrame( animate );
+		// measure time
+		lastTimeMsec	= lastTimeMsec || nowMsec-1000/60
+		var deltaMsec	= Math.min(200, nowMsec - lastTimeMsec)
+		lastTimeMsec	= nowMsec
+		// call each update function
+		onRenderFcts.forEach(function(onRenderFct){
+			onRenderFct(deltaMsec/1000, nowMsec/1000)
+		})
+	})
+</script></body>
