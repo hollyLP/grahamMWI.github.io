@@ -123,9 +123,14 @@
 	//loader.setDRACOLoader(new THREE.DRACOLoader());
 	var clock = new THREE.Clock();
 	var mixer;
-	var clips
 	var mesh;
 	var boopAction;
+
+	var clips;
+	var clip_LWink;
+	var clip_RWink;
+	var clip_MouthMove;
+
 	var texture_Gradient = new THREE.TextureLoader().load('data/images/MWIGradient.png');
 
 	var material_Gradient = new THREE.MeshBasicMaterial();
@@ -172,9 +177,10 @@
 
 			mixer = new THREE.AnimationMixer( model );
 			clips = object.animations;
-			boopAction = mixer.clipAction(clips[0]);
-			boopAction.setLoop( THREE.LoopOnce );
-			boopAction.clampWhenFinished = true;
+			clip_LWink = THREE.AnimationClip.findByName(clips, "EyeLWinkAnim");
+			clip_RWink = THREE.AnimationClip.findByName(clips, "EyeRWinkAnim");
+			clip_MouthMove = THREE.AnimationClip.findByName(clips, "MouthMoveAnim");
+			
 
 			console.log(clips);
 			clips.forEach( function ( clip ) 
@@ -201,26 +207,28 @@
 	function onTap(tappedObject)
 	{
 		console.log("Tapped object " + tappedObject);
-		var tapObj = false;
+		var desiredClip = null;
+
 		if(tappedObject == "Mouth")
 		{
-			boopAction = mixer.clipAction(clips[0]);
-			tapObj = true;
+			desiredClip = clip_MouthMove;
 		}
 		else if(tappedObject == "EyeL")
 		{
-			boopAction = mixer.clipAction(clips[1]);
-			tapObj = true;
+			desiredClip = clip_LWink;
 		}
 		else if(tappedObject == "EyeR")
 		{
-			boopAction = mixer.clipAction(clips[2]);
-			tapObj = true;
+			desiredClip = clip_RWink;
 		}
 
 
-		if(tapObj)
+		if(desiredClip != null)
 		{
+			boopAction = mixer.clipAction(desiredClip);
+			boopAction.setLoop( THREE.LoopOnce );
+			boopAction.clampWhenFinished = true;
+
 			if(boopAction.isRunning())
 			{
 				boopAction.time = 0;
