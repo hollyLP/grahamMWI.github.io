@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2008/03/COLLADASchema" version="1.5.0">
+<asset>
+ <contributor>
+  <author> Anonymous </author>
+  <authoring_tool> Collada Exporter for Blender 2.6+, by Gregery Barton (gregery20@yahoo.com.au) </authoring_tool>
+ </contributor>
+ <created>2018-09-27T19:26:15Z  </created>
+ <modified>2018-09-27T19:26:15Z</modified>
+ <unit meter="1.0" name="meter"/>
+ <up_axis>Y_UP</up_axis>
+</asset>
+<library_images>
+</library_images>
+<library_effects>
+</library_effects>
+<library_materials>
+</library_materials>
+<library_geometries>
+ <geometry id="Cube.001-mesh" name="Cube.001">
+  <mesh>
+   <source id="Cube.001-mesh-positions">
+    <float_array id="Cube.001-mesh-positions-array" count="24">-1.0000 -1.0000 1.0000 -1.0000 1.0000 1.0000 -1.0000 -1.0000 -1.0000 -1.0000 1.0000 -1.0000 1.0000 -1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 -1.0000 -1.0000 1.0000 1.0000 -1.0000</float_array>
+    <technique_common>
+     <accessor source="#Cube.001-mesh-positions-array" count="8" stride="3">
+      <param name="X" type="float"/>
+      <param name="Y" type="float"/>
+      <param name="Z" type="float"/>
+     </accessor>
+    </technique_common>
+   </source>
+   <source id="Cube.001-mesh-normals">
+    <float_array id="Cube.001-mesh-normals-array" count="24">-0.5773 -0.5773 0.5773 -0.5773 0.5773 0.5773 -0.5773 -0.5773 -0.5773 -0.5773 0.5773 -0.5773 0.5773 -0.5773 0.5773 0.5773 0.5773 0.5773 0.5773 -0.5773 -0.5773 0.5773 0.5773 -0.5773</float_array>
+    <technique_common>
+     <accessor source="#Cube.001-mesh-normals-array" count="8" stride="3">
+      <param name="X" type="float"/>
+      <param name="Y" type="float"/>
+      <param name="Z" type="float"/>
+     </accessor>
+    </technique_common>
+   </source>
+   <source id="Cube.001-mesh-texcoord">
+    <float_array id="Cube.001-mesh-texcoord-array" count="18">0.0000 1.0000 -1.0000 1.0000 0.0000 0.0000 -1.0000 0.0000 -1.0000 -1.0000 0.0000 -1.0000 1.0000 0.0000 1.0000 -1.0000 1.0000 1.0000</float_array>
+    <technique_common>
+     <accessor source="#Cube.001-mesh-texcoord-array" count="9" stride="2">
+      <param name="S" type="float"/>
+      <param name="T" type="float"/>
+     </accessor>
+    </technique_common>
+   </source>
+   <vertices id="Cube.001-mesh-vertices">
+    <input semantic="POSITION" source="#Cube.001-mesh-positions"/>
+    <input semantic="NORMAL" source="#Cube.001-mesh-normals"/>
+   </vertices>
+   <polylist count="6" material="symbol-0">
+    <input semantic="VERTEX" source="#Cube.001-mesh-vertices" offset="0"/>
+    <input semantic="NORMAL" source="#Cube.001-mesh-normals" offset="0"/>
+    <input semantic="TEXCOORD" source="#Cube.001-mesh-texcoord" offset="1" set="0"/>
+    <vcount>4 4 4 4 4 4</vcount>
+    <p>0 2 1 0 3 8 2 6 2 2 3 0 7 8 6 6 6 2 7 0 5 1 4 3 4 2 5 0 1 1 0 3 2 2 6 6 4 7 0 5 7 2 3 3 1 4 5 5</p>
+   </polylist>
+  </mesh>
+ </geometry>
+</library_geometries>
+<library_controllers>
+</library_controllers>
+<library_cameras>
+</library_cameras>
+<library_lights>
+</library_lights>
+<library_nodes>
+</library_nodes>
+<library_visual_scenes>
+ <visual_scene id="Scene" name="Scene">
+  <node id="Cube" name="Cube" type="NODE">
+   <matrix sid="transform">1.0000 0.0000 -0.0000 0.0000 0.0000 1.0000 -0.0000 0.0000 -0.0000 -0.0000 1.0000 -0.0000 0.0000 0.0000 -0.0000 1.0000</matrix>
+   <instance_geometry url="#Cube.001-mesh">
+   </instance_geometry>
+  </node>
+ </visual_scene>
+</library_visual_scenes>
+<library_physics_materials>
+</library_physics_materials>
+<library_physics_models>
+</library_physics_models>
+<library_physics_scenes>
+</library_physics_scenes>
+<library_animations>
+ <animation id="Scene-timeline-Cube-anim">
+  <source id="Scene-timeline-Cube-anim-input">
+   <float_array id="Scene-timeline-Cube-anim-input-array" count="50">0.0417 0.0833 0.1250 0.1667 0.2083 0.2500 0.2917 0.3333 0.3750 0.4167 0.4583 0.5000 0.5417 0.5833 0.6250 0.6667 0.7083 0.7500 0.7917 0.8333 0.8750 0.9167 0.9583 1.0000 1.0417 1.0833 1.1250 1.1667 1.2083 1.2500 1.2917 1.3333 1.3750 1.4167 1.4583 1.5000 1.5417 1.5833 1.6250 1.6667 1.7083 1.7500 1.7917 1.8333 1.8750 1.9167 1.9583 2.0000 2.0417 10.3750</float_array>
+   <technique_common>
+    <accessor source="#Scene-timeline-Cube-anim-input-array" count="50" stride="1">
+     <param name="TIME" type="float"/>
+    </accessor>
+   </technique_common>
+  </source>
+  <source id="Scene-timeline-Cube-anim-matrix-output">
+   <float_array id="Scene-timeline-Cube-anim-matrix-output-array" count="800">1.0005 0.0000 -0.0000 0.0000 0.0000 0.9991 -0.0000 0.0000 -0.0000 -0.0000 1.0005 -0.0000 0.0000 0.0000 -0.0000 1.0000 1.0019 0.0000 -0.0000 0.0000 0.0000 0.9965 -0.0000 0.0000 -0.0000 -0.0000 1.0019 -0.0000 0.0000 0.0000 -0.0000 1.0000 1.0042 0.0000 -0.0000 0.0000 0.0000 0.9922 -0.0000 0.0000 -0.0000 -0.0000 1.0042 -0.0000 0.0000 0.0000 -0.0000 1.0000 1.0075 0.0000 -0.0000 0.0000 0.0000 0.9861 -0.0000 0.0000 -0.0000 -0.0000 1.0075 -0.0000 0.0000 0.0000 -0.0000 1.0000 1.0116 0.0000 -0.0000 0.0000 0.0000 0.9785 -0.0000 0.0000 -0.0000 -0.0000 1.0116 -0.0000 0.0000 0.0000 -0.0000 1.0000 1.0166 0.0000 -0.0000 0.0000 0.0000 0.9691 -0.0000 0.0000 -0.0000 -0.0000 1.0166 -0.0000 0.0000 0.0000 -0.0000 1.0000 1.0225 0.0000 -0.0000 0.0000 0.0000 0.9582 -0.0000 0.0000 -0.0000 -0.0000 1.0225 -0.0000 0.0000 0.0000 -0.0000 1.0000 1.0292 0.0000 -0.0000 0.0000 0.0000 0.9458 -0.0000 0.0000 -0.0000 -0.0000 1.0292 -0.0000 0.0000 0.0000 -0.0000 1.0000 1.0367 0.0000 -0.0000 0.0000 0.0000 0.9318 -0.0000 0.0000 -0.0000 -0.0000 1.0367 -0.0000 0.0000 0.0000 -0.0000 1.0000 1.0450 0.0000 -0.0000 0.0000 0.0000 0.9164 -0.0000 0.0000 -0.0000 -0.0000 1.0450 -0.0000 0.0000 0.0000 -0.0000 1.0000 1.0540 0.0000 -0.0000 0.0000 0.0000 0.8996 -0.0000 0.0000 -0.0000 -0.0000 1.0540 -0.0000 0.0000 0.0000 -0.0000 1.0000 1.0637 0.0000 -0.0000 0.0000 0.0000 0.8815 -0.0000 0.0000 -0.0000 -0.0000 1.0637 -0.0000 0.0000 0.0000 -0.0000 1.0000 1.0742 0.0000 -0.0000 0.0000 0.0000 0.8622 -0.0000 0.0000 -0.0000 -0.0000 1.0742 -0.0000 0.0000 0.0000 -0.0000 1.0000 1.0852 0.0000 -0.0000 0.0000 0.0000 0.8417 -0.0000 0.0000 -0.0000 -0.0000 1.0852 -0.0000 0.0000 0.0000 -0.0000 1.0000 1.0968 0.0000 -0.0000 0.0000 0.0000 0.8200 -0.0000 0.0000 -0.0000 -0.0000 1.0968 -0.0000 0.0000 0.0000 -0.0000 1.0000 1.1090 0.0000 -0.0000 0.0000 0.0000 0.7974 -0.0000 0.0000 -0.0000 -0.0000 1.1090 -0.0000 0.0000 0.0000 -0.0000 1.0000 1.1217 0.0000 -0.0000 0.0000 0.0000 0.7738 -0.0000 0.0000 -0.0000 -0.0000 1.1217 -0.0000 0.0000 0.0000 -0.0000 1.0000 1.1348 0.0000 -0.0000 0.0000 0.0000 0.7495 -0.0000 0.0000 -0.0000 -0.0000 1.1348 -0.0000 0.0000 0.0000 -0.0000 1.0000 1.1483 0.0000 -0.0000 0.0000 0.0000 0.7244 -0.0000 0.0000 -0.0000 -0.0000 1.1483 -0.0000 0.0000 0.0000 -0.0000 1.0000 1.1621 0.0000 -0.0000 0.0000 0.0000 0.6987 -0.0000 0.0000 -0.0000 -0.0000 1.1621 -0.0000 0.0000 0.0000 -0.0000 1.0000 1.1762 0.0000 -0.0000 0.0000 0.0000 0.6726 -0.0000 0.0000 -0.0000 -0.0000 1.1762 -0.0000 0.0000 0.0000 -0.0000 1.0000 1.1905 0.0000 -0.0000 0.0000 0.0000 0.6461 -0.0000 0.0000 -0.0000 -0.0000 1.1905 -0.0000 0.0000 0.0000 -0.0000 1.0000 1.2049 0.0000 -0.0000 0.0000 0.0000 0.6193 -0.0000 0.0000 -0.0000 -0.0000 1.2049 -0.0000 0.0000 0.0000 -0.0000 1.0000 1.2193 0.0000 -0.0000 0.0000 0.0000 0.5925 -0.0000 0.0000 -0.0000 -0.0000 1.2193 -0.0000 0.0000 0.0000 -0.0000 1.0000 1.2337 0.0000 -0.0000 0.0000 0.0000 0.5657 -0.0000 0.0000 -0.0000 -0.0000 1.2337 -0.0000 0.0000 0.0000 -0.0000 1.0000 1.2481 0.0000 -0.0000 0.0000 0.0000 0.5390 -0.0000 0.0000 -0.0000 -0.0000 1.2481 -0.0000 0.0000 0.0000 -0.0000 1.0000 1.2622 0.0000 -0.0000 0.0000 0.0000 0.5127 -0.0000 0.0000 -0.0000 -0.0000 1.2622 -0.0000 0.0000 0.0000 -0.0000 1.0000 1.2761 0.0000 -0.0000 0.0000 0.0000 0.4869 -0.0000 0.0000 -0.0000 -0.0000 1.2761 -0.0000 0.0000 0.0000 -0.0000 1.0000 1.2897 0.0000 -0.0000 0.0000 0.0000 0.4617 -0.0000 0.0000 -0.0000 -0.0000 1.2897 -0.0000 0.0000 0.0000 -0.0000 1.0000 1.3029 0.0000 -0.0000 0.0000 0.0000 0.4372 -0.0000 0.0000 -0.0000 -0.0000 1.3029 -0.0000 0.0000 0.0000 -0.0000 1.0000 1.3155 0.0000 -0.0000 0.0000 0.0000 0.4137 -0.0000 0.0000 -0.0000 -0.0000 1.3155 -0.0000 0.0000 0.0000 -0.0000 1.0000 1.3276 0.0000 -0.0000 0.0000 0.0000 0.3912 -0.0000 0.0000 -0.0000 -0.0000 1.3276 -0.0000 0.0000 0.0000 -0.0000 1.0000 1.3391 0.0000 -0.0000 0.0000 0.0000 0.3700 -0.0000 0.0000 -0.0000 -0.0000 1.3391 -0.0000 0.0000 0.0000 -0.0000 1.0000 1.3497 0.0000 -0.0000 0.0000 0.0000 0.3501 -0.0000 0.0000 -0.0000 -0.0000 1.3497 -0.0000 0.0000 0.0000 -0.0000 1.0000 1.3596 0.0000 -0.0000 0.0000 0.0000 0.3317 -0.0000 0.0000 -0.0000 -0.0000 1.3596 -0.0000 0.0000 0.0000 -0.0000 1.0000 1.3686 0.0000 -0.0000 0.0000 0.0000 0.3150 -0.0000 0.0000 -0.0000 -0.0000 1.3686 -0.0000 0.0000 0.0000 -0.0000 1.0000 1.3766 0.0000 -0.0000 0.0000 0.0000 0.3002 -0.0000 0.0000 -0.0000 -0.0000 1.3766 -0.0000 0.0000 0.0000 -0.0000 1.0000 1.3836 0.0000 -0.0000 0.0000 0.0000 0.2872 -0.0000 0.0000 -0.0000 -0.0000 1.3836 -0.0000 0.0000 0.0000 -0.0000 1.0000 1.3894 0.0000 -0.0000 0.0000 0.0000 0.2764 -0.0000 0.0000 -0.0000 -0.0000 1.3894 -0.0000 0.0000 0.0000 -0.0000 1.0000 1.3940 0.0000 -0.0000 0.0000 0.0000 0.2678 -0.0000 0.0000 -0.0000 -0.0000 1.3940 -0.0000 0.0000 0.0000 -0.0000 1.0000 1.3974 0.0000 -0.0000 0.0000 0.0000 0.2615 -0.0000 0.0000 -0.0000 -0.0000 1.3974 -0.0000 0.0000 0.0000 -0.0000 1.0000 1.3995 0.0000 -0.0000 0.0000 0.0000 0.2576 -0.0000 0.0000 -0.0000 -0.0000 1.3995 -0.0000 0.0000 0.0000 -0.0000 1.0000 1.4002 0.0000 -0.0000 0.0000 0.0000 0.2563 -0.0000 0.0000 -0.0000 -0.0000 1.4002 -0.0000 0.0000 0.0000 -0.0000 1.0000 1.3821 0.0000 -0.0000 0.0000 0.0000 0.2900 -0.0000 0.0000 -0.0000 -0.0000 1.3821 -0.0000 0.0000 0.0000 -0.0000 1.0000 1.3284 0.0000 -0.0000 0.0000 0.0000 0.3898 -0.0000 0.0000 -0.0000 -0.0000 1.3284 -0.0000 0.0000 0.0000 -0.0000 1.0000 1.2465 0.0000 -0.0000 0.0000 0.0000 0.5419 -0.0000 0.0000 -0.0000 -0.0000 1.2465 -0.0000 0.0000 0.0000 -0.0000 1.0000 1.1537 0.0000 -0.0000 0.0000 0.0000 0.7144 -0.0000 0.0000 -0.0000 -0.0000 1.1537 -0.0000 0.0000 0.0000 -0.0000 1.0000 1.0719 0.0000 -0.0000 0.0000 0.0000 0.8665 -0.0000 0.0000 -0.0000 -0.0000 1.0719 -0.0000 0.0000 0.0000 -0.0000 1.0000 1.0182 0.0000 -0.0000 0.0000 0.0000 0.9663 -0.0000 0.0000 -0.0000 -0.0000 1.0182 -0.0000 0.0000 0.0000 -0.0000 1.0000 1.0000 0.0000 -0.0000 0.0000 0.0000 1.0000 -0.0000 0.0000 -0.0000 -0.0000 1.0000 -0.0000 0.0000 0.0000 -0.0000 1.0000</float_array>
+   <technique_common>
+    <accessor source="#Scene-timeline-Cube-anim-matrix-output-array" count="50" stride="16">
+     <param name="TRANSFORM" type="float4x4"/>
+    </accessor>
+   </technique_common>
+  </source>
+  <source id="Scene-timeline-Cube-anim-interpolation-output">
+   <Name_array id="Scene-timeline-Cube-anim-interpolation-output-array" count="50"> LINEAR  LINEAR  LINEAR  LINEAR  LINEAR  LINEAR  LINEAR  LINEAR  LINEAR  LINEAR  LINEAR  LINEAR  LINEAR  LINEAR  LINEAR  LINEAR  LINEAR  LINEAR  LINEAR  LINEAR  LINEAR  LINEAR  LINEAR  LINEAR  LINEAR  LINEAR  LINEAR  LINEAR  LINEAR  LINEAR  LINEAR  LINEAR  LINEAR  LINEAR  LINEAR  LINEAR  LINEAR  LINEAR  LINEAR  LINEAR  LINEAR  LINEAR  LINEAR  LINEAR  LINEAR  LINEAR  LINEAR  LINEAR  LINEAR  LINEAR </Name_array>
+   <technique_common>
+    <accessor source="#Scene-timeline-Cube-anim-interpolation-output-array" count="50" stride="1">
+     <param name="INTERPOLATION" type="Name"/>
+    </accessor>
+   </technique_common>
+  </source>
+  <sampler id="Scene-timeline-Cube-anim-matrix-sampler">
+   <input semantic="INPUT" source="#Scene-timeline-Cube-anim-input"/>
+   <input semantic="OUTPUT" source="#Scene-timeline-Cube-anim-matrix-output"/>
+   <input semantic="INTERPOLATION" source="#Scene-timeline-Cube-anim-interpolation-output"/>
+  </sampler>
+  <channel source="#Scene-timeline-Cube-anim-matrix-sampler" target="Cube/transform"/>
+ </animation>
+ <animation id="[Action Stash]-Cube-anim">
+  <source id="[Action Stash]-Cube-anim-input">
+   <float_array id="[Action Stash]-Cube-anim-input-array" count="12">0.0417 0.0833 0.1250 0.1667 0.2083 0.2500 0.2917 0.3333 0.3750 0.4167 0.4583 0.5000</float_array>
+   <technique_common>
+    <accessor source="#[Action Stash]-Cube-anim-input-array" count="12" stride="1">
+     <param name="TIME" type="float"/>
+    </accessor>
+   </technique_common>
+  </source>
+  <source id="[Action Stash]-Cube-anim-matrix-output">
+   <float_array id="[Action Stash]-Cube-anim-matrix-output-array" count="192">1.0182 0.0000 -0.0000 0.0000 0.0000 0.9663 -0.0000 0.0000 -0.0000 -0.0000 1.0182 -0.0000 0.0000 0.0000 -0.0000 1.0000 1.0719 0.0000 -0.0000 0.0000 0.0000 0.8665 -0.0000 0.0000 -0.0000 -0.0000 1.0719 -0.0000 0.0000 0.0000 -0.0000 1.0000 1.1537 0.0000 -0.0000 0.0000 0.0000 0.7144 -0.0000 0.0000 -0.0000 -0.0000 1.1537 -0.0000 0.0000 0.0000 -0.0000 1.0000 1.2465 0.0000 -0.0000 0.0000 0.0000 0.5419 -0.0000 0.0000 -0.0000 -0.0000 1.2465 -0.0000 0.0000 0.0000 -0.0000 1.0000 1.3284 0.0000 -0.0000 0.0000 0.0000 0.3898 -0.0000 0.0000 -0.0000 -0.0000 1.3284 -0.0000 0.0000 0.0000 -0.0000 1.0000 1.3821 0.0000 -0.0000 0.0000 0.0000 0.2900 -0.0000 0.0000 -0.0000 -0.0000 1.3821 -0.0000 0.0000 0.0000 -0.0000 1.0000 1.4002 0.0000 -0.0000 0.0000 0.0000 0.2563 -0.0000 0.0000 -0.0000 -0.0000 1.4002 -0.0000 0.0000 0.0000 -0.0000 1.0000 1.3646 0.0000 -0.0000 0.0000 0.0000 0.3224 -0.0000 0.0000 -0.0000 -0.0000 1.3646 -0.0000 0.0000 0.0000 -0.0000 1.0000 1.2644 0.0000 -0.0000 0.0000 0.0000 0.5086 -0.0000 0.0000 -0.0000 -0.0000 1.2644 -0.0000 0.0000 0.0000 -0.0000 1.0000 1.1358 0.0000 -0.0000 0.0000 0.0000 0.7477 -0.0000 0.0000 -0.0000 -0.0000 1.1358 -0.0000 0.0000 0.0000 -0.0000 1.0000 1.0356 0.0000 -0.0000 0.0000 0.0000 0.9339 -0.0000 0.0000 -0.0000 -0.0000 1.0356 -0.0000 0.0000 0.0000 -0.0000 1.0000 1.0000 0.0000 -0.0000 0.0000 0.0000 1.0000 -0.0000 0.0000 -0.0000 -0.0000 1.0000 -0.0000 0.0000 0.0000 -0.0000 1.0000</float_array>
+   <technique_common>
+    <accessor source="#[Action Stash]-Cube-anim-matrix-output-array" count="12" stride="16">
+     <param name="TRANSFORM" type="float4x4"/>
+    </accessor>
+   </technique_common>
+  </source>
+  <source id="[Action Stash]-Cube-anim-interpolation-output">
+   <Name_array id="[Action Stash]-Cube-anim-interpolation-output-array" count="12"> LINEAR  LINEAR  LINEAR  LINEAR  LINEAR  LINEAR  LINEAR  LINEAR  LINEAR  LINEAR  LINEAR  LINEAR </Name_array>
+   <technique_common>
+    <accessor source="#[Action Stash]-Cube-anim-interpolation-output-array" count="12" stride="1">
+     <param name="INTERPOLATION" type="Name"/>
+    </accessor>
+   </technique_common>
+  </source>
+  <sampler id="[Action Stash]-Cube-anim-matrix-sampler">
+   <input semantic="INPUT" source="#[Action Stash]-Cube-anim-input"/>
+   <input semantic="OUTPUT" source="#[Action Stash]-Cube-anim-matrix-output"/>
+   <input semantic="INTERPOLATION" source="#[Action Stash]-Cube-anim-interpolation-output"/>
+  </sampler>
+  <channel source="#[Action Stash]-Cube-anim-matrix-sampler" target="Cube/transform"/>
+ </animation>
+</library_animations>
+<library_animation_clips>
+ <animation_clip id="Scene-timeline" start="0.0000" end="10.3750">
+  <instance_animation url="#Scene-timeline-Cube-anim"/>
+ </animation_clip>
+ <animation_clip id="[Action Stash]" start="0.0000" end="0.5000">
+  <instance_animation url="#[Action Stash]-Cube-anim"/>
+ </animation_clip>
+ <animation_clip id="[Action Stash].001" start="0.0000" end="0.5000">
+ </animation_clip>
+</library_animation_clips>
+<scene>
+	<instance_visual_scene url="#Scene"/>
+	<instance_physics_scene url="#Scene-physics"/>
+</scene>
+</COLLADA>
