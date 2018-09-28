@@ -149,7 +149,7 @@
 	// load a resource
 	loader.load(
 		// resource URL
-		'data/models/AnimTest3_1.dae',
+		'data/models/AnimTest3_2.dae',
 		// called when resource is loaded
 		function ( object ) 
 		{
@@ -232,12 +232,12 @@
 			if(!ui_opened)
 			{
 				playClip(clip_SlideOut);
-				playClip(clip_PlaneShrink);
+				playClip(clip_PlaneGrow);
 			}
 			else
 			{
 				playClip(clip_SlideIn);
-				playClip(clip_PlaneGrow);
+				playClip(clip_PlaneShrink);
 			}
 
 			ui_opened = !ui_opened;
