@@ -125,17 +125,7 @@
 	var mixer;
 	var clips
 	var mesh;
-	var textMesh;
-	var texture_ARCard = new THREE.TextureLoader().load('data/images/MWI-ARCard-4.png');
 	var texture_Gradient = new THREE.TextureLoader().load('data/images/MWIGradient.png');
-	var texture_Grid = new THREE.TextureLoader().load('data/images/Grid2.png');
-    
-    var material_ARCard = new THREE.MeshBasicMaterial();
-	material_ARCard.map = texture_ARCard;
-	material_ARCard.transparent = true;
-	console.log('Creating ARCard material...');
-	console.log(texture_ARCard);
-	console.log(material_ARCard.map);
 
 	var material_Gradient = new THREE.MeshBasicMaterial();
 	texture_Gradient.wrapS = THREE.RepeatWrapping;
@@ -146,14 +136,6 @@
 	console.log(texture_Gradient);
 	console.log(material_Gradient.map);
 
-	var material_Grid = new THREE.MeshBasicMaterial();
-	material_Grid.wrapS = THREE.RepeatWrapping;
-	material_Grid.wrapT = THREE.RepeatWrapping;
-	material_Grid.map = texture_Grid;
-	material_Grid.transparent = true;
-	console.log('Creating Grid material...');
-	console.log(material_Grid);
-	console.log(material_Grid.map);
 
 	var objects = []
 
@@ -161,7 +143,7 @@
 	// load a resource
 	loader.load(
 		// resource URL
-		'data/models/ARBuisnessCard5-drum.dae',
+		'data/models/animTest1.dae',
 		// called when resource is loaded
 		function ( object ) 
 		{
@@ -173,20 +155,7 @@
 			{
 				if (child instanceof THREE.Mesh) 
 				{
-					if(child.name == "DetectionPlane" || child.name == "")
-					{
-						child.material = material_ARCard;
-					}
-					else if(child.name == "CardText")
-					{
-						child.material = material_Gradient;
-						textMesh = child;
-					}
-					else
-					{
-						child.material = material_Gradient;
-						
-					}
+					child.material = material_Gradient;
 
 					console.log("Found " + child.name);
 					
@@ -225,34 +194,12 @@
 	);
 
 
-	var drum1 = new Audio('data/sounds/babaKick.mp3');
-	var drum2 = new Audio('data/sounds/babaSnare.mp3');
 	function onTap(tappedObject)
 	{
 		console.log("Tapped object " + tappedObject);
-		if(tappedObject == "Drum1")
+		if(tappedObject == "Cube")
 		{
-			if(drum1.paused)
-			{
-				drum1.play();
-			}
-			else
-			{
-				drum1.currentTime = 0;
-			}
 			mixer.clipAction(clips[0]).play();
-		}
-		else if(tappedObject == "Drum2")
-		{
-			if(drum2.paused)
-			{
-				drum2.play();
-			}
-			else
-			{
-				drum2.currentTime = 0;
-			}
-			mixer.clipAction(clips[1]).play();
 		}
 	}
 
@@ -260,11 +207,6 @@
 	var dragControls = new THREE.InteractControls( objects, camera, renderer.domElement );
 	dragControls.addEventListener( 'tapped', function ( event ) { onTap(event.object.name); } );
 
-	
-	onRenderFcts.push(function(){
-		
-		textMesh.material.map.offset.x += 0.0025;
-	})
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
 	//////////////////////////////////////////////////////////////////////////////////
