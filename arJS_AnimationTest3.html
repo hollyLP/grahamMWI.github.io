@@ -149,7 +149,7 @@
 	// load a resource
 	loader.load(
 		// resource URL
-		'data/models/animTest3.dae',
+		'data/models/animTest3_1.dae',
 		// called when resource is loaded
 		function ( object ) 
 		{
@@ -221,7 +221,7 @@
 		console.log("Tapped object " + tappedObject);
 		var shouldMove = false;
 
-		if(tappedObject == "Arrow")
+		if(tappedObject == "ArrowButton" || tappedObject == "")
 		{
 			shouldMove = true;
 		}
