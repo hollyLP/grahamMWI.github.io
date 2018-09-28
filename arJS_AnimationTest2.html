@@ -229,14 +229,8 @@
 			boopAction.setLoop( THREE.LoopOnce );
 			boopAction.clampWhenFinished = true;
 
-			if(boopAction.isRunning())
-			{
-				boopAction.time = 0;
-			}
-			else
-			{
-				boopAction.play();
-			}
+			boopAction.time = 0;
+			boopAction.play();
 		}
 	}
 
