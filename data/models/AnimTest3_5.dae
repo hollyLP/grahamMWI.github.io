@@ -5,8 +5,8 @@
   <author> Anonymous </author>
   <authoring_tool> Collada Exporter for Blender 2.6+, by Gregery Barton (gregery20@yahoo.com.au) </authoring_tool>
  </contributor>
- <created>2018-09-28T16:39:48Z  </created>
- <modified>2018-09-28T16:39:48Z</modified>
+ <created>2018-09-28T16:50:28Z  </created>
+ <modified>2018-09-28T16:50:28Z</modified>
  <unit meter="1.0" name="meter"/>
  <up_axis>Y_UP</up_axis>
 </asset>
@@ -84,9 +84,9 @@
     </technique_common>
    </source>
    <source id="Plane-mesh-texcoord">
-    <float_array id="Plane-mesh-texcoord-array" count="2">0.4952 0.5051</float_array>
+    <float_array id="Plane-mesh-texcoord-array" count="4">0.4952 0.5051 0.4843 0.5150</float_array>
     <technique_common>
-     <accessor source="#Plane-mesh-texcoord-array" count="1" stride="2">
+     <accessor source="#Plane-mesh-texcoord-array" count="2" stride="2">
       <param name="S" type="float"/>
       <param name="T" type="float"/>
      </accessor>
@@ -96,11 +96,11 @@
     <input semantic="POSITION" source="#Plane-mesh-positions"/>
     <input semantic="NORMAL" source="#Plane-mesh-normals"/>
    </vertices>
-   <triangles count="4" material="symbol-0">
+   <triangles count="5" material="symbol-0">
     <input semantic="VERTEX" source="#Plane-mesh-vertices" offset="0"/>
     <input semantic="NORMAL" source="#Plane-mesh-normals" offset="0"/>
     <input semantic="TEXCOORD" source="#Plane-mesh-texcoord" offset="1" set="0"/>
-    <p>5 0 1 0 2 0 4 0 1 0 3 0 0 0 1 0 4 0 3 0 1 0 5 0</p>
+    <p>5 0 1 0 2 0 4 0 1 0 3 0 0 0 1 0 4 0 3 0 1 0 5 0 3 1 5 1 4 1</p>
    </triangles>
   </mesh>
  </geometry>
@@ -164,7 +164,7 @@
    <instance_geometry url="#Plane.002-mesh">
    </instance_geometry>
    <node id="ArrowButton" name="ArrowButton" type="NODE">
-    <matrix sid="transform">1.0000 0.0000 -0.0000 0.6335 0.0000 1.0000 -0.0000 0.2685 -0.0000 -0.0000 1.0000 -0.0000 0.0000 0.0000 -0.0000 1.0000</matrix>
+    <matrix sid="transform">1.0000 0.0000 -0.0000 1.8287 0.0000 1.0000 -0.0000 0.2685 -0.0000 -0.0000 1.0000 -0.0000 0.0000 0.0000 -0.0000 1.0000</matrix>
     <instance_geometry url="#Plane-mesh">
     </instance_geometry>
    </node>
