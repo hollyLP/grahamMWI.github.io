@@ -126,6 +126,7 @@
 	var clips
 	var mesh;
 	var boopAction;
+	var boopAction2;
 	var texture_Gradient = new THREE.TextureLoader().load('data/images/MWIGradient.png');
 
 	var material_Gradient = new THREE.MeshBasicMaterial();
@@ -144,7 +145,7 @@
 	// load a resource
 	loader.load(
 		// resource URL
-		'data/models/animTest5.dae',
+		'data/models/animTest3.dae',
 		// called when resource is loaded
 		function ( object ) 
 		{
@@ -172,7 +173,8 @@
 
 			mixer = new THREE.AnimationMixer( model );
 			clips = object.animations;
-			boopAction = mixer.clipAction(clips[0]);
+			var boopAction = mixer.clipAction(clips[1]);
+			var boopAction2 = mixer.clipAction(clips[2]);
 			console.log(clips);
 			clips.forEach( function ( clip ) 
 			{
@@ -196,19 +198,38 @@
 	);
 
 	
+	var switcher = true;
 	function onTap(tappedObject)
 	{
 		console.log("Tapped object " + tappedObject);
 		if(tappedObject == "Cube")
 		{
-			if(boopAction.isRunning())
+			if(switcher)
 			{
-				boopAction.time = 0;
+				if(boopAction.isRunning())
+				{
+					boopAction.time = 0;
+				}
+				else
+				{
+					boopAction.play();
+				}
 			}
 			else
 			{
-				boopAction.play();
+				if(boopAction2.isRunning())
+				{
+					boopAction2.time = 0;
+				}
+				else
+				{
+					boopAction2.play();
+				}
 			}
+		}
+		else if(tappedObject == "Switcher")
+		{
+			switcher = !switcher
 		}
 	}
 
