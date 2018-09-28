@@ -124,7 +124,7 @@
 	var clock = new THREE.Clock();
 	var mixer;
 	var mesh;
-	var boopAction;
+	var infoPlaneAction, arrowAction;
 
 	var clips;
 	var clip_SlideIn, clip_SlideOut;
@@ -206,14 +206,23 @@
 		}
 	);
 
-	function playClip(desiredClip)
+	function playClip(clip1, clip2)
 	{
-		boopAction = mixer.clipAction(desiredClip);
-		boopAction.setLoop( THREE.LoopOnce );
-		boopAction.clampWhenFinished = true;
+		infoPlaneAction.stop();
+		arrowAction.stop();
 
-		boopAction.enabled = true;
-		boopAction.play().reset();
+		infoPlaneAction = mixer.clipAction(clip1);
+		arrowAction = mixer.clipAction(clip2);
+		infoPlaneAction.setLoop( THREE.LoopOnce );
+		arrowAction.setLoop( THREE.LoopOnce );
+		infoPlaneAction.clampWhenFinished = true;
+		arrowAction.clampWhenFinished = true;
+		
+
+		infoPlaneAction.enabled = true;
+		infoPlaneAction.play().reset();
+		arrowAction.enabled = true;
+		arrowAction.play().reset();
 	}
 
 	function onTap(tappedObject)
@@ -231,13 +240,11 @@
 		{
 			if(!ui_opened)
 			{
-				playClip(clip_SlideOut);
-				playClip(clip_PlaneGrow);
+				playClip(clip_PlaneGrow, clip_SlideOut);
 			}
 			else
 			{
-				playClip(clip_SlideIn);
-				playClip(clip_PlaneShrink);
+				playClip(clip_PlaneShrink, clip_SlideIn);
 			}
 
 			ui_opened = !ui_opened;
