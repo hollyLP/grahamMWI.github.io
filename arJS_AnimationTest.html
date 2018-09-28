@@ -176,8 +176,11 @@
 			boopAction = mixer.clipAction(clips[0]);
 			boopAction2 = mixer.clipAction(clips[1]);
 
-			boopAction.loop = THREE.LoopOnce;
-			boopAction2.loop = THREE.LoopOnce;
+			boopAction.setLoop( THREE.LoopOnce );
+			boopAction2.setLoop( THREE.LoopOnce );
+			boopAction.clampWhenFinished = true;
+			boopAction2.clampWhenFinished = true;
+			
 			console.log(clips);
 			clips.forEach( function ( clip ) 
 			{
