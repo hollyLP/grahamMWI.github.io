@@ -229,6 +229,11 @@
 		infoPlaneAction.play().reset();
 		arrowAction.enabled = true;
 		arrowAction.play().reset();
+
+		console.log("Playing clips:");
+		console.log(clip1);
+		console.log(clip2);
+		console.log("");
 	}
 
 	function onTap(tappedObject)
@@ -244,6 +249,7 @@
 
 		if(shouldMove)
 		{
+			console.log("Moving ui: " + ui_opened);
 			if(!ui_opened)
 			{
 				playClip(clip_PlaneGrow, clip_SlideOut);
