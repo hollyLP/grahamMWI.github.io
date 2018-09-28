@@ -193,40 +193,20 @@
 		}
 	);
 
-	var boopAction = mixer.clipAction(clips[1]);
-	var boopAction2 = mixer.clipAction(clips[2]);
-	var switcher = true;
+	var boopAction = mixer.clipAction(clips[0]);
 	function onTap(tappedObject)
 	{
 		console.log("Tapped object " + tappedObject);
 		if(tappedObject == "Cube")
 		{
-			if(switcher)
+			if(boopAction.isRunning())
 			{
-				if(boopAction.isRunning())
-				{
-					boopAction.time = 0;
-				}
-				else
-				{
-					boopAction.play();
-				}
+				boopAction.time = 0;
 			}
 			else
 			{
-				if(boopAction2.isRunning())
-				{
-					boopAction2.time = 0;
-				}
-				else
-				{
-					boopAction2.play();
-				}
+				boopAction.play();
 			}
-		}
-		else if(tappedObject == "Switcher")
-		{
-			switcher = !switcher
 		}
 	}
 
