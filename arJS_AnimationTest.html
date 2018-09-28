@@ -143,7 +143,7 @@
 	// load a resource
 	loader.load(
 		// resource URL
-		'data/models/animTest2.dae',
+		'data/models/animTest3.dae',
 		// called when resource is loaded
 		function ( object ) 
 		{
@@ -193,13 +193,40 @@
 		}
 	);
 
-
+	var boopAction = mixer.clipAction(clips[1]);
+	var boopAction2 = mixer.clipAction(clips[2]);
+	var switcher = true;
 	function onTap(tappedObject)
 	{
 		console.log("Tapped object " + tappedObject);
 		if(tappedObject == "Cube")
 		{
-			mixer.clipAction(clips[0]).play();
+			if(switcher)
+			{
+				if(boopAction.isRunning())
+				{
+					boopAction.time = 0;
+				}
+				else
+				{
+					boopAction.play();
+				}
+			}
+			else
+			{
+				if(boopAction2.isRunning())
+				{
+					boopAction2.time = 0;
+				}
+				else
+				{
+					boopAction2.play();
+				}
+			}
+		}
+		else if(tappedObject = "Switcher")
+		{
+			switcher = !switcher
 		}
 	}
 
