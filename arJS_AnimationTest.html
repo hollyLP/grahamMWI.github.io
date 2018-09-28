@@ -125,6 +125,7 @@
 	var mixer;
 	var clips
 	var mesh;
+	var boopAction;
 	var texture_Gradient = new THREE.TextureLoader().load('data/images/MWIGradient.png');
 
 	var material_Gradient = new THREE.MeshBasicMaterial();
@@ -171,6 +172,7 @@
 
 			mixer = new THREE.AnimationMixer( model );
 			clips = object.animations;
+			boopAction = mixer.clipAction(clips[0]);
 			console.log(clips);
 			clips.forEach( function ( clip ) 
 			{
@@ -193,7 +195,7 @@
 		}
 	);
 
-	var boopAction = mixer.clipAction(clips[0]);
+	
 	function onTap(tappedObject)
 	{
 		console.log("Tapped object " + tappedObject);
