@@ -173,8 +173,8 @@
 
 			mixer = new THREE.AnimationMixer( model );
 			clips = object.animations;
-			var boopAction = mixer.clipAction(clips[1]);
-			var boopAction2 = mixer.clipAction(clips[2]);
+			boopAction = mixer.clipAction(clips[1]);
+			boopAction2 = mixer.clipAction(clips[2]);
 			console.log(clips);
 			clips.forEach( function ( clip ) 
 			{
