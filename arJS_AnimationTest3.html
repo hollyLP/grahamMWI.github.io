@@ -124,7 +124,8 @@
 	var clock = new THREE.Clock();
 	var mixer;
 	var mesh;
-	var infoPlaneAction, arrowAction;
+	var actionPlaneOn, actionPlaneOff;
+	var actionArrowOn, actionArrowOff;
 
 	var clips;
 	var clip_SlideIn, clip_SlideOut;
@@ -182,6 +183,23 @@
 			clip_PlaneShrink = THREE.AnimationClip.findByName(clips, "AnimPlaneShrink");
 			clip_PlaneGrow = THREE.AnimationClip.findByName(clips, "AnimPlaneGrow");
 
+
+			actionPlaneOn = mixer.clipAction(clip_PlaneGrow);
+			actionPlaneOn.setLoop( THREE.LoopOnce );
+			actionPlaneOn.clampWhenFinished = true;
+
+			actionPlaneOff = mixer.clipAction(clip_PlaneShrink);
+			actionPlaneOff.setLoop( THREE.LoopOnce );
+			actionPlaneOff.clampWhenFinished = true;
+
+			actionArrowOn = mixer.clipAction(clip_SlideOut);
+			actionArrowOn.setLoop( THREE.LoopOnce );
+			actionArrowOn.clampWhenFinished = true;
+
+			actionArrowOff = mixer.clipAction(clip_SlideIn);
+			actionArrowOff.setLoop( THREE.LoopOnce );
+			actionArrowOff.clampWhenFinished = true;
+
 			
 
 			console.log(clips);
@@ -206,34 +224,32 @@
 		}
 	);
 
-	function playClip(clip1, clip2)
+	function openUI(shouldOpen)
 	{
-		if(infoPlaneAction != undefined)
+		if(shouldOpen)
 		{
-			infoPlaneAction.stop();
+			actionPlaneOn.enabled = true;
+			actionPlaneOn.play().reset();
+
+			actionArrowOn.enabled = true;
+			actionArrowOn.play().reset();
+
+
+			actionPlaneOff.crossFadeTo(actionPlaneOn, 0.1, false);
+			actionArrowOff.crossFadeTo(actionArrowOn, 0.1, false);
 		}
-		if(arrowAction != undefined)
+		else
 		{
-			arrowAction.stop();
+			actionPlaneOff.enabled = true;
+			actionPlaneOff.play().reset();
+
+			actionArrowOff.enabled = true;
+			actionArrowOff.play().reset();
+
+
+			actionPlaneOn.crossFadeTo(actionPlaneOff, 0.1, false);
+			actionArrowOn.crossFadeTo(actionArrowOff, 0.1, false);
 		}
-
-		infoPlaneAction = mixer.clipAction(clip1);
-		arrowAction = mixer.clipAction(clip2);
-		infoPlaneAction.setLoop( THREE.LoopOnce );
-		arrowAction.setLoop( THREE.LoopOnce );
-		infoPlaneAction.clampWhenFinished = true;
-		arrowAction.clampWhenFinished = true;
-		
-
-		infoPlaneAction.enabled = true;
-		infoPlaneAction.play().reset();
-		arrowAction.enabled = true;
-		arrowAction.play().reset();
-
-		console.log("Playing clips:");
-		console.log(clip1);
-		console.log(clip2);
-		console.log("");
 	}
 
 	function onTap(tappedObject)
@@ -241,7 +257,7 @@
 		console.log("Tapped object " + tappedObject);
 		var shouldMove = false;
 
-		if(tappedObject == "ArrowButton" || tappedObject == "")
+		if(tappedObject == "ArrowButton" || tappedObject == "Arrow")
 		{
 			shouldMove = true;
 		}
@@ -249,17 +265,10 @@
 
 		if(shouldMove)
 		{
-			console.log("Moving ui: " + ui_opened);
-			if(!ui_opened)
-			{
-				playClip(clip_PlaneGrow, clip_SlideOut);
-			}
-			else
-			{
-				playClip(clip_PlaneShrink, clip_SlideIn);
-			}
-
 			ui_opened = !ui_opened;
+			console.log("Moving ui: " + ui_opened);
+
+			openUI(ui_opened);
 		}
 	}
 
