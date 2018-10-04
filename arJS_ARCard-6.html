@@ -132,6 +132,8 @@
 	var clock = new THREE.Clock();
 	var mixer;
 	var mesh;
+	var object_screen;
+
 	var action_ScreenOn, action_ScreenOff;
 	var action_OutlineOn, action_OutlineOff;
 
@@ -185,6 +187,7 @@
 					if(child.name == "Screen")
 					{
 						child.material = material_video;
+						object_screen = child;
 					}
 					else
 					{
@@ -198,6 +201,18 @@
 				}
 				
 			});
+
+
+			// add cube as child
+			for(int i = 0; i < 20; i++)
+			{
+				object_child_cube = new THREE.Mesh(new THREE.BoxGeometry(0.2, 0.2, 0.2), material_video);
+				object_child_cube.position.x = Math.random() * 2;
+				object_child_cube.position.y = Math.random() * 2;
+				object_child_cube.position.z = Math.random() * 2;
+				object_screen.add(childCube);
+			}
+			
 
 
 			arWorldRoot.add( model );
