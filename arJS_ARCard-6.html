@@ -324,10 +324,10 @@
 	}
 
 
-	onRenderFcts.push(function(){
+	onRenderFcts.push(function(delta, otherBit){
 		for(var i = 0; i < objects_children_cubes.length; i++)
 		{
-			objects_children_cubes[i].rotation.x += 1;
+			objects_children_cubes[i].rotation.x += delta;
 		}
 	})
 
