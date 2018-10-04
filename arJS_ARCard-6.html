@@ -157,8 +157,7 @@
 	video_Texture.magFilter = THREE.LinearFilter;
 	video_Texture.format = THREE.RGBFormat;
 
-	var material_video = new THREE.MeshBasicMaterial();
-	material_video.map = material_video;
+	var material_video = new THREE.MeshBasicMaterial({ map: video_Texture });
 	console.log('Creating video material...')
 	console.log(video_Texture);
 	console.log(material_video.map);
