@@ -9,6 +9,14 @@
 <script src="vendor/three.js/examples/js/controls/InteractControls.js"></script>
 <script>THREEx.ArToolkitContext.baseURL = '../'</script>
 
+<!-- video stuff -->
+<video id="video" autoplay loop crossOrigin="anonymous" webkit-playsinline style="display:none">
+			<source src="data/MWI-reel.webm" type='video/webm; codecs=vp8,vorbis'>
+</video>
+
+
+
+
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'><div style='position: absolute; top: 10px; width:100%; text-align: center; z-index: 1;'>
 </div><script>
 	//////////////////////////////////////////////////////////////////////////////////
@@ -132,16 +140,29 @@
 	var clip_OutlineOpen, clip_OutlineClose;
 	var ui_opened = false;
 
-	var texture_Gradient = new THREE.TextureLoader().load('data/images/MWI-ARCard-4.png');
+	var texture_ARCard = new THREE.TextureLoader().load('data/images/MWI-ARCard-4.png');
 
-	var material_Gradient = new THREE.MeshBasicMaterial();
-	texture_Gradient.wrapS = THREE.RepeatWrapping;
-	texture_Gradient.wrapT = THREE.RepeatWrapping;
-	material_Gradient.map = texture_Gradient;
-	material_Gradient.transparent = true;
-	console.log('Creating Gradient material...');
-	console.log(texture_Gradient);
-	console.log(material_Gradient.map);
+	var material_ARCard = new THREE.MeshBasicMaterial();
+	texture_ARCard.wrapS = THREE.RepeatWrapping;
+	texture_ARCard.wrapT = THREE.RepeatWrapping;
+	material_ARCard.map = texture_ARCard;
+	material_ARCard.transparent = true;
+	console.log('Creating ARCard material...');
+	console.log(texture_ARCard);
+	console.log(material_ARCard.map);
+
+	var video_Element = document.getElementById("video");
+	var video_Texture = new THREE.VideoTexture(video);
+	video_Texture.minFilter = THREE.LinearFilter;
+	video_Texture.magFilter = THREE.LinearFilter;
+	video_Texture.format = THREE.RGBFormat;
+
+	var material_video = new THREE.MeshBasicMaterial();
+	material_video.map = material_video;
+	console.log('Creating video material...')
+	console.log(video_Texture);
+	console.log(material_video.map);
+
 
 
 	var objects = []
@@ -162,7 +183,15 @@
 			{
 				if (child instanceof THREE.Mesh) 
 				{
-					child.material = material_Gradient;
+					if(child.name == "Screen")
+					{
+						child.material = material_video;
+					}
+					else
+					{
+						child.material = material_ARCard;
+					}
+					
 
 					console.log("Found " + child.name);
 					
@@ -207,7 +236,7 @@
 			action_OutlineOff.setLoop( THREE.LoopOnce );
 			action_OutlineOff.clampWhenFinished = true;
 
-			
+			openUI(false);
 
 			
 			
