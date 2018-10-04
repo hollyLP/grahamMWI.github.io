@@ -118,14 +118,14 @@
 		var particles = new THREE.Geometry();
 		var material_particles = new THREE.PointsMaterial({
 			color: 0xFFFFFF,
-			size: 1
+			size: 0.25
 		});
 
 		for(var i = 0; i < particle_count; i++)
 		{
-			var pX = Math.random() * 4 - 2;
-			var pY = Math.random() * 4 - 2;
-			var pZ = Math.random() * 4 - 2;
+			var pX = Math.random() * 3 - 1.5;
+			var pY = Math.random() * 3 - 1.5;
+			var pZ = Math.random() * 3 - 1.5;
 			particle = new THREE.Vector3(pX, pY, pZ);
 
 			particles.vertices.push(particle);
