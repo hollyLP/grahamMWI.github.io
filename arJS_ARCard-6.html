@@ -133,6 +133,7 @@
 	var mixer;
 	var mesh;
 	var object_screen;
+	var objects_children_cubes = [];
 
 	var action_ScreenOn, action_ScreenOff;
 	var action_OutlineOn, action_OutlineOff;
@@ -207,9 +208,13 @@
 			for(i = 0; i < 20; i++)
 			{
 				var object_child_cube = new THREE.Mesh(new THREE.BoxGeometry(0.2, 0.2, 0.2), material_video);
-				object_child_cube.position.x = Math.random() * 2;
-				object_child_cube.position.y = Math.random() * 2;
-				object_child_cube.position.z = Math.random() * 2;
+				object_child_cube.position.x = Math.random() * 3 - 1.5;
+				object_child_cube.position.y = Math.random() * 3 - 1.5;
+				object_child_cube.position.z = Math.random() * 3 - 1.5;
+				object_child_cube.rotation.x = Math.random() * 360;
+				object_child_cube.rotation.y = Math.random() * 360;
+				object_child_cube.rotation.z = Math.random() * 360;
+				objects_children_cubes.push(object_child_cube);
 				object_screen.add(object_child_cube);
 			}
 			
@@ -317,6 +322,16 @@
 			openUI(ui_opened);
 		}
 	}
+
+
+	onRenderFcts.push(function(){
+		for(var i = 0; i < objects_children_cubes.length; i++)
+		{
+			objects_children_cubes[i].rotation.x += clock.getDelta() * 60;
+		}
+	})
+
+
 
 
 	var dragControls = new THREE.InteractControls( objects, camera, renderer.domElement );
