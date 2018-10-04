@@ -116,9 +116,9 @@
 	{
 		var particle_count = 1800;
 		var particles = new THREE.Geometry();
-		var material_particles = new THREE.ParticleBasicMaterial({
+		var material_particles = new THREE.PointsMaterial({
 			color: 0xFFFFFF,
-			size: 20
+			size: 1
 		});
 
 		for(var i = 0; i < particle_count; i++)
@@ -126,12 +126,12 @@
 			var pX = Math.random() * 4 - 2;
 			var pY = Math.random() * 4 - 2;
 			var pZ = Math.random() * 4 - 2;
-			particle = new THREE.Vertex(new THREE.Vector3(pX, pY, pZ));
+			particle = new THREE.Vector3(pX, pY, pZ);
 
 			particles.vertices.push(particle);
 		}
 
-		var particle_system = new THREE.ParticleSystem(particles, material_particles);
+		var particle_system = new THREE.Points(particles, material_particles);
 
 		parent.add(particle_system);
 	}
