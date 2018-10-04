@@ -206,7 +206,7 @@
 			// add cube as child
 			for(i = 0; i < 20; i++)
 			{
-				object_child_cube = new THREE.Mesh(new THREE.BoxGeometry(0.2, 0.2, 0.2), material_video);
+				var object_child_cube = new THREE.Mesh(new THREE.BoxGeometry(0.2, 0.2, 0.2), material_video);
 				object_child_cube.position.x = Math.random() * 2;
 				object_child_cube.position.y = Math.random() * 2;
 				object_child_cube.position.z = Math.random() * 2;
