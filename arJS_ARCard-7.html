@@ -195,6 +195,7 @@
 			{
 				if (child instanceof THREE.Mesh) 
 				{
+					console.log("Found " + child.name);
 					if(child.name.includes("Space"))
 					{
 						if(child.name == "SpaceCube")
@@ -219,9 +220,10 @@
 					}
 					
 
-					console.log("Found " + child.name);
+					
 					
 					objects.push(child);
+					console.log("     Handled " + child.name);
 				}
 				
 			});
