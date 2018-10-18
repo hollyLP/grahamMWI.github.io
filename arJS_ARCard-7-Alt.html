@@ -126,6 +126,9 @@
 	var root_stencil_geometry = new THREE.Group();
 	var root_stencil_mask = new THREE.Group();
 
+	scene_stencil_geometry.add(root_stencil_geometry);
+	scene_stencil_mask.add(root_stencil_mask);
+
 	onRenderFcts.push(function(){
 
 		root_stencil_geometry.position = root_ar_World.position;
@@ -180,21 +183,21 @@
 	var objects = []
 
 
-	var geometry = new THREE.BoxGeometry( 1, 1, 1 );
+	var geometry = new THREE.BoxGeometry( 0.5, 0.5, 0.5 );
 	var cube = new THREE.Mesh( geometry, material_Gradient );
 	root_ar_World.add( cube );
 	console.log("     Handled Cube1");
 
-	var geometry = new THREE.BoxGeometry( 1, 1, 1 );
+	geometry = new THREE.BoxGeometry( 0.5, 0.5, 0.5 );
 	var cube = new THREE.Mesh( geometry, material_stencil );
-	cube.position.x = 1;
+	cube.position.x = 0.65;
 	root_stencil_mask.add( cube );
 	console.log("     Handled Cube2");
 
-	var geometry = new THREE.BoxGeometry( 1, 1, 1 );
+	geometry = new THREE.BoxGeometry( 0.5, 0.5, 0.5 );
 	var cube = new THREE.Mesh( geometry, material_space );
-	cube.position.x = 1;
-	cube.position.y = -1;
+	cube.position.x = 0.65;
+	cube.position.y = -0.65;
 	root_stencil_geometry.add( cube );
 	console.log("     Handled Cube3");
 
