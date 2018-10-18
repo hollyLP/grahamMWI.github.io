@@ -134,19 +134,19 @@
 		root_stencil_geometry.position.x = root_ar_World.position.x;
 		root_stencil_geometry.position.y = root_ar_World.position.y;
 		root_stencil_geometry.position.z = root_ar_World.position.z;
-
 		root_stencil_geometry.rotation.x = root_ar_World.rotation.x;
 		root_stencil_geometry.rotation.y = root_ar_World.rotation.y;
 		root_stencil_geometry.rotation.z = root_ar_World.rotation.z;
+		root_stencil_geometry.visible = root_ar_World.visible;
 
 		
 		root_stencil_mask.position.x = root_ar_World.position.x;
 		root_stencil_mask.position.y = root_ar_World.position.y;
 		root_stencil_mask.position.z = root_ar_World.position.z;
-
 		root_stencil_mask.rotation.x = root_ar_World.rotation.x;
 		root_stencil_mask.rotation.y = root_ar_World.rotation.y;
 		root_stencil_mask.rotation.z = root_ar_World.rotation.z;
+		root_stencil_mask.visible = root_ar_World.visible;
 
 
 
@@ -191,6 +191,8 @@
 
 	var material_stencil = new THREE.MeshBasicMaterial({
 		color: 0x00ffff,
+		transparent = true,
+		opacity = 0.0,
     	colorWrite: true,  // works for r73 (not r70)
     	depthWrite: false
 	});
