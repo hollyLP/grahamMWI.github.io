@@ -1,3 +1,4 @@
+<meta charset="utf-8"/>
 <!DOCTYPE html>
 <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 <!-- three.js library -->
@@ -150,9 +151,9 @@
 
 
 
-		console.log("RootPos " + " x " + root_ar_World.position.x + " y " + root_ar_World.position.y + " z " + root_ar_World.position.z);
-		console.log("StencilGeomPos " + " x " + root_stencil_geometry.position.x + " y " + root_stencil_geometry.position.y + " z " + root_stencil_geometry.position.z)
-		console.log("StencilMaskPos " + " x " + root_stencil_mask.position.x + " y " + root_stencil_mask.position.y + " z " + root_stencil_mask.position.z)
+		//console.log("RootPos " + " x " + root_ar_World.position.x + " y " + root_ar_World.position.y + " z " + root_ar_World.position.z);
+		//console.log("StencilGeomPos " + " x " + root_stencil_geometry.position.x + " y " + root_stencil_geometry.position.y + " z " + root_stencil_geometry.position.z)
+		//console.log("StencilMaskPos " + " x " + root_stencil_mask.position.x + " y " + root_stencil_mask.position.y + " z " + root_stencil_mask.position.z)
 	})
 
 
@@ -216,23 +217,10 @@
 	geometry = new THREE.BoxGeometry( 0.5, 0.5, 0.5 );
 	var cube = new THREE.Mesh( geometry, material_space );
 	cube.position.x = 0.65;
-	cube.position.y = -0.65;
+	cube.position.y = -2;
 	root_stencil_geometry.add( cube );
 	console.log("     Handled Cube3");
 
-
-	var geometry = new THREE.BoxGeometry( 0.1, 0.1, 0.1 );
-	var cube = new THREE.Mesh( geometry, material_Gradient );
-	cube.position.x = 0.65;
-	root_ar_World.add( cube );
-	console.log("     Handled Cube2Vis");
-
-	var geometry = new THREE.BoxGeometry( 0.1, 0.1, 0.1 );
-	var cube = new THREE.Mesh( geometry, material_Gradient );
-	cube.position.x = 0.65;
-	cube.position.y = -0.65;
-	root_ar_World.add( cube );
-	console.log("     Handled Cube3Vis");
 
 
 
