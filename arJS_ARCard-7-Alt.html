@@ -242,6 +242,8 @@
 
 		renderer.render( scene_stencil_geometry, camera );
 
+		gl.disable(gl.STENCIL_TEST);
+
 		stats.update();
 	})
 
