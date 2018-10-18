@@ -202,6 +202,19 @@
 	console.log("     Handled Cube3");
 
 
+	var geometry = new THREE.BoxGeometry( 0.1, 0.1, 0.1 );
+	var cube = new THREE.Mesh( geometry, material_Gradient );
+	cube.position.x = 0.65;
+	root_ar_World.add( cube );
+	console.log("     Handled Cube2Vis");
+
+	var geometry = new THREE.BoxGeometry( 0.1, 0.1, 0.1 );
+	var cube = new THREE.Mesh( geometry, material_Gradient );
+	cube.position.x = 0.65;
+	cube.position.y = -0.65;
+	root_ar_World.add( cube );
+	console.log("     Handled Cube3Vis");
+
 
 
 	function onTap(tappedObject)
