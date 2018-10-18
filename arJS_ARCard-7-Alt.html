@@ -131,11 +131,24 @@
 
 	onRenderFcts.push(function(){
 
-		root_stencil_geometry.position = root_ar_World.position;
-		root_stencil_geometry.rotation = root_ar_World.rotation;
+		root_stencil_geometry.position.x = root_ar_World.position.x;
+		root_stencil_geometry.position.y = root_ar_World.position.y;
+		root_stencil_geometry.position.z = root_ar_World.position.z;
 
-		root_stencil_mask.position = root_ar_World.position;
-		root_stencil_mask.rotation = root_ar_World.rotation;
+		root_stencil_geometry.rotation.x = root_ar_World.rotation.x;
+		root_stencil_geometry.rotation.y = root_ar_World.rotation.y;
+		root_stencil_geometry.rotation.z = root_ar_World.rotation.z;
+
+		
+		root_stencil_mask.position.x = root_ar_World.position.x;
+		root_stencil_mask.position.y = root_ar_World.position.y;
+		root_stencil_mask.position.z = root_ar_World.position.z;
+
+		root_stencil_mask.rotation.x = root_ar_World.rotation.x;
+		root_stencil_mask.rotation.y = root_ar_World.rotation.y;
+		root_stencil_mask.rotation.z = root_ar_World.rotation.z;
+
+		
 
 		console.log("RootPos " + " x " + root_ar_World.position.x + " y " + root_ar_World.position.y + " z " + root_ar_World.position.z);
 		console.log("StencilGeomPos " + " x " + root_stencil_geometry.position.x + " y " + root_stencil_geometry.position.y + " z " + root_stencil_geometry.position.z)
