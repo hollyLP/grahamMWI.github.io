@@ -136,6 +136,10 @@
 
 		root_stencil_mask.position = root_ar_World.position;
 		root_stencil_mask.rotation = root_ar_World.rotation;
+
+		print("RootPos " + root_ar_World.position);
+		print("StencilGeomPos " + root_stencil_geometry.position)
+		print("StencilMaskPos " + root_stencil_mask.position)
 	})
 
 
@@ -239,9 +243,11 @@
 
 		renderer.clear();
 
-		//renderer.render( scene, camera );
+		renderer.render( scene, camera );
+		renderer.render( scene_stencil_mask, camera );
+		renderer.render( scene_stencil_geometry, camera );
 
-		var gl = renderer.context;
+		/*var gl = renderer.context;
 
 		gl.enable(gl.STENCIL_TEST);
 
@@ -255,7 +261,7 @@
 
 		renderer.render( scene_stencil_geometry, camera );
 
-		gl.disable(gl.STENCIL_TEST);
+		gl.disable(gl.STENCIL_TEST);*/
 
 		stats.update();
 	})
