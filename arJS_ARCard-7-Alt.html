@@ -148,7 +148,7 @@
 		root_stencil_mask.rotation.y = root_ar_World.rotation.y;
 		root_stencil_mask.rotation.z = root_ar_World.rotation.z;
 
-		
+
 
 		console.log("RootPos " + " x " + root_ar_World.position.x + " y " + root_ar_World.position.y + " z " + root_ar_World.position.z);
 		console.log("StencilGeomPos " + " x " + root_stencil_geometry.position.x + " y " + root_stencil_geometry.position.y + " z " + root_stencil_geometry.position.z)
@@ -257,10 +257,8 @@
 		renderer.clear();
 
 		renderer.render( scene, camera );
-		renderer.render( scene_stencil_mask, camera );
-		renderer.render( scene_stencil_geometry, camera );
 
-		/*var gl = renderer.context;
+		var gl = renderer.context;
 
 		gl.enable(gl.STENCIL_TEST);
 
@@ -274,7 +272,7 @@
 
 		renderer.render( scene_stencil_geometry, camera );
 
-		gl.disable(gl.STENCIL_TEST);*/
+		gl.disable(gl.STENCIL_TEST);
 
 		stats.update();
 	})
