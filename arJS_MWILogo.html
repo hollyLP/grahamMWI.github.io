@@ -11,6 +11,8 @@
 <script>THREEx.ArToolkitContext.baseURL = '../'</script>
 
 
+
+
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'><div style='position: absolute; top: 10px; width:100%; text-align: center; z-index: 1;'>
 </div><script>
 	//////////////////////////////////////////////////////////////////////////////////
@@ -27,21 +29,18 @@
 	renderer.domElement.style.position = 'absolute'
 	renderer.domElement.style.top = '0px'
 	renderer.domElement.style.left = '0px'
-	renderer.autoClear = false;
 	document.body.appendChild( renderer.domElement );
 	// array of functions for the rendering loop
 	var onRenderFcts= [];
 	// init scene and camera
-	var scene = new THREE.Scene();
-	var scene_stencil_mask = new THREE.Scene();
-	var scene_stencil_geometry = new THREE.Scene();
+	var scene	= new THREE.Scene();
 	
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Initialize a basic camera
 	//////////////////////////////////////////////////////////////////////////////////
 	// Create a camera
 	var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-	//scene.add(camera);
+	scene.add(camera);
 	////////////////////////////////////////////////////////////////////////////////
 	//          handle arToolkitSource
 	////////////////////////////////////////////////////////////////////////////////
@@ -117,84 +116,25 @@
 	onRenderFcts.push(function(delta){
 		smoothedControls.update(markerRoot)
 	})
-	
-
-	/////////////////////////////////////////////////////////////////////////////////
-	//		Setup world roots
 	//////////////////////////////////////////////////////////////////////////////////
-
-	var root_ar_World = smoothedRoot
-	var root_stencil_geometry = new THREE.Group();
-	var root_stencil_mask = new THREE.Group();
-
-	scene_stencil_geometry.add(root_stencil_geometry);
-	scene_stencil_mask.add(root_stencil_mask);
-
-	onRenderFcts.push(function(){
-
-		root_stencil_geometry.position.x = root_ar_World.position.x;
-		root_stencil_geometry.position.y = root_ar_World.position.y;
-		root_stencil_geometry.position.z = root_ar_World.position.z;
-		root_stencil_geometry.rotation.x = root_ar_World.rotation.x;
-		root_stencil_geometry.rotation.y = root_ar_World.rotation.y;
-		root_stencil_geometry.rotation.z = root_ar_World.rotation.z;
-		root_stencil_geometry.visible = root_ar_World.visible;
-
-		
-		root_stencil_mask.position.x = root_ar_World.position.x;
-		root_stencil_mask.position.y = root_ar_World.position.y;
-		root_stencil_mask.position.z = root_ar_World.position.z;
-		root_stencil_mask.rotation.x = root_ar_World.rotation.x;
-		root_stencil_mask.rotation.y = root_ar_World.rotation.y;
-		root_stencil_mask.rotation.z = root_ar_World.rotation.z;
-		root_stencil_mask.visible = root_ar_World.visible;
-
-
-
-		//console.log("RootPos " + " x " + root_ar_World.position.x + " y " + root_ar_World.position.y + " z " + root_ar_World.position.z);
-		//console.log("StencilGeomPos " + " x " + root_stencil_geometry.position.x + " y " + root_stencil_geometry.position.y + " z " + root_stencil_geometry.position.z)
-		//console.log("StencilMaskPos " + " x " + root_stencil_mask.position.x + " y " + root_stencil_mask.position.y + " z " + root_stencil_mask.position.z)
-	})
-
-
-	/////////////////////////////////////////////////////////////////////////////////
-	//		add objects to the scene
+	//		add an object in the scene
 	//////////////////////////////////////////////////////////////////////////////////
-	
+	var arWorldRoot = smoothedRoot
 
-
+	//THREE.DRACOLoader.setDecoderPath("vendor/three.js/examples/js/libs/draco/gltf/");
 	// instantiate a loader
 	var loader = new THREE.ColladaLoader();
+	//loader.setDRACOLoader(new THREE.DRACOLoader());
 	var clock = new THREE.Clock();
 	var mixer;
 	var mesh;
 
-	var texture_Gradient = new THREE.TextureLoader().load('data/images/MWIGradient.png');
-	var texture_Space = new THREE.TextureLoader().load('data/images/space.jpg');
+	var texture_MWILogo = new THREE.TextureLoader().load('data/images/MWI_logo_w.png');
 
-	var material_Gradient = new THREE.MeshBasicMaterial();
-	texture_Gradient.wrapS = THREE.RepeatWrapping;
-	texture_Gradient.wrapT = THREE.RepeatWrapping;
-	material_Gradient.map = texture_Gradient;
-	material_Gradient.transparent = true;
-	console.log('Creating Gradient material...');
-	console.log(texture_Gradient);
-	console.log(material_Gradient.map);
+	var material_MWILogo = new THREE.MeshBasicMaterial();
+	material_MWILogo.map = texture_MWILogo;
+	material_MWILogo.transparent = true;
 
-	var material_space = new THREE.MeshBasicMaterial();
-	texture_Space.wrapS = THREE.RepeatWrapping;
-	texture_Space.wrapT = THREE.RepeatWrapping;
-	material_space.map = texture_Space;
-	material_space.transparent = true;
-	console.log('Creating Space material... (Not as cool as it sounds)');
-	console.log(texture_Space);
-	console.log(material_space.map);
-
-	var material_stencil = new THREE.MeshBasicMaterial({
-		color: 0x00ffff,
-    	colorWrite: true,  // works for r73 (not r70)
-    	depthWrite: false
-	});
 
 
 
@@ -204,7 +144,7 @@
 	// load a resource
 	loader.load(
 		// resource URL
-		'data/models/StencilTest_4.dae',
+		'data/models/LogoCenter.dae',
 		// called when resource is loaded
 		function ( object ) 
 		{
@@ -216,49 +156,20 @@
 			{
 				if (child instanceof THREE.Mesh) 
 				{
-					console.log("Found " + child.name);
-					if(child.name.includes("Space"))
-					{
-						if(child.name == "SpaceCube")
-						{
-							child.material = material_space;
-						}
-						else
-						{
-							child.material = material_Gradient;
-						}
-						root_stencil_geometry.add( child );
-					}
-					else if(child.name == "StencilMask")
-					{
-						child.material = material_stencil;
-						root_stencil_mask.add(child);
-					}
-					else
-					{
-						child.material = material_Gradient;
-						root_ar_World.add( child );
-					}
-					
-
-					
+					child.material = material_MWILogo;
 					
 					objects.push(child);
-					console.log("     Handled " + child.name);
 				}
 				
 			});
 			
 
 
-			
+			arWorldRoot.add( model );
 			mesh = model;
+			mesh.position.y += 0.25
 			console.log("Spawned Model");
 
-			mixer = new THREE.AnimationMixer( model );
-			clips = object.animations;
-
-			console.log(clips);
 			
 			
 		},
@@ -272,7 +183,6 @@
 		function ( error ) {
 
 			console.log( 'An error happened' );
-			console.log("JSONLoader failed! because of error " + error.target.status + ", " + error.target.statusText);
 			console.log( error )
 
 		}
@@ -285,44 +195,29 @@
 
 
 
+	
+	onRenderFcts.push(function(){
+		mesh.rotation.y += 0.05
+	})
+
+
+
+
+
+
 	var dragControls = new THREE.InteractControls( objects, camera, renderer.domElement );
 	dragControls.addEventListener( 'tapped', function ( event ) { onTap(event.object.name); } );
-
-
-
-
 
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
 	//////////////////////////////////////////////////////////////////////////////////
-	onRenderFcts.push(function(delta, otherBit){
-
-		renderer.clear();
-
-		renderer.render( scene, camera );
-
-		var gl = renderer.context;
-
-		gl.enable(gl.STENCIL_TEST);
-
-		gl.stencilFunc(gl.ALWAYS, 1, 0xff);
-		gl.stencilOp(gl.REPLACE, gl.REPLACE, gl.REPLACE);
-
-		renderer.render( scene_stencil_mask, camera );
-
-		gl.stencilFunc(gl.EQUAL, 1, 0xff);
-		gl.stencilOp(gl.KEEP, gl.KEEP, gl.KEEP);
-
-		renderer.render( scene_stencil_geometry, camera );
-
-		gl.disable(gl.STENCIL_TEST);
-
-		stats.update();
-	})
-
 	var stats = new Stats();
 	document.body.appendChild( stats.dom );
-
+	// render the scene
+	onRenderFcts.push(function(){
+		renderer.render( scene, camera );
+		stats.update();
+	})
 	// run the rendering loop
 	var lastTimeMsec= null
 	requestAnimationFrame(function animate(nowMsec){
