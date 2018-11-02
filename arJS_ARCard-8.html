@@ -206,45 +206,47 @@
 	// load a resource
 	loader.load(
 		// resource URL
-		'data/models/test12.dae',
+		'data/models/ARCard8.dae',
 		// called when resource is loaded
 		function ( object ) 
 		{
 			var model = object.scene;
 
+			var objects_normal = [];
+			var objects_stencil_mask = [];
+			var objects_stencil_geom = [];
+
+
 
 			model.traverse(function(child) 
 			{
-				console.log(typeof child);
 				if(typeof child != undefined)
 				{
 					if (child instanceof THREE.Mesh) 
 					{
 						console.log("Found " + child.name);
 
-
-
 						if(child.name == "DetectionPlane")
 						{
 							child.material = material_ARCard;
-							root_ar_World.add( child );
+							objects_normal.push(child);
 						}
 						else if(child.name.includes("Mask"))
 						{
 							child.material = material_stencil;
-							root_stencil_mask.add(child);
+							objects_stencil_mask.push(child);
 						}
 						else if(child.name.includes("Geom"))
 						{
 							child.material = material_Gradient;
-							root_stencil_geometry.add(child);
+							objects_stencil_geom.push(child);
 						}
 						else
 						{
 							child.material = material_Gradient;
-							root_ar_World.add( child );
+							objects_normal.push( child );
 						}
-						
+
 
 						if(child.name.includes("UButton"))
 						{
@@ -252,14 +254,33 @@
 							u_buttons[index] = child;
 						}
 						
+
+
 						objects.push(child);
 						console.log("     Handled " + child.name);
 					}
 				}
-				
-				
 			});
 			
+
+			for(var i = 0; i < objects_normal.length; i++)
+			{
+				console.log("   Adding " + objects_normal[i].name);
+				root_ar_World.add(objects_normal[i]);
+			}
+
+			for(var i = 0; i < objects_stencil_geom.length; i++)
+			{
+				console.log("   Adding " + objects_stencil_geom[i].name);
+				root_stencil_geometry.add(objects_stencil_geom[i]);
+			}
+
+			for(var i = 0; i < objects_stencil_mask.length; i++)
+			{
+				console.log("   Adding " + objects_stencil_mask[i].name);
+				root_stencil_mask.add(objects_stencil_mask[i]);
+			}
+
 
 
 			
