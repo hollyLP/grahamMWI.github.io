@@ -215,6 +215,7 @@
 
 			model.traverse(function(child) 
 			{
+				console.log(typeof child);
 				if(typeof child != undefined)
 				{
 					if (child instanceof THREE.Mesh) 
