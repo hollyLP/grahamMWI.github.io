@@ -211,6 +211,7 @@
 
 	var objects = [];
 	var section_about_objects = [];
+	var section_website_objects = [];
 	var u_buttons = new Array(4);
 
 	// load a resource
@@ -248,6 +249,11 @@
 							section_about_objects.push(child);
 							normal = false;
 						}
+						if(child.name.includes("SITE"))
+						{
+							section_website_objects.push(child);
+							normal = false;
+						}
 						if(child.name.includes("Geom"))
 						{
 							objects_stencil_geom.push(child);
@@ -263,7 +269,7 @@
 						{
 							child.material = material_stencil;
 						}
-						else if(["ABOUT_Geom_Head", "ABOUT_Geom_Header", "ScreenOutline"].includes(child.name))
+						else if(["ABOUT_Geom_Head", "ABOUT_Geom_Header", "ScreenOutline", "SITE_Geom_Scene", "SITE_Geom_Screen"].includes(child.name))
 						{
 							child.material = material_ARCard;
 						}
@@ -341,6 +347,8 @@
 		}
 	);
 
+	var button_array = [section_about_objects, section_website_objects, section_about_objects, section_about_objects];
+
 	function onTap(tappedObject)
 	{
 		console.log("Tapped object " + tappedObject);
@@ -358,6 +366,11 @@
 				else
 				{
 					u_buttons[i].scale.x = 0.75;
+				}
+
+				for(var x = 0; x < button_array[i].length; x++)
+				{
+					button_array[i][x].visible = i == index;
 				}
 			}
 		}
