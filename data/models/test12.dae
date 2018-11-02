@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2008/03/COLLADASchema" version="1.5.0">
+<asset>
+ <contributor>
+  <author> Anonymous </author>
+  <authoring_tool> Collada Exporter for Blender 2.6+, by Gregery Barton (gregery20@yahoo.com.au) </authoring_tool>
+ </contributor>
+ <created>2018-11-02T14:25:53Z  </created>
+ <modified>2018-11-02T14:25:53Z</modified>
+ <unit meter="1.0" name="meter"/>
+ <up_axis>Y_UP</up_axis>
+</asset>
+<library_images>
+</library_images>
+<library_effects>
+</library_effects>
+<library_materials>
+</library_materials>
+<library_geometries>
+ <geometry id="Cube-mesh" name="Cube">
+  <mesh>
+   <source id="Cube-mesh-positions">
+    <float_array id="Cube-mesh-positions-array" count="24">-1.0000 -1.0000 1.0000 -1.0000 1.0000 1.0000 -1.0000 -1.0000 -1.0000 -1.0000 1.0000 -1.0000 1.0000 -1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 -1.0000 -1.0000 1.0000 1.0000 -1.0000</float_array>
+    <technique_common>
+     <accessor source="#Cube-mesh-positions-array" count="8" stride="3">
+      <param name="X" type="float"/>
+      <param name="Y" type="float"/>
+      <param name="Z" type="float"/>
+     </accessor>
+    </technique_common>
+   </source>
+   <source id="Cube-mesh-normals">
+    <float_array id="Cube-mesh-normals-array" count="24">-0.5773 -0.5773 0.5773 -0.5773 0.5773 0.5773 -0.5773 -0.5773 -0.5773 -0.5773 0.5773 -0.5773 0.5773 -0.5773 0.5773 0.5773 0.5773 0.5773 0.5773 -0.5773 -0.5773 0.5773 0.5773 -0.5773</float_array>
+    <technique_common>
+     <accessor source="#Cube-mesh-normals-array" count="8" stride="3">
+      <param name="X" type="float"/>
+      <param name="Y" type="float"/>
+      <param name="Z" type="float"/>
+     </accessor>
+    </technique_common>
+   </source>
+   <source id="Cube-mesh-texcoord">
+    <float_array id="Cube-mesh-texcoord-array" count="18">0.0000 1.0000 -1.0000 1.0000 0.0000 0.0000 -1.0000 0.0000 -1.0000 -1.0000 0.0000 -1.0000 1.0000 0.0000 1.0000 -1.0000 1.0000 1.0000</float_array>
+    <technique_common>
+     <accessor source="#Cube-mesh-texcoord-array" count="9" stride="2">
+      <param name="S" type="float"/>
+      <param name="T" type="float"/>
+     </accessor>
+    </technique_common>
+   </source>
+   <vertices id="Cube-mesh-vertices">
+    <input semantic="POSITION" source="#Cube-mesh-positions"/>
+    <input semantic="NORMAL" source="#Cube-mesh-normals"/>
+   </vertices>
+   <polylist count="6" material="symbol-0">
+    <input semantic="VERTEX" source="#Cube-mesh-vertices" offset="0"/>
+    <input semantic="NORMAL" source="#Cube-mesh-normals" offset="0"/>
+    <input semantic="TEXCOORD" source="#Cube-mesh-texcoord" offset="1" set="0"/>
+    <vcount>4 4 4 4 4 4</vcount>
+    <p>0 2 1 0 3 8 2 6 2 2 3 0 7 8 6 6 6 2 7 0 5 1 4 3 4 2 5 0 1 1 0 3 2 2 6 6 4 7 0 5 7 2 3 3 1 4 5 5</p>
+   </polylist>
+  </mesh>
+ </geometry>
+</library_geometries>
+<library_controllers>
+</library_controllers>
+<library_cameras>
+</library_cameras>
+<library_lights>
+</library_lights>
+<library_nodes>
+</library_nodes>
+<library_visual_scenes>
+ <visual_scene id="Scene" name="Scene">
+  <node id="Cube" name="Cube" type="NODE">
+   <matrix sid="transform">1.0000 0.0000 -0.0000 0.0000 0.0000 1.0000 -0.0000 0.0000 -0.0000 -0.0000 1.0000 -0.0000 0.0000 0.0000 -0.0000 1.0000</matrix>
+   <instance_geometry url="#Cube-mesh">
+   </instance_geometry>
+  </node>
+ </visual_scene>
+</library_visual_scenes>
+<library_physics_materials>
+</library_physics_materials>
+<library_physics_models>
+</library_physics_models>
+<library_physics_scenes>
+</library_physics_scenes>
+<library_animations>
+</library_animations>
+<library_animation_clips>
+ <animation_clip id="Scene-timeline" start="0.0000" end="10.3750">
+ </animation_clip>
+</library_animation_clips>
+<scene>
+	<instance_visual_scene url="#Scene"/>
+	<instance_physics_scene url="#Scene-physics"/>
+</scene>
+</COLLADA>
