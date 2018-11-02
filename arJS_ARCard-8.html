@@ -215,43 +215,47 @@
 
 			model.traverse(function(child) 
 			{
-				if (child instanceof THREE.Mesh) 
+				if(typeof child != undefined)
 				{
-					console.log("Found " + child.name);
+					if (child instanceof THREE.Mesh) 
+					{
+						console.log("Found " + child.name);
 
 
 
-					if(child.name == "DetectionPlane")
-					{
-						child.material = material_ARCard;
-						root_ar_World.add( child );
-					}
-					else if(child.name.includes("Mask"))
-					{
-						child.material = material_stencil;
-						root_stencil_mask.add(child);
-					}
-					else if(child.name.includes("Geom"))
-					{
-						child.material = material_Gradient;
-						root_stencil_geometry.add(child);
-					}
-					else
-					{
-						child.material = material_Gradient;
-						root_ar_World.add( child );
-					}
-					
+						if(child.name == "DetectionPlane")
+						{
+							child.material = material_ARCard;
+							root_ar_World.add( child );
+						}
+						else if(child.name.includes("Mask"))
+						{
+							child.material = material_stencil;
+							root_stencil_mask.add(child);
+						}
+						else if(child.name.includes("Geom"))
+						{
+							child.material = material_Gradient;
+							root_stencil_geometry.add(child);
+						}
+						else
+						{
+							child.material = material_Gradient;
+							root_ar_World.add( child );
+						}
+						
 
-					if(child.name.includes("UButton"))
-					{
-						var index = parseInt(child.name.substr(child.name.length - 1));
-						u_buttons[index] = child;
+						if(child.name.includes("UButton"))
+						{
+							var index = parseInt(child.name.substr(child.name.length - 1));
+							u_buttons[index] = child;
+						}
+						
+						objects.push(child);
+						console.log("     Handled " + child.name);
 					}
-					
-					objects.push(child);
-					console.log("     Handled " + child.name);
 				}
+				
 				
 			});
 			
