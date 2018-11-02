@@ -180,15 +180,24 @@
 	console.log(material_Gradient.map);
 
 	var texture_ARCard = new THREE.TextureLoader().load('data/images/MWI-ARCard-8.png');
+	texture_ARCard.generateMipmaps = false;
+	texture_ARCard.magFilter = THREE.LinearFilter;
+	texture_ARCard.minFilter = THREE.LinearFilter;
 	var material_ARCard = new THREE.MeshBasicMaterial();
-	texture_ARCard.wrapS = THREE.RepeatWrapping;
-	texture_ARCard.wrapT = THREE.RepeatWrapping;
-	material_ARCard.map = texture_Gradient;
+	material_ARCard.map = texture_ARCard;
 	material_ARCard.transparent = true;
 	console.log('Creating ARCard material...');
 	console.log(texture_ARCard);
 	console.log(material_ARCard.map);
 
+	var texture_machine_backing = new THREE.TextureLoader().load('data/images/machine-backing2.png');
+	var material_machine_backing = new THREE.MeshBasicMaterial();
+	texture_machine_backing.wrapS = THREE.RepeatWrapping;
+	texture_machine_backing.wrapT = THREE.RepeatWrapping;
+	material_machine_backing.map = texture_machine_backing;
+	console.log('Creating texture_machine_backing material...');
+	console.log(texture_machine_backing);
+	console.log(material_machine_backing.map);
 
 	
 
@@ -201,6 +210,7 @@
 
 
 	var objects = [];
+	var section_about_objects = [];
 	var u_buttons = new Array(4);
 
 	// load a resource
@@ -226,25 +236,45 @@
 					{
 						console.log("Found " + child.name);
 
-						if(child.name == "DetectionPlane")
+						var normal = true;
+
+						if(child.name.includes("Mask"))
 						{
-							child.material = material_ARCard;
+							objects_stencil_mask.push(child);
+							normal = false;
+						}
+						if(child.name.includes("ABOUT"))
+						{
+							section_about_objects.push(child);
+							normal = false;
+						}
+						if(child.name.includes("Geom"))
+						{
+							objects_stencil_geom.push(child);
+							normal = false;
+						}
+						if(normal)
+						{
 							objects_normal.push(child);
 						}
-						else if(child.name.includes("Mask"))
+
+
+						if(child.name.includes("Mask"))
 						{
 							child.material = material_stencil;
-							objects_stencil_mask.push(child);
 						}
-						else if(child.name.includes("Geom"))
+						else if(["ABOUT_Geom_Head", "ABOUT_Geom_Header", "ScreenOutline"].includes(child.name))
 						{
-							child.material = material_Gradient;
-							objects_stencil_geom.push(child);
+							child.material = material_ARCard;
+						}
+						else if(child.name == "ABOUT_Geom_Backing")
+						{
+							child.material = material_machine_backing;
+							console.log("YA YEET");
 						}
 						else
 						{
-							child.material = material_Gradient;
-							objects_normal.push( child );
+							child.material = material_Gradient
 						}
 
 
@@ -252,6 +282,7 @@
 						{
 							var index = parseInt(child.name.substr(child.name.length - 1));
 							u_buttons[index] = child;
+							child.material = material_ARCard;
 						}
 						
 
@@ -331,6 +362,7 @@
 			}
 		}
 	}
+
 
 
 
