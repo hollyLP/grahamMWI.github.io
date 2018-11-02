@@ -315,7 +315,7 @@
 		console.log("Tapped object " + tappedObject);
 		if(tappedObject.includes("UButton"))
 		{
-			var index = parseInt(child.name.substr(child.name.length - 1));
+			var index = parseInt(tappedObject.substr(tappedObject.length - 1));
 
 			var i;
 			for(i = 0; i < u_buttons.length; i++)
