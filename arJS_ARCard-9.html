@@ -1,0 +1,494 @@
+<meta charset="utf-8"/>
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+
+<!-- three.js library -->
+<script src='vendor/three.js/build/three.min.js'></script>
+<script src="vendor/three.js/examples/js/libs/stats.min.js"></script>
+<script src="vendor/three.js/examples/js/loaders/ColladaLoader.js"></script>
+
+<!-- ar.js -->
+<script src="build/ar.js"></script>
+<script src="vendor/three.js/examples/js/controls/InteractControls.js"></script>
+<script>THREEx.ArToolkitContext.baseURL = '../'</script>
+
+<!-- video stuff -->
+<video id="video" loop crossOrigin="anonymous" webkit-playsinline style="display:none">
+	<source src="data/videos/MWI-reel.webm" type='video/webm; codecs=vp8,vorbis'>
+</video>
+
+
+
+<body style='margin : 0px; overflow: hidden; font-family: Monospace;'><div style='position: absolute; top: 10px; width:100%; text-align: center; z-index: 1;'>
+</div><script>
+	//////////////////////////////////////////////////////////////////////////////////
+	//		Init
+	//////////////////////////////////////////////////////////////////////////////////
+	// init renderer
+	var renderer	= new THREE.WebGLRenderer({
+		// antialias	: true,
+		alpha: true
+	});
+	renderer.setClearColor(new THREE.Color('black'), 0)
+	renderer.setPixelRatio( window.devicePixelRatio );
+	renderer.setSize( window.innerWidth, window.innerHeight );
+	renderer.domElement.style.position = 'absolute'
+	renderer.domElement.style.top = '0px'
+	renderer.domElement.style.left = '0px'
+	renderer.autoClear = false;
+	document.body.appendChild( renderer.domElement );
+	// array of functions for the rendering loop
+	var onRenderFcts= [];
+	// init scene and camera
+	var scene = new THREE.Scene();
+	var scene_stencil_mask = new THREE.Scene();
+	var scene_stencil_geometry = new THREE.Scene();
+	
+	//////////////////////////////////////////////////////////////////////////////////
+	//		Initialize a basic camera
+	//////////////////////////////////////////////////////////////////////////////////
+	// Create a camera
+	var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+	//scene.add(camera);
+	////////////////////////////////////////////////////////////////////////////////
+	//          handle arToolkitSource
+	////////////////////////////////////////////////////////////////////////////////
+	var arToolkitSource = new THREEx.ArToolkitSource({
+		// to read from the webcam 
+		sourceType : 'webcam',
+		// to read from an image
+		// sourceType : 'image',
+		// sourceUrl : THREEx.ArToolkitContext.baseURL + '../data/images/img.jpg',		
+		// to read from a video
+		// sourceType : 'video',
+		// sourceUrl : THREEx.ArToolkitContext.baseURL + '../data/videos/headtracking.mp4',		
+	})
+	arToolkitSource.init(function onReady(){
+		onResize()
+	})
+	
+	// handle resize
+	window.addEventListener('resize', function(){
+		onResize()
+	})
+	function onResize(){
+		arToolkitSource.onResize()	
+		arToolkitSource.copySizeTo(renderer.domElement)	
+		if( arToolkitContext.arController !== null ){
+			arToolkitSource.copySizeTo(arToolkitContext.arController.canvas)	
+		}	
+	}
+	////////////////////////////////////////////////////////////////////////////////
+	//          initialize arToolkitContext
+	////////////////////////////////////////////////////////////////////////////////
+	
+	// create atToolkitContext
+	var arToolkitContext = new THREEx.ArToolkitContext({
+		cameraParametersUrl: 'data/data/camera_para.dat',
+		detectionMode: 'mono',
+		maxDetectionRate: 30,
+		
+	})
+	// initialize it
+	arToolkitContext.init(function onCompleted(){
+		// copy projection matrix to camera
+		camera.projectionMatrix.copy( arToolkitContext.getProjectionMatrix() );
+	})
+	// update artoolkit on every frame
+	onRenderFcts.push(function(){
+		if( arToolkitSource.ready === false )	return
+		arToolkitContext.update( arToolkitSource.domElement )
+	})
+	
+	
+	////////////////////////////////////////////////////////////////////////////////
+	//          Create a ArMarkerControls
+	////////////////////////////////////////////////////////////////////////////////
+	
+	var markerRoot = new THREE.Group
+	scene.add(markerRoot)
+	var artoolkitMarker = new THREEx.ArMarkerControls(arToolkitContext, markerRoot, {
+		type : 'pattern',
+		patternUrl : 'data/data/MWI-marker3.patt'
+		// patternUrl : THREEx.ArToolkitContext.baseURL + '../data/data/patt.kanji'
+	})
+
+	console.log('yeet   ?')
+	// build a smoothedControls
+	var smoothedRoot = new THREE.Group()
+	scene.add(smoothedRoot)
+	var smoothedControls = new THREEx.ArSmoothedControls(smoothedRoot, {
+		lerpPosition: 0.2,
+		lerpQuaternion: 0.15,
+		lerpScale: 1,
+	})
+	onRenderFcts.push(function(delta){
+		smoothedControls.update(markerRoot)
+	})
+	
+
+	/////////////////////////////////////////////////////////////////////////////////
+	//		Setup world roots
+	//////////////////////////////////////////////////////////////////////////////////
+
+	var root_ar_World = smoothedRoot
+	var root_stencil_geometry = new THREE.Group();
+	var root_stencil_mask = new THREE.Group();
+
+	scene_stencil_geometry.add(root_stencil_geometry);
+	scene_stencil_mask.add(root_stencil_mask);
+
+	onRenderFcts.push(function(){
+
+		root_stencil_geometry.position.x = root_ar_World.position.x;
+		root_stencil_geometry.position.y = root_ar_World.position.y;
+		root_stencil_geometry.position.z = root_ar_World.position.z;
+		root_stencil_geometry.rotation.x = root_ar_World.rotation.x;
+		root_stencil_geometry.rotation.y = root_ar_World.rotation.y;
+		root_stencil_geometry.rotation.z = root_ar_World.rotation.z;
+		root_stencil_geometry.visible = root_ar_World.visible;
+
+		
+		root_stencil_mask.position.x = root_ar_World.position.x;
+		root_stencil_mask.position.y = root_ar_World.position.y;
+		root_stencil_mask.position.z = root_ar_World.position.z;
+		root_stencil_mask.rotation.x = root_ar_World.rotation.x;
+		root_stencil_mask.rotation.y = root_ar_World.rotation.y;
+		root_stencil_mask.rotation.z = root_ar_World.rotation.z;
+		root_stencil_mask.visible = root_ar_World.visible;
+
+
+
+		//console.log("RootPos " + " x " + root_ar_World.position.x + " y " + root_ar_World.position.y + " z " + root_ar_World.position.z);
+		//console.log("StencilGeomPos " + " x " + root_stencil_geometry.position.x + " y " + root_stencil_geometry.position.y + " z " + root_stencil_geometry.position.z)
+		//console.log("StencilMaskPos " + " x " + root_stencil_mask.position.x + " y " + root_stencil_mask.position.y + " z " + root_stencil_mask.position.z)
+	})
+
+
+	/////////////////////////////////////////////////////////////////////////////////
+	//		add objects to the scene
+	//////////////////////////////////////////////////////////////////////////////////
+	
+
+
+	// instantiate a loader
+	var loader = new THREE.ColladaLoader();
+	var clock = new THREE.Clock();
+	var mixer;
+	var mesh;
+
+	var texture_Gradient = new THREE.TextureLoader().load('data/images/MWIGradient.png');
+	var material_Gradient = new THREE.MeshBasicMaterial();
+	texture_Gradient.wrapS = THREE.RepeatWrapping;
+	texture_Gradient.wrapT = THREE.RepeatWrapping;
+	material_Gradient.map = texture_Gradient;
+	material_Gradient.transparent = true;
+	console.log('Creating Gradient material...');
+	console.log(texture_Gradient);
+	console.log(material_Gradient.map);
+
+	var texture_ARCard = new THREE.TextureLoader().load('data/images/MWI-ARCard-9.png');
+	texture_ARCard.generateMipmaps = false;
+	texture_ARCard.magFilter = THREE.LinearFilter;
+	texture_ARCard.minFilter = THREE.LinearFilter;
+	var material_ARCard = new THREE.MeshBasicMaterial();
+	material_ARCard.map = texture_ARCard;
+	material_ARCard.transparent = true;
+	console.log('Creating ARCard material...');
+	console.log(texture_ARCard);
+	console.log(material_ARCard.map);
+
+	var texture_machine_backing = new THREE.TextureLoader().load('data/images/machine-backing2.png');
+	var material_machine_backing = new THREE.MeshBasicMaterial();
+	texture_machine_backing.wrapS = THREE.RepeatWrapping;
+	texture_machine_backing.wrapT = THREE.RepeatWrapping;
+	material_machine_backing.map = texture_machine_backing;
+	console.log('Creating texture_machine_backing material...');
+	console.log(texture_machine_backing);
+	console.log(material_machine_backing.map);
+
+	var element_video_reel = document.getElementById("video");
+	var texture_video_reel = new THREE.VideoTexture(video);
+	texture_video_reel.minFilter = THREE.LinearFilter;
+	texture_video_reel.magFilter = THREE.LinearFilter;
+	texture_video_reel.format = THREE.RGBFormat;
+	var material_video_reel = new THREE.MeshBasicMaterial({ map: texture_video_reel });
+	console.log('Creating video material...')
+	console.log(texture_video_reel);
+	console.log(material_video_reel.map);
+
+	
+
+	var material_stencil = new THREE.MeshBasicMaterial({
+		color: 0x00ffff,
+    	colorWrite: true,  // works for r73 (not r70)
+    	depthWrite: false,
+    	transparent: true,
+    	opacity: 0
+	});
+
+
+
+	var objects = [];
+	var tab_reel_objects = [];
+	var tab_social_objects = [];
+	var tab_email_objects = [];
+	var u_buttons = [];
+
+	// load a resource
+	loader.load(
+		// resource URL
+		'data/models/ARCard9.dae',
+		// called when resource is loaded
+		function ( object ) 
+		{
+			var model = object.scene;
+
+			var objects_normal = [];
+			var objects_stencil_mask = [];
+			var objects_stencil_geom = [];
+
+
+
+			model.traverse(function(child) 
+			{
+				if(typeof child != undefined)
+				{
+					if (child instanceof THREE.Mesh) 
+					{
+						console.log("Found " + child.name);
+
+
+						
+						if(child.name.includes("REEL"))
+						{
+							tab_reel_objects.push(child);
+						}
+						if(child.name.includes("SOCIAL"))
+						{
+							tab_social_objects.push(child);
+						}
+						if(child.name.includes("MAIL"))
+						{
+							tab_email_objects.push(child);
+						}
+
+						if(child.name.includes("Mask"))
+						{
+							objects_stencil_mask.push(child);
+							console.log("  " + child.name + " is a mask!");
+						}
+						else if(child.name.includes("Geom"))
+						{
+							objects_stencil_geom.push(child);
+							objects.push(child);
+							console.log("  " + child.name + " is stencil geometry.");
+						}
+						else
+						{
+							objects_normal.push(child);
+							objects.push(child);
+							console.log("  " + child.name + " is normal.");
+						}
+
+
+						if(child.name.includes("Mask"))
+						{
+							child.material = material_stencil;
+						}
+						else if(["MAIL_Logo", "SOCIAL_Facebook", "SOCIAL_Instagram", "SOCIAL_LinkedIn", "SOCIAL_VCard", "REEL_Corners"].includes(child.name))
+						{
+							child.material = material_ARCard;
+						}
+						else if(child.name == "MAIL_Geom_Backing")
+						{
+							child.material = material_machine_backing;
+							console.log("YA YEET");
+						}
+						else if(child.name == "REEL_Video")
+						{
+							child.material = material_video_reel;
+						}
+						else
+						{
+							child.material = material_Gradient
+						}
+
+
+						if(child.name.includes("UButton"))
+						{
+							var index = parseInt(child.name.substr(child.name.length - 1));
+							u_buttons[index] = child;
+							child.material = material_ARCard;
+						}
+						
+
+
+						
+						console.log("     Handled " + child.name);
+					}
+				}
+			});
+			
+
+			for(var i = 0; i < objects_normal.length; i++)
+			{
+				console.log("   Adding " + objects_normal[i].name);
+				root_ar_World.add(objects_normal[i]);
+			}
+
+			for(var i = 0; i < objects_stencil_geom.length; i++)
+			{
+				console.log("   Adding " + objects_stencil_geom[i].name);
+				root_stencil_geometry.add(objects_stencil_geom[i]);
+			}
+
+			for(var i = 0; i < objects_stencil_mask.length; i++)
+			{
+				console.log("   Adding " + objects_stencil_mask[i].name);
+				root_stencil_mask.add(objects_stencil_mask[i]);
+			}
+
+
+
+			
+			mesh = model;
+			console.log("Spawned Model");
+
+			mixer = new THREE.AnimationMixer( model );
+			clips = object.animations;
+
+			console.log(clips);
+
+			go_to_tab_index(0);
+			
+			
+		},
+		// called when loading is in progresses
+		function ( xhr ) {
+
+			console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+
+		},
+		// called when loading has errors
+		function ( error ) {
+
+			console.log( 'An error happened' );
+			console.log("JSONLoader failed! because of error " + error.target.status + ", " + error.target.statusText);
+			console.log( error )
+
+		}
+	);
+
+	var button_array = [tab_reel_objects, tab_social_objects, tab_email_objects];
+
+	function onTap(tappedObject)
+	{
+		console.log("Tapped object " + tappedObject);
+		if(tappedObject.includes("UButton"))
+		{
+			var index = parseInt(tappedObject.substr(tappedObject.length - 1));
+
+			go_to_tab_index(index);
+		}
+		else if(tappedObject == "SOCIAL_LinkedIn")
+		{
+			window.open("https://www.linkedin.com/company/mwimmersive/");
+		}
+		else if(tappedObject == "SOCIAL_Instagram")
+		{
+			window.open("https://www.instagram.com/mwimmersive/");
+		}
+		else if(tappedObject == "SOCIAL_Facebook")
+		{
+			window.open("https://www.facebook.com/mwimmersive/");
+		}
+		else if(tappedObject == "SOCIAL_VCard")
+		{
+			window.open("data/test-card.vcf");
+		}
+	}
+
+	function go_to_tab_index(index)
+	{
+		if(index == 0)
+		{
+			element_video_reel.play();
+		}
+		else
+		{
+			element_video_reel.pause();
+		}
+		var i;
+		for(i = 0; i < u_buttons.length; i++)
+		{
+			if(i == index)
+			{
+				u_buttons[i].scale.z = 1;
+			}
+			else
+			{
+				u_buttons[i].scale.z = 0.5;
+			}
+
+			for(var x = 0; x < button_array[i].length; x++)
+			{
+				button_array[i][x].visible = i == index;
+			}
+		}
+	}
+
+
+	var dragControls = new THREE.InteractControls( objects, camera, renderer.domElement );
+	dragControls.addEventListener( 'tapped', function ( event ) { onTap(event.object.name); } );
+
+
+
+
+
+	//////////////////////////////////////////////////////////////////////////////////
+	//		render the whole thing on the page
+	//////////////////////////////////////////////////////////////////////////////////
+	onRenderFcts.push(function(delta, otherBit){
+
+		renderer.clear();
+
+		renderer.render( scene, camera );
+
+		var gl = renderer.context;
+
+		gl.enable(gl.STENCIL_TEST);
+
+		gl.stencilFunc(gl.ALWAYS, 1, 0xff);
+		gl.stencilOp(gl.REPLACE, gl.REPLACE, gl.REPLACE);
+
+		renderer.render( scene_stencil_mask, camera );
+
+		gl.stencilFunc(gl.EQUAL, 1, 0xff);
+		gl.stencilOp(gl.KEEP, gl.KEEP, gl.KEEP);
+
+		renderer.render( scene_stencil_geometry, camera );
+
+		gl.disable(gl.STENCIL_TEST);
+
+		stats.update();
+	})
+
+	var stats = new Stats();
+	document.body.appendChild( stats.dom );
+
+	// run the rendering loop
+	var lastTimeMsec= null
+	requestAnimationFrame(function animate(nowMsec){
+		// keep looping
+		requestAnimationFrame( animate );
+		// measure time
+		lastTimeMsec	= lastTimeMsec || nowMsec-1000/60
+		var deltaMsec	= Math.min(200, nowMsec - lastTimeMsec)
+		lastTimeMsec	= nowMsec
+		// call each update function
+		onRenderFcts.forEach(function(onRenderFct){
+			onRenderFct(deltaMsec/1000, nowMsec/1000)
+		})
+	})
+</script></body>
