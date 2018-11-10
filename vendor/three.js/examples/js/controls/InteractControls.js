@@ -27,7 +27,7 @@ THREE.InteractControls = function ( _objects, _camera, _domElement ) {
 	function activate() {
 
 		_domElement.addEventListener( 'mousemove', onDocumentMouseMove, false );
-		_domElement.addEventListener( 'mousedown', onDocumentMouseDown, false );
+		_domElement.addEventListener( 'mouseup', onDocumentMouseUp, false );
 		_domElement.addEventListener( 'touchmove', onDocumentTouchMove, false );
 		_domElement.addEventListener( 'touchstart', onDocumentTouchStart, false );
 
@@ -36,7 +36,7 @@ THREE.InteractControls = function ( _objects, _camera, _domElement ) {
 	function deactivate() {
 
 		_domElement.removeEventListener( 'mousemove', onDocumentMouseMove, false );
-		_domElement.removeEventListener( 'mousedown', onDocumentMouseDown, false );
+		_domElement.removeEventListener( 'mouseup', onDocumentMouseUp, false );
 		_domElement.removeEventListener( 'touchmove', onDocumentTouchMove, false );
 		_domElement.removeEventListener( 'touchstart', onDocumentTouchStart, false );
 
@@ -59,7 +59,7 @@ THREE.InteractControls = function ( _objects, _camera, _domElement ) {
 
 	}
 
-	function onDocumentMouseDown( event ) {
+	function onDocumentMouseUp( event ) {
 
 		event.preventDefault();
 

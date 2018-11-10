@@ -1,11 +1,11 @@
-<meta charset="utf-8"/>
 <!DOCTYPE html>
-<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" charset="utf-8">
 
 <!-- three.js library -->
 <script src='vendor/three.js/build/three.min.js'></script>
 <script src="vendor/three.js/examples/js/libs/stats.min.js"></script>
 <script src="vendor/three.js/examples/js/loaders/ColladaLoader.js"></script>
+<script src="vendor/hammer.min.js"></script>
 
 <!-- ar.js -->
 <script src="build/ar.js"></script>
@@ -43,6 +43,8 @@
 	var scene = new THREE.Scene();
 	var scene_stencil_mask = new THREE.Scene();
 	var scene_stencil_geometry = new THREE.Scene();
+
+	var hammer = new Hammer(renderer.domElement)
 	
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Initialize a basic camera
@@ -296,7 +298,7 @@
 						{
 							child.material = material_stencil;
 						}
-						else if(["MAIL_Logo", "SOCIAL_Facebook", "SOCIAL_Instagram", "SOCIAL_LinkedIn", "SOCIAL_VCard", "REEL_Corners"].includes(child.name))
+						else if(["MAIL_Geom_Logo", "SOCIAL_Facebook", "SOCIAL_Instagram", "SOCIAL_LinkedIn", "SOCIAL_VCard", "REEL_Corners"].includes(child.name))
 						{
 							child.material = material_ARCard;
 						}
@@ -381,7 +383,7 @@
 	);
 
 	var button_array = [tab_reel_objects, tab_social_objects, tab_email_objects];
-
+	var menu_index = 0;
 	function onTap(tappedObject)
 	{
 		console.log("Tapped object " + tappedObject);
@@ -405,12 +407,26 @@
 		}
 		else if(tappedObject == "SOCIAL_VCard")
 		{
-			window.open("data/test-card.vcf");
+			window.open("tel:312-869-2162");
+		}
+		else if(tappedObject == "MAIL_Geom_Logo")
+		{
+			window.open("mailto:hello@mwimmersive.com");
 		}
 	}
 
 	function go_to_tab_index(index)
 	{
+		if(index > button_array.length- 1)
+		{
+			index = button_array.length - 1;
+		}
+		else if(index < 0)
+		{
+			index = 0;
+		}
+
+		menu_index = index;
 		if(index == 0)
 		{
 			element_video_reel.play();
@@ -437,6 +453,20 @@
 			}
 		}
 	}
+
+	hammer.on("swiperight", function(ev) {
+		if(menu_index > 0)
+		{
+			go_to_tab_index(menu_index - 1);
+		}
+	})
+
+	hammer.on("swipeleft", function(ev) {
+		if(menu_index < button_array.length - 1)
+		{
+			go_to_tab_index(menu_index + 1);
+		}
+	})
 
 
 	var dragControls = new THREE.InteractControls( objects, camera, renderer.domElement );
