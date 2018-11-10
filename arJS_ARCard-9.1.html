@@ -469,7 +469,7 @@
 	})
 
 
-	var dragControls = new THREE.InteractControls( objects, camera, renderer.domElement );
+	var dragControls = new THREE.InteractControls2( objects, camera, renderer.domElement );
 	dragControls.addEventListener( 'tapped', function ( event ) { onTap(event.object.name); } );
 
 
