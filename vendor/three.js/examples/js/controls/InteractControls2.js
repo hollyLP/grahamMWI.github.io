@@ -4,11 +4,11 @@
  * Running this will allow you to drag three.js objects around the screen.
  */
 
-THREE.InteractControls = function ( _objects, _camera, _domElement ) {
+THREE.InteractControls2 = function ( _objects, _camera, _domElement ) {
 
 	if ( _objects instanceof THREE.Camera ) {
 
-		console.warn( 'THREE.InteractControls: Constructor now expects ( objects, camera, domElement )' );
+		console.warn( 'THREE.InteractControls2: Constructor now expects ( objects, camera, domElement )' );
 		var temp = _objects; _objects = _camera; _camera = temp;
 
 	}
@@ -130,32 +130,32 @@ THREE.InteractControls = function ( _objects, _camera, _domElement ) {
 
 	this.setObjects = function () {
 
-		console.error( 'THREE.InteractControls: setObjects() has been removed.' );
+		console.error( 'THREE.InteractControls2: setObjects() has been removed.' );
 
 	};
 
 	this.on = function ( type, listener ) {
 
-		console.warn( 'THREE.InteractControls: on() has been deprecated. Use addEventListener() instead.' );
+		console.warn( 'THREE.InteractControls2: on() has been deprecated. Use addEventListener() instead.' );
 		scope.addEventListener( type, listener );
 
 	};
 
 	this.off = function ( type, listener ) {
 
-		console.warn( 'THREE.InteractControls: off() has been deprecated. Use removeEventListener() instead.' );
+		console.warn( 'THREE.InteractControls2: off() has been deprecated. Use removeEventListener() instead.' );
 		scope.removeEventListener( type, listener );
 
 	};
 
 	this.notify = function ( type ) {
 
-		console.error( 'THREE.InteractControls: notify() has been deprecated. Use dispatchEvent() instead.' );
+		console.error( 'THREE.InteractControls2: notify() has been deprecated. Use dispatchEvent() instead.' );
 		scope.dispatchEvent( { type: type } );
 
 	};
 
 };
 
-THREE.InteractControls.prototype = Object.create( THREE.EventDispatcher.prototype );
-THREE.InteractControls.prototype.constructor = THREE.InteractControls;
+THREE.InteractControls2.prototype = Object.create( THREE.EventDispatcher.prototype );
+THREE.InteractControls2.prototype.constructor = THREE.InteractControls2;
