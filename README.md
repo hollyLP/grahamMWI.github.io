@@ -2,6 +2,8 @@
 This is a landing site for any web-based tests run by me.
 All of it at the moment is WebAR tests / projects. Most of the time spent in this repository has been trying to develop a decent web-ar-based buisness card.
 
+Check out the HTML files in the root of the repo to get started, or navigate to [grahamMWI.github.io](grahamMWI.github.io) to test them out.
+
 ### Here is a video of one of the tests
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=8wvdhbYA5K0
 " target="_blank"><img src="http://img.youtube.com/vi/8wvdhbYA5K0/0.jpg" 
