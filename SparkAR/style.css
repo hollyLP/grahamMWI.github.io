@@ -47,7 +47,7 @@ body
 
 .image-section-item
 {
-	width: 400px;
+	width: 200px;
 	height: 430px;
 	background-color: white;
 	margin: 20px;
@@ -70,4 +70,11 @@ body
 	position: relative;
 	width: 100%;
 	height: 400px;
+}
+
+.image-section-item video
+{
+	height: 390px;
+	margin: 5px;
+	
 }
