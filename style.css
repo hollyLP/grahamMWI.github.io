@@ -1,0 +1,73 @@
+body 
+{
+	background-color: black;
+	color: white;
+	font-family: 'Roboto', sans-serif;
+}
+
+#headerLogo
+{
+	height: 100px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.top-text
+{
+	width: 600px;
+	height: 5px;
+	font-size: 20px;
+}
+
+.top-text-sub
+{
+	width: 400px;
+	font-size: 14px;
+	color: grey;
+}
+
+
+
+
+
+
+#image-section
+{
+	margin-top: 25px;
+	margin-left: 25px;
+	margin-right: 25px;
+	display: flex;
+  	flex-wrap: wrap;
+  	justify-content: center;
+  	align-self: center;
+}
+
+.image-section-item
+{
+	width: 400px;
+	height: 430px;
+	background-color: white;
+	margin: 20px;
+}
+
+.image-section-item-title
+{
+	position: relative;
+	font-size: 18px;
+	font-weight: bold;
+	color: black;
+	background-color: white;
+	left: 0;
+	right: 0;
+	height: 30px;
+}
+
+.image-section-item img
+{
+	position: relative;
+	width: 100%;
+	height: 400px;
+}
