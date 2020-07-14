@@ -122,5 +122,17 @@
   }
   </script>
 
+  <script type="text/javascript">
+    var canvas = document.getElementById("canvas");
+
+    document.addEventListener('pointerlockchange', function()
+    {
+      if(document.pointerLockElement === canvas || document.mozPointerLockElement === canvas)
+      {
+        gameInstance.SendMessage("JavaScriptHook", "PressedEscape");
+      }
+    }, false);
+  </script>
+
 </html>
 
