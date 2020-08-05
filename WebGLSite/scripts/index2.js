@@ -25,6 +25,7 @@ function main() {
         console.log(`PeerJS opened. id is ${id}`);
 
         socket = io.connect(getBackendAddress(), {
+            path: "/webgl-site",
             query: `peerId=${id}`
         });
 
@@ -40,7 +41,7 @@ function getBackendAddress() {
         return "localhost:5000";
     }
     else {
-        return "experiments.mwimmersive.com/webgl-site/";
+        return "https://experiments.mwimmersive.com/webgl-site/";
     }
 }
 
