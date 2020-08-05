@@ -25,7 +25,7 @@ function main() {
         console.log(`PeerJS opened. id is ${id}`);
 
         socket = io.connect(getBackendAddress(), {
-            path: "/webgl-site",
+            path: "/webgl-site/socket.io",
             query: `peerId=${id}`
         });
 
