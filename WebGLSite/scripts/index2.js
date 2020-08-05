@@ -1,5 +1,5 @@
-﻿const isDevMode = false;
-
+﻿const isDevMode = true;
+const isDevServer = false;
 
 var peer = new Peer();
 var socket = undefined;
@@ -25,7 +25,7 @@ function main() {
         console.log(`PeerJS opened. id is ${id}`);
 
         socket = io.connect(getBackendAddress(), {
-            path: "/webgl-site/socket.io",
+            path: "/webgl-site",
             query: `peerId=${id}`
         });
 
@@ -37,11 +37,11 @@ function main() {
 }
 
 function getBackendAddress() {
-    if (isDevMode) {
+    if (isDevServer) {
         return "localhost:5000";
     }
     else {
-        return "https://experiments.mwimmersive.com/webgl-site/";
+        return "https://experiments.mwimmersive.com/";
     }
 }
 
@@ -54,13 +54,17 @@ function getBackendAddress() {
 
 function checkForMediaAccess(onComplete) {
 
+    verbosePrint("Checking for media access...");
+
     if (localMediaStream) {
+        verbosePrint("Already has media access!");
         onComplete();
         return;
     }
 
 
     navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then(function (stream) {
+        verbosePrint("Obtained media access.");
         onRecievedUserMediaStream(stream);
         onComplete();
         return;
