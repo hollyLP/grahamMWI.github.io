@@ -40,7 +40,7 @@ function getBackendAddress() {
         return "localhost:5000";
     }
     else {
-        return "experiments.mwimmersive.com/webgl-site";
+        return "experiments.mwimmersive.com/webgl-site/";
     }
 }
 
