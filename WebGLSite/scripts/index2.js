@@ -40,7 +40,7 @@ function getBackendAddress() {
         return "localhost:5000";
     }
     else {
-        return "45.76.231.183:5000";
+        return "experiments.mwimmersive.com:5000";
     }
 }
 
