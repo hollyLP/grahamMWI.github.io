@@ -6,6 +6,9 @@ var socket = undefined;
 
 var localMediaStream = undefined;
 
+const AudioContext = window.AudioContext || window.webkitAudioContext;
+const audioCtx = new AudioContext();
+const listener = audioCtx.listener;
 
 
 function main() {
@@ -37,7 +40,7 @@ function getBackendAddress() {
         return "localhost:5000";
     }
     else {
-        return "https://mwi-webglsite-backend.herokuapp.com/"
+        return "45.76.231.183:5000";
     }
 }
 
@@ -276,11 +279,28 @@ function createUserItemContainer(user) {
 
 
 
+//
+//  AUDIO METHODS
+//
+
+function setLocalPlayerPosition(x, y, z) {
+    listener.posX = x;
+    listener.posY = y;
+    listener.posZ = z;
+
+    console.log(`Set local player pos to x:${x} y:${y}, z:${z}`);
+}
+
+
+
+
+
+
 
 
 
 //
-//  DEVELOPER SCRIPTS
+//  DEVELOPER METHODS
 //
 
 function verbosePrint(text) {
