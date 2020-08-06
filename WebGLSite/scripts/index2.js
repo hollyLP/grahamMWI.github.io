@@ -1,4 +1,4 @@
-﻿const isDevMode = true;
+﻿const isDevMode = false;
 const isDevServer = false;
 
 var peer = new Peer();
