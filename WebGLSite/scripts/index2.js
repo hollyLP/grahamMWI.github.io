@@ -1,8 +1,10 @@
-﻿const isDevMode = false;
+﻿const isDevMode = true;
 const isDevServer = false;
 
-var peer = new Peer();
+var peer = undefined;
 var socket = undefined;
+var hasJoined = false;
+var socketOpen = false;
 
 var localMediaStream = undefined;
 
@@ -11,11 +13,16 @@ const audioCtx = new AudioContext();
 const listener = audioCtx.listener;
 
 
-function main() {
+// called by Unity
+function startConnection(uuid) {
 
-    //checkForMediaAccess(() => {
-    //    console.log("bing bing");
-    //});
+    if (hasJoined) {
+        return;
+    }
+
+    hasJoined = true;
+
+    peer = new Peer();
 
     peer.on("connection", onPeerConnected);
     peer.on("error", onPeerError);
@@ -26,13 +33,18 @@ function main() {
 
         socket = io.connect(getBackendAddress(), {
             path: "/webgl-site",
-            query: `peerId=${id}`
+            query: `peerId=${id}&uuid=${uuid}`
         });
 
-        joinRoom("main-room");
 
-        socket.on("room-players-joined", onRoomPlayersJoined);
-        socket.on("room-player-left", onRoomPlayerLeft);
+        socket.on("room-added", onRoomAdded);
+        socket.on("room-updated", onRoomUpdated);
+        socket.on("room-removed", onRoomRemoved);
+        socket.on("local-room-players-joined", onLocalRoomPlayersJoined);
+        socket.on("local-room-player-left", onLocalRoomPlayerLeft);
+        socket.on("local-room-leave", onLocalRoomLeave);
+
+        socketOpen = true;
     });
 }
 
@@ -90,10 +102,6 @@ function onRecievedUserMediaStream(stream) {
 //
 //  LOGIC
 //
-
-function joinRoom(roomName) {
-    socket.emit("join-room", "mainRoom");
-}
 
 function callUsers(userDatas) {
 
@@ -176,17 +184,52 @@ function answerPeerCall(call) {
 //  WebSocket Callbacks
 //
 
-function onRoomPlayersJoined(userDatas) {
-    verbosePrint(`onRoomPlayersJoined called with ${userDatas}`);
+
+
+function onRoomAdded(roomName, x, y, z, radius) {
+    const data = {
+        n: roomName,
+        x: x,
+        y: y,
+        z: z,
+        r: r
+    };
+
+    gameInstance.SendMessage("JavaScriptHook", "AddRoom", JSON.stringify(data));
+}
+
+function onRoomUpdated(roomName, x, y, z, radius) {
+    const data = {
+        n: roomName,
+        x: x,
+        y: y,
+        z: z,
+        r: r
+    };
+
+    gameInstance.SendMessage("JavaScriptHook", "UpdateRoom", JSON.stringify(data));
+}
+
+function onRoomRemoved(roomName) {
+    gameInstance.SendMessage("JavaScriptHook", "RemoveRoom", roomName);
+}
+
+function onLocalRoomPlayersJoined(userDatas) {
+    verbosePrint(`onLocalRoomPlayersJoined called with ${userDatas}`);
 
     addUsersToUserList(userDatas);
     callUsers(userDatas);
 }
 
-function onRoomPlayerLeft(userData) {
-    verbosePrint(`onRoomPlayerLeft called with ${userData}`);
+function onLocalRoomPlayerLeft(userData) {
+    verbosePrint(`onLocalRoomPlayerLeft called with ${userData}`);
 
     removeUserFromUserList(userData.socketId);
+}
+
+function onLocalRoomLeave() {
+    verbosePrint(`onLocalRoomLeave called`);
+    removeAllOtherUsersFromUserList();
 }
 
 
@@ -262,6 +305,21 @@ function removeUserFromUserList(socketId) {
     }
 }
 
+// Removes all other users from the user UI
+function removeAllOtherUsersFromUserList() {
+    const videoBar = document.getElementById("video-bar");
+
+    if (videoBar) {
+        const children = videoBar.children;
+
+        children.forEach(function (child) {
+            if (child.id != "localSocket") {
+                child.remove();
+            }
+        });
+    }
+}
+
 // Construct a container for active users
 function createUserItemContainer(user) {
     const videoWindow = document.createElement("div");
@@ -284,16 +342,23 @@ function createUserItemContainer(user) {
 
 
 
+
+
 //
-//  AUDIO METHODS
+//  Unity METHODS
 //
 
 function setLocalPlayerPosition(x, y, z) {
+
+    if (!socketOpen) {
+        return;
+    }
+
     listener.posX = x;
     listener.posY = y;
     listener.posZ = z;
 
-    console.log(`Set local player pos to x:${x} y:${y}, z:${z}`);
+    socket.emit("update-position", x, y, z);
 }
 
 
@@ -318,6 +383,3 @@ function verbosePrint(text) {
 
 
 
-
-// Run Script
-main();
