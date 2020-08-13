@@ -206,9 +206,10 @@ function onRoomAdded(roomName, x, y, z, radius) {
         x: x,
         y: y,
         z: z,
-        r: r
+        r: radius
     };
 
+    verbosePrint(`onRoomAdded called with ${JSON.stringify(data)}`);
     gameInstance.SendMessage("JavaScriptHook", "AddRoom", JSON.stringify(data));
 }
 
@@ -218,13 +219,15 @@ function onRoomUpdated(roomName, x, y, z, radius) {
         x: x,
         y: y,
         z: z,
-        r: r
+        r: radius
     };
 
+    verbosePrint(`onRoomUpdated called with ${JSON.stringify(data)}`);
     gameInstance.SendMessage("JavaScriptHook", "UpdateRoom", JSON.stringify(data));
 }
 
 function onRoomRemoved(roomName) {
+    verbosePrint(`onRoomRemoved called with ${roomName}`);
     gameInstance.SendMessage("JavaScriptHook", "RemoveRoom", roomName);
 }
 
