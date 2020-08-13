@@ -12,9 +12,12 @@ const AudioContext = window.AudioContext || window.webkitAudioContext;
 const audioCtx = new AudioContext();
 const listener = audioCtx.listener;
 
+var currentMediaStreams = {};
+
+
 
 // called by Unity
-function startConnection(uuid) {
+function startConnection(photonId) {
 
     if (hasJoined) {
         return;
@@ -31,9 +34,18 @@ function startConnection(uuid) {
     peer.on("open", function (id) {
         console.log(`PeerJS opened. id is ${id}`);
 
+
+
+
+        const queryObject = {
+            peerId: id,
+            uuid: photonId
+        }
+        console.log(`Connecting to server with query ${JSON.stringify(queryObject)}`);
+
         socket = io.connect(getBackendAddress(), {
             path: "/webgl-site",
-            query: `peerId=${id}&uuid=${uuid}`
+            query: queryObject
         });
 
 
@@ -168,6 +180,8 @@ function answerPeerCall(call) {
     console.log(`Answering call from ${call.peer}...`);
     call.answer(localMediaStream);
 
+    currentMediaStreams[call.peer] = call;
+
     call.on("stream", function (stream) {
 
         console.log(`Opened call from ${call.peer}.`);
@@ -224,7 +238,7 @@ function onLocalRoomPlayersJoined(userDatas) {
 function onLocalRoomPlayerLeft(userData) {
     verbosePrint(`onLocalRoomPlayerLeft called with ${userData}`);
 
-    removeUserFromUserList(userData.socketId);
+    removeUserFromUserList(userData);
 }
 
 function onLocalRoomLeave() {
@@ -297,11 +311,16 @@ function addUsersToUserList(users) {
 }
 
 // Removes a user from the user UI
-function removeUserFromUserList(socketId) {
-    const videoWindow = document.getElementById(socketId);
+function removeUserFromUserList(userData) {
+    const videoWindow = document.getElementById(userData.socketId);
 
     if (videoWindow) {
         videoWindow.remove();
+    }
+
+    const mediaStream = currentMediaStreams[userData.peerId];
+    if (mediaStream) {
+        mediaStream.close();
     }
 }
 
@@ -312,11 +331,21 @@ function removeAllOtherUsersFromUserList() {
     if (videoBar) {
         const children = videoBar.children;
 
-        children.forEach(function (child) {
-            if (child.id != "localSocket") {
-                child.remove();
+        if (children != undefined) {
+
+            for (var i = 0; i < children.length; i++) {
+                if (children[i].id != "localSocket") {
+                    children[i].remove();
+                    i--;
+                }
             }
-        });
+        }
+        else {
+            console.log("Could not find any children of videoBar to remove...");
+        }
+    }
+    else {
+        console.log("Could not find videoBar to use...");
     }
 }
 
