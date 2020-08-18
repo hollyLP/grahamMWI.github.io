@@ -57,6 +57,8 @@ function startConnection(photonId) {
         socket.on("local-room-leave", onLocalRoomLeave);
 
         socketOpen = true;
+
+        checkForMediaAccess(function () { console.log("Got media access!"); });
     });
 }
 
@@ -111,7 +113,7 @@ function retryMediaPrompt() {
         checkForMediaAccess(cachedMediaCompleteMethod);
     }
     else {
-        alert("Tried to call media prompt with no cached complete method!");
+        console.log("Tried to call media prompt with no cached complete method!");
         checkForMediaAccess(cachedMediaCompleteMethod);
     }
 }
