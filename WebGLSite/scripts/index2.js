@@ -13,7 +13,7 @@ const audioCtx = new AudioContext();
 const listener = audioCtx.listener;
 
 var currentMediaStreams = {};
-
+var cachedMediaCompleteMethod = undefined;
 
 
 // called by Unity
@@ -86,17 +86,34 @@ function checkForMediaAccess(onComplete) {
         return;
     }
 
+    gameInstance.SendMessage("JavaScriptHook", "MediaPromptStart");
+    cachedMediaCompleteMethod = onComplete;
 
     navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then(function (stream) {
         verbosePrint("Obtained media access.");
         onRecievedUserMediaStream(stream);
         onComplete();
+        cachedMediaCompleteMethod = undefined;
+        gameInstance.SendMessage("JavaScriptHook", "MediaPromptSuccess");
+
         return;
 
     }).catch(function (err) {
         console.log(err);
-        alert(err);
+        //alert(err);
+
+        gameInstance.SendMessage("JavaScriptHook", "MediaPromptFailed");
     });
+}
+
+function retryMediaPrompt() {
+    if (cachedMediaCompleteMethod != undefined) {
+        checkForMediaAccess(cachedMediaCompleteMethod);
+    }
+    else {
+        alert("Tried to call media prompt with no cached complete method!");
+        checkForMediaAccess(cachedMediaCompleteMethod);
+    }
 }
 
 
