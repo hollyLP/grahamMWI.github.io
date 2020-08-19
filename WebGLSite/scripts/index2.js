@@ -12,7 +12,7 @@ const AudioContext = window.AudioContext || window.webkitAudioContext;
 const audioCtx = new AudioContext();
 const listener = audioCtx.listener;
 
-var currentMediaStreams = {};
+var currentMediaStreams = new Map();
 var cachedMediaCompleteMethod = undefined;
 
 
@@ -199,7 +199,7 @@ function answerPeerCall(call) {
     console.log(`Answering call from ${call.peer}...`);
     call.answer(localMediaStream);
 
-    currentMediaStreams[call.peer] = call;
+    currentMediaStreams.set(call.peer, call);
 
     call.on("stream", function (stream) {
 
@@ -340,9 +340,11 @@ function removeUserFromUserList(userData) {
         videoWindow.remove();
     }
 
-    const mediaStream = currentMediaStreams[userData.peerId];
+    const mediaStream = currentMediaStreams.get(userData.peerId);
     if (mediaStream) {
         mediaStream.close();
+
+        currentMediaStreams.delete(userData.peerId);
     }
 }
 
@@ -369,6 +371,14 @@ function removeAllOtherUsersFromUserList() {
     else {
         console.log("Could not find videoBar to use...");
     }
+
+
+    currentMediaStreams.forEach(function (value, key) {
+        value.close();
+    });
+
+    currentMediaStreams = new Map();
+
 }
 
 // Construct a container for active users
