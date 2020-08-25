@@ -51,13 +51,13 @@ function joinLevel(photonId, roomName) {
             }
             // Connect to the dev server
             else {
-                socket = io.connect("https://experiments.mwimmersive.com/test/", {
-                    path: "/webgl-site",
+                socket = io.connect("https://experiments.mwimmersive.com/", {
+                    path: "/test/webgl-site",
                     query: queryObject
                 });
             }
 
-            
+
 
 
             socket.on("room-added", onRoomAdded);

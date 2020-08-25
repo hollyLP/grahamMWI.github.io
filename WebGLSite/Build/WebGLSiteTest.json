@@ -1,0 +1,13 @@
+{
+"companyName": "Midwest Immersive",
+"productName": "MWI-WebGL-Site",
+"dataUrl": "WebGLSiteTest.data.unityweb",
+"wasmCodeUrl": "WebGLSiteTest.wasm.code.unityweb",
+"wasmFrameworkUrl": "WebGLSiteTest.wasm.framework.unityweb",
+"TOTAL_MEMORY": 268435456,
+"graphicsAPI": ["WebGL 2.0", "WebGL 1.0"],
+"webglContextAttributes": {"preserveDrawingBuffer": false},
+"splashScreenStyle": "Dark",
+"backgroundColor": "#000000",
+"cacheControl": {"default": "must-revalidate"}
+}
