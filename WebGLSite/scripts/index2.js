@@ -3,7 +3,7 @@ const isDevServer = false;
 
 var peer = undefined;
 var socket = undefined;
-var hasJoined = false;
+var firstTimeConnection = true;
 var socketOpen = false;
 
 var localMediaStream = undefined;
@@ -16,7 +16,84 @@ var currentMediaStreams = new Map();
 var cachedMediaCompleteMethod = undefined;
 
 
-// called by Unity
+
+
+// Called by Unity. Tells this JS app to connect to the server at the level roomName.
+function joinLevel(photonId, roomName) {
+
+    // If this is our first time joining a room, connect to all the junk
+    if (firstTimeConnection) {
+        firstTimeConnection = false;
+
+        peer = new Peer();
+        peer.on("connection", onPeerConnected);
+        peer.on("error", onPeerError);
+        peer.on("call", onPeerCall);
+
+        peer.on("open", function (id) {
+            console.log(`PeerJS opened. id is ${id}`);
+
+
+
+
+            const queryObject = {
+                peerId: id,
+                uuid: photonId
+            }
+            console.log(`Connecting to server with query ${JSON.stringify(queryObject)}`);
+
+            // Connect to the normal server
+            if (!isDevServer) {
+                socket = io.connect("https://experiments.mwimmersive.com/", {
+                    path: "/webgl-site",
+                    query: queryObject
+                });
+            }
+            // Connect to the dev server
+            else {
+                socket = io.connect("localhost:30036", {
+                    query: queryObject
+                });
+            }
+
+            
+
+
+            socket.on("room-added", onRoomAdded);
+            socket.on("room-updated", onRoomUpdated);
+            socket.on("room-removed", onRoomRemoved);
+            socket.on("local-room-players-joined", onLocalRoomPlayersJoined);
+            socket.on("local-room-player-left", onLocalRoomPlayerLeft);
+            socket.on("local-room-leave", onLocalRoomLeave);
+
+            socketOpen = true;
+
+            checkForMediaAccess(function () { console.log("Got media access!"); });
+
+            joinLevel(photonId, roomName);
+        });
+    }
+
+    // Otherwise, once we've connected to all the junk...
+    else {
+
+        socket.emit("join-level", roomName);
+    }
+}
+
+// Called by Unity. Tells this JS app to bounce from this room.
+function leaveLevel() {
+
+    socket.emit("leave-level");
+}
+
+
+
+
+
+
+
+
 function startConnection(photonId) {
 
     if (hasJoined) {
@@ -25,50 +102,6 @@ function startConnection(photonId) {
 
     hasJoined = true;
 
-    peer = new Peer();
-
-    peer.on("connection", onPeerConnected);
-    peer.on("error", onPeerError);
-    peer.on("call", onPeerCall);
-
-    peer.on("open", function (id) {
-        console.log(`PeerJS opened. id is ${id}`);
-
-
-
-
-        const queryObject = {
-            peerId: id,
-            uuid: photonId
-        }
-        console.log(`Connecting to server with query ${JSON.stringify(queryObject)}`);
-
-        socket = io.connect(getBackendAddress(), {
-            path: "/webgl-site",
-            query: queryObject
-        });
-
-
-        socket.on("room-added", onRoomAdded);
-        socket.on("room-updated", onRoomUpdated);
-        socket.on("room-removed", onRoomRemoved);
-        socket.on("local-room-players-joined", onLocalRoomPlayersJoined);
-        socket.on("local-room-player-left", onLocalRoomPlayerLeft);
-        socket.on("local-room-leave", onLocalRoomLeave);
-
-        socketOpen = true;
-
-        checkForMediaAccess(function () { console.log("Got media access!"); });
-    });
-}
-
-function getBackendAddress() {
-    if (isDevServer) {
-        return "localhost:5000";
-    }
-    else {
-        return "https://experiments.mwimmersive.com/";
-    }
 }
 
 
