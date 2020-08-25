@@ -1,5 +1,5 @@
 ﻿const isDevMode = true;
-const isDevServer = false;
+const isDevServer = true;
 
 var peer = undefined;
 var socket = undefined;
