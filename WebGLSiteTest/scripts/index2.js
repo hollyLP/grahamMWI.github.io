@@ -118,7 +118,10 @@ function checkForMediaAccess(onComplete) {
 
     if (localMediaStream) {
         verbosePrint("Already has media access!");
-        onComplete();
+
+        if (onComplete) {
+            onComplete();
+        }
         return;
     }
 
@@ -128,7 +131,11 @@ function checkForMediaAccess(onComplete) {
     navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then(function (stream) {
         verbosePrint("Obtained media access.");
         onRecievedUserMediaStream(stream);
-        onComplete();
+
+        if (onComplete) {
+            onComplete();
+        }
+
         cachedMediaCompleteMethod = undefined;
         gameInstance.SendMessage("JavaScriptHook", "MediaPromptSuccess");
 
