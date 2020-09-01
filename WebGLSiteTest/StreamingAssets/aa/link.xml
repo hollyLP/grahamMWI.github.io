@@ -72,6 +72,7 @@
     <type fullname="ChatRadius" preserve="all" />
     <type fullname="WebGLSettingsController" preserve="all" />
     <type fullname="Logger" preserve="all" />
+    <type fullname="RemoteAddressablesController" preserve="all" />
     <type fullname="PhotonEventController" preserve="all" />
     <type fullname="MainUIPage_EnableMediaPrompt" preserve="all" />
     <type fullname="GameInstance" preserve="all" />
@@ -97,7 +98,6 @@
     <type fullname="NetworkingController" preserve="all" />
     <type fullname="MainUIPage_FailedMediaPrompt" preserve="all" />
     <type fullname="ConnectingUIPageIdle" preserve="all" />
-    <type fullname="RemoteAddressablesController" preserve="all" />
     <type fullname="URLVideoPlayer" preserve="all" />
     <type fullname="ImageSequence" preserve="all" />
     <type fullname="GenericInteractable" preserve="all" />
